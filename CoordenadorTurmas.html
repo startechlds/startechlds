@@ -25,7 +25,7 @@
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
-                    <a href="inicialAlunoVagas.html"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
+                    <a href="CoordenadorAlunos.html"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Empresas</button></a>
         
@@ -62,7 +62,7 @@
 
                 <div class="col-4 col-md-2 offset-sm-1 mt-3">
 
-                    <button class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href=""><i class="fas fa-times"></i></a></button>
+                    <button class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="#"><i class="fas fa-times"></i></a></button>
                     
                     <button class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="loginInicial.html"><i class="fas fa-power-off"></i></a></button>
 
@@ -70,22 +70,99 @@
 
             </div>
 
-            <div class="col-8 offset-sm-2" style="margin-top: 130px; height: 30vh">
+            <div class="col-12" style="border: 1px solid black; height: 13vh; background-color: rgb(175, 175, 166);"> 
 
-                <h1>PAREI AQUI, CONTINUO NA SEXTA À NOITE!</h1>
                 <div class="row">
 
-                    <div class="col-12 offset-sm-4 mt-4">
-                        <i class="far fa-smile" style="font-size: 40px; color: rgb(34, 32, 32); font-size: 250px; color: rgb(179, 179, 34); "></i>
+                    <div class="col-3 offset-sm-1 mt-4" style="">
 
+                        <p><strong>Professor:</strong> Nome do professor</p>
+                        <p style="margin-top: -8px;"><strong>Seg:</strong> 18:30 às 21:00</p>
+                    </div>   
+                       
+                    <div class="col-2 sm-2 mt-4">
+                        <select class="form-select btn btn-secondary" id="validationDefault04" required >
+                            <option selected disabled >Estágio?</option>
+                            <option>Sim</option>
+                            <option>Não</option> 
+                        </select>
+                    </div>
+                    
+                    <div class="col-2 offset-sm-4" style="margin-top: 45px">
+
+                        <button 
+                            class="btn btn-secondary" 
+                            style="margin-bottom: 8px;">
+                            <a href="CoordenadorEditarProfessor.html" 
+                            style="text-decoration: none; color: black"><strong>Finalizar Turma</strong></a>
+                        </button>                           
+    
                     </div>
 
-                </div>
-                 
+                </div>                     
 
             </div>
 
-            <div class="col-8" style="margin-top: 250px;">
+            <div clas="row">
+
+                <div class="col-12" style="margin-top: 70px; background-color: rgb(175, 175, 166); height: 50%">
+
+                    <div class="row">
+
+                        <div class="col-2 offset-sm-1" style="margin-top: 100px;">
+
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Editar Turma</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Apagar Turma</a></button>
+
+                        </div>
+
+                        <div class="col-8" style="margin-top: 70px;">
+
+                            <table class="table table-hover">
+                                <thead class="bg-secondary" style="text-align: center;">
+                                  <tr>
+                                    <th scope="col">Aluno</th>
+                                    <th scope="col">Estágio?</th>
+                                    <th scope="col">Empresa</th>
+                                  </tr>
+                                </thead>
+                                <tbody style="text-align: center;">
+                                  <tr>
+                                    <th scope="row">Aluno 1</th>
+                                    <td>Sim</td>
+                                    <td>Empresa Y</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Aluno 2</th>
+                                    <td>Não</td>
+                                    <td>Empresa A</td>                          
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Aluno 3</th>
+                                    <td>Sim</td>
+                                    <td>Empresa X</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Aluno 4</th>
+                                    <td>Não</td>
+                                    <td>Empresa Z</td>
+                                  </tr>
+                                  
+                                </tbody>
+                              </table>
+
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+
+            </div>
+
+            
+            <div class="col-8" style="margin-top: 2%;">
 
                 <p>Coordenador Sobrenome</p>
 
