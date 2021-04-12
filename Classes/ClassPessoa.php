@@ -63,6 +63,8 @@
             }
             
         }
+
+       
         public function Imprimir($nome, $cpf, $usuario, $senha, $tipo){
             echo($nome." ");
             echo($cpf." ");
