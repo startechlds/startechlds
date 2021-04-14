@@ -13,7 +13,7 @@
             exit;
         }
         else{
-            require_once("ClassPessoa.php");
+           // require_once("ClassPessoa.php");
             $id = $_GET['id'];
 
             $p = new Pessoa();

@@ -1,5 +1,5 @@
 <?php
-    include('../BD/conexao.php');
+    require_once('../BD/conexao.php');
     class Pessoa 
     {
         protected $CD_Pessoa;
