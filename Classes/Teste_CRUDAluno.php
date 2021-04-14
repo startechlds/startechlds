@@ -41,7 +41,7 @@
     </form>
 
     <?php
-        include('ClassPessoa.php');
+        include_once('ClassPessoa.php');
         
         if(isset($_POST['btn_cadastrar'])){
             $nome = $_POST['nome'].' '. $_POST['sobrenome'];
@@ -51,7 +51,7 @@
             $senha = $_POST['senha'];
 
             $p = new Pessoa();
-            $resultado = $p->InserirNovoAluno($nome,$cpf,$usuario,$senha,$tipo);
+            $resultado = $p->InserirNovaPessoa($nome,$cpf,$usuario,$senha,$tipo);
 
             if($resultado == true){
                 echo "Aluno inserido com sucesso";
@@ -96,8 +96,8 @@
             <td align="center"><?php echo $exibir->CH_CPF;?></td>
             <td align="center"><?php echo $exibir->VF_Tipo;?></td>
             <td align="center"><?php echo $exibir->CH_Usuario;?></td>
-            <td><a href="Teste_CRUDAluno.php?acao=editar&id=<?php $exibir->CD_Pessoa;?>" class="btn-sucess" name="btn_editar" title="Editar Contato">EDITAR </a></td>
-            <td> <a href="#" class="btn-sucess" title="Remover">APAGAR </a></td
+            <td><a href="Editar_Aluno.php?acao=editar&id=<?php echo $exibir->CD_Pessoa;?>" class="btn-sucess" name="btn_editar" title="Editar Contato">EDITAR </a></td>
+            <td> <a href="Teste_CRUDAluno.php?acao=deletar&id=<?php echo $exibir->CD_Pessoa;?>" class="btn-sucess" title="Remover">APAGAR </a></td
         </tr>
         <?php
               }
@@ -110,7 +110,15 @@
             echo "ERRO de PDO". $e->getMessage();
         }
         ?>
+        <?php
+            if($_GET['acao'] == "deletar" && isset($_GET['id'])){
+                $id = $_GET['id'];
+
+                $p = new Pessoa();
+                $p->DeletarPessoa($id);
+            }
+            
+        ?>
     </table>
-    
 </body>
 </html>
