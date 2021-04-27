@@ -1,5 +1,5 @@
 <?php
-    require_once('../BD/conexao.php');
+    include_once('C:/xampp/htdocs/projeto_final/startechlds/BD/conexao.php');
     class Pessoa 
     {
         protected $CD_Pessoa;
@@ -10,6 +10,9 @@
         protected $VF_Tipo;
         protected $DOC_Curriculo;
         protected $DOC_Relatorio;
+
+        private $caminhoCurriculo = "C:/xampp/htdocs/projeto_final/startechlds/docs/DOC_Curriculo/";
+        private $caminhoRelatorio = "C:/xampp/htdocs/projeto_final/startechlds/docs/DOC_Relatorio/";
 
 
         public function __construct(){
@@ -131,7 +134,7 @@
 
             try{
                 $result = $conect->prepare($delete);
-                $result->bindParam(':idPessoa', $idPessoa, PDO::PARAM_STR);
+                $result->bindParam(':idPessoa', $idPessoa, PDO::PARAM_INT);
                 $result->execute();
 
                 
@@ -145,6 +148,122 @@
             echo($cpf." ");
             echo($usuario." ");
             echo($senha);
+        } 
+
+
+
+        public function PrepraDiretorioDoc($tipo, $id){
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            //$caminho = "";
+
+            if($tipo == 'curriculo'){
+                $coluna = "DOC_Curriculo";
+                $caminho = $this->caminhoCurriculo;
+                $updateDOC = "UPDATE pessoa SET DOC_Curriculo = :nulo WHERE CD_Pessoa = :idPessoa";
+            }
+            else if($tipo == 'relatorio'){
+                $coluna = "DOC_Relatorio";
+                $caminho = $this->caminhoRelatorio;
+                $updateDOC = "UPDATE pessoa SET DOC_Relatorio = :nulo WHERE CD_Pessoa = :idPessoa";
+            }
+            else{
+                echo "$tipo não existe";
+                return;
+            }
+
+            $array = $this->RetornaPessoa($id);
+          //  var_dump($array);
+            if($array->$coluna != NULL){
+              //  var_dump($array);
+                $res = unlink($caminho.$array->$coluna."_$coluna.pdf");
+                $nulo =  NULL;
+                
+              
+                $result = $conect->prepare($updateDOC);
+                $result->bindParam(':idPessoa', $id, PDO::PARAM_INT);
+                $result->bindParam(':nulo',$nulo,PDO::PARAM_NULL);
+                $result->execute();
+
+                //echo"<br/>limpado e removido<br/>";
+
+                return;
+            }
+
+
+        }
+
+        public function AdicionarDOC($file, $id, $nomeAluno,$tipo){
+            //tipo = relatorio, curriculo
+            $formatP = array("pdf");
+
+           
+            $extensao = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+          //  echo "$extensao";
+
+            if(in_array($extensao,$formatP)){
+             //   $caminho = "../docs/".$tipo."/";
+                $temp = $file['tmp_name'];
+
+                $this->PrepraDiretorioDoc($tipo, $id);
+
+                if($tipo == "curriculo"){
+                    $inserirDOC = "UPDATE pessoa set DOC_Curriculo = :nomeArquivo WHERE CD_Pessoa = :idAluno";
+                    $caminho = $this->caminhoCurriculo;
+                    $doc = "DOC_Curriculo";
+                }
+                if($tipo == "relatorio"){
+                    $inserirDOC = "UPDATE pessoa set DOC_Relatorio = :nomeArquivo WHERE CD_Pessoa = :idAluno";
+                    $caminho = $this->caminhoRelatorio;
+                    $doc = "DOC_Relatorio";
+                }
+
+                if(move_uploaded_file($temp, $caminho.$nomeAluno."_$doc.pdf")){
+                    
+
+                    try{
+                        $conn = new ConexaoBD();
+                        $conect = $conn->ConDB();
+
+                        $result = $conect->prepare($inserirDOC);
+                        $result->bindParam(':nomeArquivo', $nomeAluno, PDO::PARAM_STR);
+                        $result->bindParam(':idAluno', $id, PDO::PARAM_INT);
+                        $result->execute();
+
+                       
+
+                        $funcionou = $result->rowCount();
+                        
+                        
+                        if($funcionou > 0){
+                            return true;
+                        }
+                        else{
+                         //   echo"não retornou linha nenhuma";
+                            return false;
+                        }
+                    }
+                    catch(PDOExpetion $e){
+                        echo "erro de PDO ".$e->getMessage();
+                    }
+
+                }
+                else{
+                    echo"erro ao mover para pasta<br/>";
+                   // var_dump(move_uploaded_file($temp, $this->caminhoCurriculo.$nomeAluno.".pdf"));
+                }
+
+            }
+            else{
+                echo "Formato inválido";
+            }
+
+        }
+
+        public function SituacaoRelatorio(){
+
         }
         
     }
