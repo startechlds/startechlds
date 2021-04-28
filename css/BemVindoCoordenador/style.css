@@ -1,0 +1,51 @@
+@keyframes up {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes left {
+    from {
+        opacity: 0;
+        transform: translateX(2200px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(100px);
+    }
+
+}
+
+.animation-up {
+    animation-name: up;
+    animation-duration: 300ms;
+    animation-fill-mode: backwards;
+}
+
+.animation-left {
+    animation-name: left;
+    animation-duration: 300ms;
+    animation-fill-mode: backwards;
+}
+
+.botoesUp {
+    animation-delay: 800ms;
+}
+
+#painelTopo {
+    animation-delay: 300ms;
+}
+
+#bemvindo {
+    animation-delay: 300ms;
+}
+
+#coordenador {
+    animation-delay: 1200ms;
+}
