@@ -25,7 +25,7 @@
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
-                    <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Alunos</button></a>
+                    <a href="CoordenadorAlunos.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Alunos</button></a>
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Empresas</button></a>
         
@@ -60,19 +60,23 @@
                         <input type="search"  class="form-control" placeholder="Nome do aluno"  style="width: 18vw; background-color: rgb(194, 194, 181);">
                     </form>
                     
+                    <?php
+                        include_once('Classes/ClassSemestre.php');
 
-                    <div class="col-2">
-                        <select class="form-select btn btn-secondary" id="validationDefault04" required>
-                            <option selected disabled value="">Semestre&nbsp</option>
-                            <option>2021.1</option>
-                            <option>2020.2</option>
-                            <option>2020.1</option>
-                            <option>2019.2</option>
-                            <option>2019.1</option>
-                        </select>
-                    </div>
-
+                        $semestre = new Semestre();
+                        $exibir = $semestre->TabelaSemestreINArray();
                     
+                       
+                        echo"<div class='col-2'>
+                                <select class='form-select btn btn-secondary' id='validationDefault04' required>
+                                    <option selected disabled value=''>Semestre&nbsp</option>";
+                        for($i = 0; $i < count($exibir); $i++){
+                            echo"<option>".$exibir[$i]->NUM_Semestre."</option>";
+                        }
+                        echo"   </select>
+                            </div>";
+                    ?>
+
                     <div class="col-2">
                         <select class="form-select btn btn-secondary" id="validationDefault04" required>
                             <option selected disabled value="">Situação</option>
@@ -112,36 +116,21 @@
                                   </tr>
                                 </thead>
                                 <tbody style="text-align: center;">
-                                  <tr>
-                                    <th scope="row">Aluno 1</th>
-                                    <td>2019.1</td>
-                                    <td>Cursando</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 2</th>
-                                    <td>2018.2</td>
-                                    <td>Aprovado</td>                          
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 3</th>
-                                    <td>2020.2</td>
-                                    <td>Reprovado</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 4</th>
-                                    <td>2019.1</td>
-                                    <td>Cursando</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 5</th>
-                                    <td>2019.2</td>
-                                    <td>Cursando</td>                          
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 6</th>
-                                    <td>2020.2</td>
-                                    <td>Aprovado</td>
-                                  </tr>
+                                  
+                                    <?php
+                                        include_once('Classes/ClassPessoa.php');
+                                        $p = new Pessoa();
+
+                                        $exibir = $p->RetornaTabelaPessoaInArray();
+                                        for($i = 0; $i < count($exibir); $i++){
+                                            echo"<tr>";
+                                            echo"<th scope='row'>".$exibir[$i]->CH_Nome."</th>";
+                                            echo"<td>".$exibir[$i]->CD_Semestre."</td>";
+                                            echo"<td>".$exibir[$i]->CH_Situacao."</td>";
+                                            echo"</tr>";
+                                        }
+                                    ?>
+                                   
                                 </tbody>
                               </table>
 

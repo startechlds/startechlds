@@ -94,6 +94,37 @@
             }
         }
 
+        public function RetornaTabelaPessoaInArray(){
+            $select = "SELECT * FROM pessoa WHERE VF_TIPO = 'A' ORDER BY CH_Nome asc";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+              //  $result->bindParam(':tipo', $tipo = 'A', PDO::PARAM_STR);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    
+                    if($retorno > 0){
+                        while($pessoa = $result->fetch(PDO::FETCH_OBJ)){
+                            $array[] = $pessoa;
+                        }
+                        
+                        return $array;
+                    }
+                }
+                else{
+                    echo"não exixte";
+                }
+            }
+            catch(PDOExpetion $e){
+                echo "ERRO DE PDO SELECT ". $e->getMessage();
+            }
+        }
+
         public function EditarPessoa($id, $nome, $cpf, $usuario, $senha, $tipo){
             $conn = new ConexaoBD();
             $conect = $conn->ConDB();
