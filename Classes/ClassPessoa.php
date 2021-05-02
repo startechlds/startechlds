@@ -94,9 +94,14 @@
             }
         }
 
-        public function RetornaTabelaPessoaInArray(){
-            $select = "SELECT * FROM pessoa WHERE VF_TIPO = 'A' ORDER BY CH_Nome asc";
-
+        public function RetornaTabelaPessoaInArray($tipo){
+            if($tipo == 'A')
+                $select = "SELECT * FROM pessoa WHERE VF_TIPO = 'A' ORDER BY CH_Nome asc";
+            if($tipo == 'P')
+                $select = "SELECT * FROM pessoa WHERE VF_TIPO = 'P' ORDER BY CH_Nome asc";
+            if($tipo == 'C')
+                $select = "SELECT * FROM pessoa WHERE VF_TIPO = 'C' ORDER BY CH_Nome asc";
+                
             $conn = new ConexaoBD();
             $conect = $conn->ConDB();
 

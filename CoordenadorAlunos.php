@@ -71,7 +71,7 @@
                                 <select class='form-select btn btn-secondary' id='validationDefault04' required>
                                     <option selected disabled value=''>Semestre&nbsp</option>";
                         for($i = 0; $i < count($exibir); $i++){
-                            echo"<option>".$exibir[$i]->NUM_Semestre."</option>";
+                            echo"<option value='".$exibir[$i]->NUM_Semestre."'>".$exibir[$i]->NUM_Semestre."</option>";
                         }
                         echo"   </select>
                             </div>";
@@ -121,7 +121,7 @@
                                         include_once('Classes/ClassPessoa.php');
                                         $p = new Pessoa();
 
-                                        $exibir = $p->RetornaTabelaPessoaInArray();
+                                        $exibir = $p->RetornaTabelaPessoaInArray('A');
                                         for($i = 0; $i < count($exibir); $i++){
                                             echo"<tr>";
                                             echo"<th scope='row'>".$exibir[$i]->CH_Nome."</th>";
