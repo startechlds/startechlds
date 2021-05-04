@@ -113,11 +113,19 @@
 
                                 <label for="nome"><strong>Professor Responsável:&nbsp</strong></label>
                                 <select class="form-select btn btn-secondary" id="validationDefault04" required>
-                                    
                                     <option selected disabled value="">Professor&nbsp</option>
-                                    <option>José Alex Pontes Martins</option>
-                                    <option>Gilzamir Ferreira Gomes</option>
-                                    <option>Thalles Damasceno Duarte</option>
+                                    <?php
+                                        include_once('Classes/ClassPessoa.php');
+                                        $professor = new Pessoa();
+
+                                        $exibir = $professor->RetornaTabelaPessoaInArray('P');
+                                        echo"<option selected disabled value='".null."'>Professor</option>";
+                                        for($i = 0; $i < count($exibir); $i++){
+                                            echo"<option type = 'submit' value='".$exibir[$i]->CD_Pessoa."'>".$exibir[$i]->CH_Nome."</option>";
+                                        }
+                                                    
+                                    ?>
+                                   
                                 </select>    
 
                             </div>

@@ -21,7 +21,7 @@
 
                 <div class="col-8 col-md-8 offset-1 mt-2">
 
-                    <a href="CoordenadorTurmas.html"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Turmas</button></a>
+                    <a href="CoordenadorTurmas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Turmas</button></a>
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
@@ -98,7 +98,7 @@
 
                         <div class="col-1 offset-sm-1" style="margin-top: 100px;">
 
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarProfessor.html" style="text-decoration: none; color: black">Editar</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarProfessor.html" style="text-decoration: none; color: black">Editar/Inserir nota</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Apagar</a></button>
 
                         </div>

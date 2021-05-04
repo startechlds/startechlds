@@ -15,7 +15,7 @@
 
     
     <div class="container">
-            <form method="GET" action ="#">
+          <!--  <form method="GET" > -->
            
                 <div class="row" style="height: 15vh; border-radius: 5px; border: 1px solid black; margin-top: 10px; box-shadow: 0px 4px 32px 22px rgba(197, 193, 193, 0.4)
                 ">
@@ -26,7 +26,7 @@
 
                         <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
-                        <a href="CoordenadorAlunos.html"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
+                        <a href="CoordenadorAlunos.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
 
                         <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Empresas</button></a>
             
@@ -41,7 +41,7 @@
 
                             <div class="col-4 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                                <a href="" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                                <a href="CoordenadorCadNovaTurma.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                     <i class="fas fa-plus-circle" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbspCadastrar nova<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturma</a>            
                             </div>
 
@@ -95,7 +95,7 @@
                                     
                                     
                                     <div class='col-3 sm-2 mt-4'>
-                                        <select href='CoordenadorTurmas.php?id=9' class='form-select btn btn-secondary' id='validationDefault04' name ='cbx_Professor' required >
+                                        <select href='CoordenadorTurmas.php?id=9' class='form-select btn btn-secondary' id='validationDefault04' name ='cbx_Professor' >
                                                 <?php
                                                     include_once('Classes/ClassPessoa.php');
                                                     $professor = new Pessoa();
@@ -121,7 +121,7 @@
                     </div>                     
 
                 </div>
-            </form>
+           <!-- </form>-->
 
             <div clas="row">
 

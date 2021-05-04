@@ -8,6 +8,31 @@
         protected $DT_FIM;
         protected $FK_CD_Professor;
 
+        public function DeletarTurma($idTurma){
+            $delete = "DELETE FROM turma WHERE CD_Turma = :idTurma";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($delete);
+                $result->bindParam(':idTurma', $idPessoa, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    return "deletado com sucesso";
+                }
+                else{
+                   return "Erro ao deletar, há alunos nessa turma";
+                }
+                
+            }
+            catch(PDOExpetion $e){
+                echo "ERRO DE DELETE ". $e->getMessage();
+            }
+        }
+
         public function RetornaDadosTurmaProfessorSituacao($idProfessor){
 
             if($idProfessor == null){
