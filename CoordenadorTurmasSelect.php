@@ -128,27 +128,33 @@
                                   </tr>
                                 </thead>
                                 <tbody style="text-align: center;">
-                                  <tr>
-                                    <th scope="row">Aluno 1</th>
-                                    <td>Sim</td>
-                                    <td>Empresa Y</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 2</th>
-                                    <td>Não</td>
-                                    <td>Empresa A</td>                          
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 3</th>
-                                    <td>Sim</td>
-                                    <td>Empresa X</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 4</th>
-                                    <td>Não</td>
-                                    <td>Empresa Z</td>
-                                  </tr>
-                                  
+                                    <?php
+                                        include_once('Classes/ClassTurma.php');
+                                        $t = new Turma();
+
+                                        if(!isset($_GET['id'])){
+                                            echo"Erro";
+                                            exit;
+                                        }
+                                        else{
+                                            $exibir = $t->RetornaTabelaAlunoEstagioEmpresa($_GET['id']);
+                                            if($exibir != null){
+                                                for($i = 0; $i < count($exibir); $i++){
+                                                    echo "<tr>";
+                                                        echo "<th scope='row'>".$exibir[$i]->Aluno."</th>";
+                                                        echo "<th scope='row'>".$exibir[$i]->Estagio."</th>";
+                                                        echo "<th scope='row'>".$exibir[$i]->Empresa."</th>";
+                                                    echo "</tr>";
+                                                }
+                                            }
+                                            else{
+                                                echo "<tr>";
+                                                        echo "<th scope='row'>Não existe aluno nessa turma</th>";
+                                                    echo "</tr>";
+                                            }
+                                        }
+                                            
+                                    ?>
                                 </tbody>
                               </table>
 

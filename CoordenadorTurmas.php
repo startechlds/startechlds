@@ -15,7 +15,7 @@
 
     
     <div class="container">
-            <form method="GET" action ="">
+            <form method="GET" action ="#">
            
                 <div class="row" style="height: 15vh; border-radius: 5px; border: 1px solid black; margin-top: 10px; box-shadow: 0px 4px 32px 22px rgba(197, 193, 193, 0.4)
                 ">
@@ -103,7 +103,7 @@
                                                     $exibir = $professor->RetornaTabelaPessoaInArray('P');
                                                     echo"<option selected disabled value='".null."'>Professor</option>";
                                                     for($i = 0; $i < count($exibir); $i++){
-                                                        echo"<option value='".$exibir[$i]->CD_Pessoa."'>".$exibir[$i]->CH_Nome."</option>";
+                                                        echo"<option type = 'submit' value='".$exibir[$i]->CD_Pessoa."'>".$exibir[$i]->CH_Nome."</option>";
                                                     }
                                                     
                                                 ?>
@@ -151,7 +151,7 @@
                                         $exibir = $t->RetornaDadosTurmaProfessorSituacao(null);
                                         for($i = 0; $i < count($exibir); $i++){
                                             echo"<tr>";
-                                                echo"<th scope='row'><a href='CoordenadorTurmasSelect.html' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->Semestre."</a></th>";
+                                                echo"<th scope='row'><a href='CoordenadorTurmasSelect.php?id=".$exibir[$i]->Id."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->Semestre."</a></th>";
                                                 echo"<td>".$exibir[$i]->Professor."</td>";
                                                 echo"<td>".$exibir[$i]->Situacao."</td>";
                                             echo"</tr>";

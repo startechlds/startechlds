@@ -4,7 +4,7 @@
 
                         $pessoa = new Turma();
 
-                        $exibir = $pessoa->RetornaDadosTurmaProfessorSituacao();
+                        $exibir = $pessoa->RetornaTabelaAlunoEstagioEmpresa(1);
 
                         print_r($exibir);
                      
