@@ -105,6 +105,9 @@
                         <div class="row">
 
                             <form class="form-row">
+                            <?php 
+                                echo($_COOKIE['semestre']);
+                            ?>
 
                                 <div class="col-10 offset-sm-1 form-group" style="display: flex; align-items: center; justify-content: space-around;">
 

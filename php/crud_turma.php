@@ -16,4 +16,14 @@
     else{
         echo"vazio";
     }
+    if(isset($_POST['btn_cadTurma'])){
+ 
+        
+       // header("Location: http://localhost/projeto_final/startechlds/CoordenadorCadNovaTurma2.php");
+
+    }
+    else{
+        echo "por algum motivo está vazio";
+    }
+    //cadastrar turma
 ?>

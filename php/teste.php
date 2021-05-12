@@ -4,8 +4,8 @@
 
                         $pessoa = new Turma();
 
-                        $exibir = $pessoa->RetornaTabelaAlunoEstagioEmpresa(1);
+                        $pessoa->ConverteHorario(1, '11:30');
 
-                        print_r($exibir);
+                        //print_r($exibir);
                      
                        ?>

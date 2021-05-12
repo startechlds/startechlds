@@ -8,6 +8,56 @@
         protected $DT_FIM;
         protected $FK_CD_Professor;
 
+        public function ConverteHorario($dia, $hora){
+            $VetorLetras = array(8 =>  'A', 'B', 'C','D' ,'E', 'F', 'G', 'H','I', 'J', 'L', 'M', 'N', 'O', 
+            'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Z');
+
+            $H = explode(':', $hora);
+
+            $horaL =  $VetorLetras[$H[0]];
+            $horaEmLetra = $dia.$horaL;
+
+            return $horaEmLetra;
+        }
+
+        public function InserirNovaTurma($dia, $Horario, $DT_Inicio, $FK_CD_Professor){
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            $insert = "INSERT INTO turma(CH_Disciplina, CD_Professor, CD_Semestre, VF_Ativo, CH_Horario, CH_Situacao) 
+                        VALUES (:disciplina,:cd_professor,:cdSemestre, :vf_ativo,:ch_horario, :ch_situacao)";
+
+            $horario = $this->ConverteHorario();
+
+            try{
+                $result = $conect->prepare($insert);
+                $result->bindParam(':nomeSobrenome', $nome, PDO::PARAM_STR);
+                $result->bindParam(':cpf', $cpf, PDO::PARAM_STR);
+                $result->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+                $result->bindParam(':senha', $senha, PDO::PARAM_STR);
+                $result->bindParam(':tipo', $tipo, PDO::PARAM_STR);
+                $result->bindParam(':situacao', $situacao, PDO::PARAM_STR);
+                $result->execute();
+
+                $verificarRetorno = $result->rowCount();
+
+                if($verificarRetorno > 0){
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            
+            }
+            catch(PDOException $e){
+                echo "<strong> ERRO DE PDO = <strong>".$e->getMessage();
+            }
+            
+        }
+
+
         public function DeletarTurma($idTurma){
             $delete = "DELETE FROM turma WHERE CD_Turma = :idTurma";
 

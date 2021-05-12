@@ -40,7 +40,7 @@
 
                         <div class="col-4 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            <a href="CoordenadorCadNovaTurma.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                 <i class="fas fa-plus-circle" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbspCadastrar nova<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturma</a>            
                         </div>
 
