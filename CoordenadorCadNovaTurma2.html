@@ -57,12 +57,12 @@
     
                 </div>
 
-                <div class="col-4 col-md-2 offset-sm-1 mt-3">
+                <div class="col-4 col-md-2 offset-sm-1 mt-3">              
 
-                    <button class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="CoordenadorCadNovaTurma.html"><i class="fas fa-times"></i></a></button>
-                    
-                    <button class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="loginInicial.html"><i class="fas fa-power-off"></i></a></button>
-
+                    <button title="Voltar tela anterior" class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="#"><i class="fas fa-times"></i></a></button>
+                        
+                    <button title="Sair" class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="loginInicial.html"><i class="fas fa-power-off"></i></a></button>
+    
                 </div>               
 
             </div>
