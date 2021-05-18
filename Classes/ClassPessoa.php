@@ -89,7 +89,43 @@
                     echo"não exixte";
                 }
             }
-            catch(PDOExpetion $e){
+            catch(PDOException $e){
+                echo "ERRO DE PDO SELECT ". $e->getMessage();
+            }
+        }
+
+        public function RetornaTabelaPessoaInArray($tipo){
+            if($tipo == 'A')
+                $select = "SELECT * FROM pessoa WHERE VF_TIPO = 'A' ORDER BY CH_Nome asc";
+            if($tipo == 'P')
+                $select = "SELECT * FROM pessoa WHERE VF_TIPO = 'P' ORDER BY CH_Nome asc";
+            if($tipo == 'C')
+                $select = "SELECT * FROM pessoa WHERE VF_TIPO = 'C' ORDER BY CH_Nome asc";
+                
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+              //  $result->bindParam(':tipo', $tipo = 'A', PDO::PARAM_STR);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    
+                    if($retorno > 0){
+                        while($pessoa = $result->fetch(PDO::FETCH_OBJ)){
+                            $array[] = $pessoa;
+                        }
+                        
+                        return $array;
+                    }
+                }
+                else{
+                    echo"não exixte";
+                }
+            }
+            catch(PDOException $e){
                 echo "ERRO DE PDO SELECT ". $e->getMessage();
             }
         }
@@ -121,7 +157,7 @@
                     return false;
                 }
             }
-            catch(PDOExpetion $e){
+            catch(PDOException $e){
                 echo "ERRO DE PDO SELECT ". $e->getMessage();
             }
         }
@@ -139,7 +175,7 @@
 
                 
             }
-            catch(PDOExpetion $e){
+            catch(PDOException $e){
                 echo "ERRO DE PDO DELETE ". $e->getMessage();
             }
         }
@@ -245,7 +281,7 @@
                             return false;
                         }
                     }
-                    catch(PDOExpetion $e){
+                    catch(PDOException $e){
                         echo "erro de PDO ".$e->getMessage();
                     }
 

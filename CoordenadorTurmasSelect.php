@@ -21,7 +21,7 @@
 
                 <div class="col-8 col-md-8 offset-1 mt-2">
 
-                    <a href=""><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary" disabled>Turmas</button></a>
+                    <a href="CoordenadorTurmas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary" disabled>Turmas</button></a>
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
@@ -40,7 +40,7 @@
 
                         <div class="col-4 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="CoordenadorCadNovaTurma.html" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            <a href="CoordenadorCadNovaTurma.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                 <i class="fas fa-plus-circle" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbspCadastrar nova<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturma</a>            
                         </div>
 
@@ -110,10 +110,13 @@
                     <div class="row">
 
                         <div class="col-2 offset-sm-1" style="margin-top: 100px;">
+                        
 
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Editar Turma</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Apagar Turma</a></button>
+                        <form method = "GET">
+                            <button name="btn_ApagarTurma" type="submit" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_turma.php?btn_ApagarTurma=<?php echo$_GET['id'];?>" onclick="return confirm('deseja remover o contato')" style="text-decoration: none; color: black">Apagar Turma</a></button>
+                        </form>
 
                         </div>
 
@@ -128,27 +131,33 @@
                                   </tr>
                                 </thead>
                                 <tbody style="text-align: center;">
-                                  <tr>
-                                    <th scope="row">Aluno 1</th>
-                                    <td>Sim</td>
-                                    <td>Empresa Y</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 2</th>
-                                    <td>Não</td>
-                                    <td>Empresa A</td>                          
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 3</th>
-                                    <td>Sim</td>
-                                    <td>Empresa X</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Aluno 4</th>
-                                    <td>Não</td>
-                                    <td>Empresa Z</td>
-                                  </tr>
-                                  
+                                    <?php
+                                        include_once('Classes/ClassTurma.php');
+                                        $t = new Turma();
+
+                                        if(!isset($_GET['id'])){
+                                            echo"Erro";
+                                            exit;
+                                        }
+                                        else{
+                                            $exibir = $t->RetornaTabelaAlunoEstagioEmpresa($_GET['id']);
+                                            if($exibir != null){
+                                                for($i = 0; $i < count($exibir); $i++){
+                                                    echo "<tr>";
+                                                        echo "<th scope='row'>".$exibir[$i]->Aluno."</th>";
+                                                        echo "<th scope='row'>".$exibir[$i]->Estagio."</th>";
+                                                        echo "<th scope='row'>".$exibir[$i]->Empresa."</th>";
+                                                    echo "</tr>";
+                                                }
+                                            }
+                                            else{
+                                                echo "<tr>";
+                                                        echo "<th scope='row'>Não existe aluno nessa turma</th>";
+                                                    echo "</tr>";
+                                            }
+                                        }
+                                            
+                                    ?>
                                 </tbody>
                               </table>
 
@@ -176,4 +185,5 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 </body>
+
 </html>
