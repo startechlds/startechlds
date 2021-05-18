@@ -89,7 +89,7 @@
                     echo"não exixte";
                 }
             }
-            catch(PDOExpetion $e){
+            catch(PDOException $e){
                 echo "ERRO DE PDO SELECT ". $e->getMessage();
             }
         }
@@ -125,7 +125,7 @@
                     echo"não exixte";
                 }
             }
-            catch(PDOExpetion $e){
+            catch(PDOException $e){
                 echo "ERRO DE PDO SELECT ". $e->getMessage();
             }
         }
@@ -157,7 +157,7 @@
                     return false;
                 }
             }
-            catch(PDOExpetion $e){
+            catch(PDOException $e){
                 echo "ERRO DE PDO SELECT ". $e->getMessage();
             }
         }
@@ -175,7 +175,7 @@
 
                 
             }
-            catch(PDOExpetion $e){
+            catch(PDOException $e){
                 echo "ERRO DE PDO DELETE ". $e->getMessage();
             }
         }
@@ -281,7 +281,7 @@
                             return false;
                         }
                     }
-                    catch(PDOExpetion $e){
+                    catch(PDOException $e){
                         echo "erro de PDO ".$e->getMessage();
                     }
 

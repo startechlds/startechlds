@@ -97,15 +97,27 @@
                         </div>  
 
                     </div>
-
+        <form method="POST" action="php/crud_turma.php">
                     <div class="col-12 mt-4">
 
                         <div class="row">
-            <form method="POST" action="http://localhost/projeto_final/startechlds/php/crud_turma.php">
                             <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 20px">
 
                                 <label for="nome"><strong>Semestre:&nbsp</strong></label>
-                                <input type="number" id="nome" name="semestre" class="form-control formInicial" style="width: 15vw" required/>    
+                                <select name = "semestreSelecionado" class="form-select btn btn-secondary" id="validationDefault04" required>
+                                    <option selected disabled value="">Semestre&nbsp</option>
+                                    <?php
+                                        include_once('Classes/ClassSemestre.php');
+
+                                        $semestre = semestre::GerarSemestre();
+                                        echo"<option selected disabled value='".null."'>Professor</option>";
+                                        for($i = 0; $i < count($semestre); $i++){
+                                            echo"<option type = 'submit' value='".$semestre[$i]."'>".$semestre[$i]."</option>";
+                                        }
+                                                    
+                                    ?>
+                                   
+                                </select>    
 
                             </div>
 
@@ -145,18 +157,18 @@
                                         <label for="nome" style="width: 7%; height: 5%; margin-top: 80px;"><strong>Dia</strong></label>
                                         <div class="col-2" style="margin-top: 60px; ">
                                         
-                                            <select required name="cbx_diaSemana" class="form-select" size="3" aria-label="size 3 select example" style="background-color: rgb(175, 175, 166);">
-                                                <option selected value="2" style="color: rgb(73, 45, 173);">Seg</option>
-                                                <option value="3" style="color: rgb(73, 45, 173);" >Ter</option>
-                                                <option value="4" style="color: rgb(73, 45, 173);" value="2">Qua</option>
-                                                <option value="5" style="color: rgb(73, 45, 173);"value="3">Qui</option>
-                                                <option value="6" style="color: rgb(73, 45, 173);"value="3">Sex</option>
+                                            <select name="dia" class="form-select" size="3" aria-label="size 3 select example" style="background-color: rgb(175, 175, 166);">
+                                                <option selected value="2" style="color: rgb(73, 45, 173);" required>Seg</option>
+                                                <option value="3" style="color: rgb(73, 45, 173);" required>Ter</option>
+                                                <option value="4" style="color: rgb(73, 45, 173);" value="2" required>Qua</option>
+                                                <option value="5" style="color: rgb(73, 45, 173);"value="3" required>Qui</option>
+                                                <option value="6" style="color: rgb(73, 45, 173);"value="3 " required>Sex</option>
                                             </select>
                                         </div>
 
-                                        <div name="horarioTurma" class="md-form mx-5 my-5 col-4 offset-sm-1 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 55px">
+                                        <div name="horaI" class="md-form mx-5 my-5 col-4 offset-sm-1 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 55px">
                                             <label for="inputMDEx1"><strong>Horário&nbsp</strong></label>
-                                            <input required type="time" id="inputMDEx1" class="form-control" name="horario">
+                                            <input required type="time" id="inputMDEx1" class="form-control" name="horaI">
                                         </div>
         
                                     </div>                                
@@ -171,7 +183,7 @@
 
                             <div class="row">
 
-                                <button name="btn_cadTurma1" type="submit" class="btn btn-primary" style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;"><a style="text-decoration: none; color: white">Cadastrar Nova Turma</a></button>
+                                <button name="btn_cadTurma" type="submit" class="btn btn-primary" style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;"><a style="text-decoration: none; color: white">Cadastrar</a></button>
 
                             </div>
 
@@ -180,11 +192,11 @@
 
                     </div>
 
-                    
+        </form>         
                 </div>                     
 
             </div>
-        </form>
+        
 
             
             
