@@ -34,7 +34,7 @@
             }
         }
 
-        public static function ValidaSemestre($num_semestre){
+        public static function ValidaSemestre($num_semestre, $verificaFechado){
             $temp = explode('.',$num_semestre);
             
             if($temp[1] == 1){
@@ -44,7 +44,11 @@
                 $semestreAnt = $temp[0].".1";
             }
 
-            $select = "SELECT * FROM semestre WHERE NUM_Semestre = :anterior AND VF_Ativo = :vf";
+            if($verificaFechado)
+                $select = "SELECT * FROM semestre WHERE NUM_Semestre = :anterior AND VF_Ativo = 1";
+            else
+                $select = "SELECT * FROM semestre WHERE NUM_Semestre = :anterior";
+            
             $conn = new ConexaoBD();
             $conect = $conn->ConDB();
 
@@ -52,7 +56,6 @@
                 $vf = 0;
                 $result = $conect->prepare($select);
                 $result->bindParam(':anterior', $semestreAnt, PDO::PARAM_STR);
-                $result->bindParam(':vf', $vf, PDO::PARAM_INT);
                 $result->execute();
 
                 $retorno = $result->rowCount();
@@ -64,7 +67,7 @@
                 }
             }
             catch(PDOException $e){
-                echo "ERRO DE PDO SELECT A tah ". $e->getMessage();
+                echo "ERRO DE PDO SELECT VALIDA SEMESTRE ". $e->getMessage();
             }
         }
 
@@ -87,8 +90,12 @@
             return $semestre;
         }
 
-        public static function AbrirSemestre($num_semestre){
-            $select = "SELECT * FROM semestre WHERE NUM_Semestre = :semestre AND VF_Ativo = 1";
+        public static function AbrirSemestre($num_semestre, $verificaFechado){
+
+            if($verificaFechado)
+                $select = "SELECT * FROM semestre WHERE NUM_Semestre = :semestre AND VF_Ativo = 1";
+            else
+                $select = "SELECT * FROM semestre WHERE NUM_Semestre = :semestre";
 
             $conn = new ConexaoBD();
             $conect = $conn->ConDB();
@@ -128,7 +135,7 @@
                 }
             }
             catch(PDOException $e){
-                echo "ERRO DE PDO SELECT ". $e->getMessage();
+                echo "ERRO DE PDO SELECT ABRIR SEMESTRE". $e->getMessage()."<br/>";
             }
         }
 

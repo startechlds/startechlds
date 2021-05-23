@@ -1,6 +1,9 @@
 <?php
     include_once('C:/xampp/htdocs/projeto_final/startechlds/BD/conexao.php');
     include_once('C:/xampp/htdocs/projeto_final/startechlds/Classes/ClassSemestre.php');
+    include_once('C:/xampp/htdocs/projeto_final/startechlds/Classes/ClassPessoa.php');
+
+    
     class Turma{
 
         protected $CD_Turma;
@@ -12,9 +15,9 @@
 
         public function InserirNovaTurma($cdsemestre, $dia, $Horario, $FK_CD_Professor){
 
-            if(semestre::ValidaSemestre($cdsemestre) == "invalido")
+            if(semestre::ValidaSemestre($cdsemestre,true) == "invalido")
                 return "invalido";
-            if(semestre::AbrirSemestre($cdsemestre) == "falha na inserção")
+            if(semestre::AbrirSemestre($cdsemestre, true) == "falha na inserção")
                 return "false";
 
             $insert = "INSERT INTO turma (CH_Disciplina, CD_Professor, CD_Semestre, VF_Ativo, CH_Horario) 
@@ -55,6 +58,52 @@
             
         }
 
+
+        public function EditarTurma($id, $cdsemestre, $dia, $Horario, $FK_CD_Professor){
+
+            if(semestre::ValidaSemestre($cdsemestre, false) == "invalido")
+                return "invalido";
+            if(semestre::AbrirSemestre($cdsemestre, false) == "falha na inserção")
+                return "false";
+
+            $update = "UPDATE turma set CH_Disciplina = :disciplina, CD_Professor = :cd_professor, CD_Semestre = :cdsemestre, CH_Horario = :ch_horario 
+                        WHERE CD_Turma = :id";
+
+            $horario = $this->ConverteHorario($dia,$Horario);
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $ch_disciplina = "Gerenciamento de Estagio";
+                $vf_ativo = 1;
+
+                $result = $conect->prepare($update);
+                $result->bindParam(':id', $id, PDO::PARAM_INT);
+                $result->bindParam(':disciplina', $ch_disciplina, PDO::PARAM_STR);
+                $result->bindParam(':cd_professor', $FK_CD_Professor, PDO::PARAM_INT);
+                $result->bindParam(':cdsemestre', $cdsemestre, PDO::PARAM_STR);
+                $result->bindParam(':ch_horario', $horario, PDO::PARAM_STR);
+                $result->execute();
+
+                $verificarRetorno = $result->rowCount();
+
+                if($verificarRetorno > 0){
+                    return "true";
+                }
+                else
+                {
+                    return "false";
+                }
+
+            
+            }
+            catch(PDOException $e){
+                echo "<strong> ERRO DE PDO EDITAR TURMA <strong>".$e->getMessage();
+            }
+            
+        }
+
         public function VerificaTurmaJaCriada($num_semestre){
             $select = "SELECT * FROM turma WHERE CD_Turma = :idTurma";
 
@@ -87,7 +136,7 @@
             $H = explode(':', $hora);
 
             $horaL =  $VetorLetras[$H[0]];
-            $horaEmLetra = $dia.$horaL;
+            $horaEmLetra = $dia.".".$horaL;
 
             return $horaEmLetra;
         }
@@ -205,6 +254,78 @@
             catch(PDOException $e){
                 echo "ERRO DE PDO SELECT ". $e->getMessage();
             }
+        }
+
+        public static function RetornaTurma($id){
+            $select = "SELECT * FROM turma WHERE CD_Turma = :idTurma";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->bindParam(':idTurma', $id, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    $arr = $result->fetch(PDO::FETCH_OBJ);
+                    return $arr;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO  EM RETORNAR TURMA ". $e->getMessage(). "<br>";
+            }                
+        }
+
+        public static function TraduzChavesTurmas($array){
+            $p = new Pessoa();
+            $prof = $p->RetornaPessoa($array->CD_Professor);
+            $array->CD_Professor = $prof->CH_Nome;
+            $diaDaSemana = explode(".",$array->CH_Horario);
+
+            switch($diaDaSemana[0]){
+                case 2:
+                    $array->CH_Horario = "Seg";
+                    break;
+                case 3:
+                    $array->CH_Horario = "Ter";
+                    break;
+                case 4:
+                    $array->CH_Horario = "Quar";
+                    break;
+                case 5:
+                    $array->CH_Horario = "Quin";
+                    break;
+                case 6:
+                    $array->CH_Horario = "Sex";
+                    break;
+            }
+
+            return $array;
+        }
+
+        public function FinalizarTurma($id){
+            $update = "UPDATE turma SET VF_Ativo = 0 WHERE CD_TURMA = :idTurma";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($update);
+                $result->bindParam(':idTurma', $id, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    return true;
+                }
+
+                false;
+            }
+            catch(PDOException $e){
+                echo "ERRO  EM RETORNAR TURMA ". $e->getMessage(). "<br>";
+            }                
         }
 
     }

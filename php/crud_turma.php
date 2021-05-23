@@ -13,6 +13,8 @@
                 window.location.href = '../CoordenadorTurmasSelect.php?id=".$idtuma."';
             </script>'";
     }
+
+    //CADASTRAR TURMA
     if(isset($_POST['btn_cadTurma'])){
         include_once("../Classes/ClassTurma.php");
         $turma = new Turma();
@@ -21,22 +23,22 @@
         $idprofessor = $_POST['professor'];
         $dia = $_POST['dia'];
         $horarioI = $_POST['horaI'];
-        $teste = true;
+      //  $teste = true;
 
         $resposta = $turma->InserirNovaTurma($semestre, $dia, $horarioI, $idprofessor);
         if($resposta == "invalido"){
            // echo($resposta);
             echo "
             <script>
-                alert('VErifique o semestre anterior');
-                window.location.href = '../CoordenadorCadNovaTurma.php';
+                alert('Verifique se o semestre anterior existe');
+                window.location.href = '../CoordenadorEditarTurma.php';
             </script>'";
         }
         else if($resposta == false){
             echo "
             <script>
-                alert('Falha na abetura do semestre ou inserção da turma');
-                window.location.href = '../CoordenadorCadNovaTurma.php';
+                alert('Falha na criação de um novosemestre ou inserção da turma');
+                window.location.href = '../CoordenadorEditarTurma.php';
             </script>'";
         }
         else if($resposta == true){
@@ -46,13 +48,49 @@
                 window.location.href = '../CoordenadorTurmas.php';
             </script>'";
         }
-
         
        // header("Location: http://localhost/projeto_final/startechlds/CoordenadorCadNovaTurma2.php");
 
     }
     else{
-        echo "por algum motivo está vazio";
+        echo "por algum motivo está vazio<br/>";
     }
-    //cadastrar turma
+
+    //EDITAR TURMA
+    if(isset($_POST['btn_EditarTurma'])){
+        include_once("../Classes/ClassTurma.php");
+        $turma = new Turma();
+        
+        $semestre = $_POST['semestreSelecionado'];
+        $idprofessor = $_POST['professor'];
+        $dia = $_POST['dia'];
+        $horarioI = $_POST['horaI'];
+        session_start();
+        $id =  $_SESSION['id'];
+        $teste = true;
+
+        $resposta = $turma->EditarTurma($id, $semestre, $dia, $horarioI, $idprofessor);
+        if($resposta == "invalido"){
+            echo "
+            <script>
+                alert('Verifique se o semestre anterior existe');
+                window.location.href = '../CoordenadorCadNovaTurma.php';
+            </script>'";
+        }
+        else if($resposta == false){
+            echo "
+            <script>
+                alert('Falha na criação de um novosemestre ou inserção da turma');
+                window.location.href = '../CoordenadorCadNovaTurma.php';
+            </script>'";
+        }
+        else if($resposta == true){
+            echo "
+            <script>
+                alert('turma EDITADA com sucesso');
+                window.location.href = '../CoordenadorTurmas.php';
+            </script>'";
+        }
+    }
+
 ?>

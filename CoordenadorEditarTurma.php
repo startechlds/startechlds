@@ -10,6 +10,10 @@
 </head>
 
 <body>
+    <?php
+           session_start();
+           $_SESSION['id'] = $_GET['id'];
+    ?>
     
     <div class="container">
            
@@ -18,7 +22,7 @@
 
                 <div class="col-8 col-md-8 offset-1 mt-2">
 
-                    <a href=""><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary" disabled>Turmas</button></a>
+                    <a href="CoordenadorTurmas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary" disabled>Turmas</button></a>
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
@@ -98,6 +102,11 @@
 
                     </div>
         <form method="POST" action="php/crud_turma.php">
+                         <?php
+                            include_once("Classes/ClassTurma.php");
+                            $e = Turma::RetornaTurma($_GET['id']);
+                            $exibir = Turma::TraduzChavesTurmas($e);
+                         ?>
                     <div class="col-12 mt-4">
 
                         <div class="row">
@@ -105,12 +114,11 @@
 
                                 <label for="nome"><strong>Semestre:&nbsp</strong></label>
                                 <select name = "semestreSelecionado" class="form-select btn btn-secondary" id="validationDefault04" required>
-                                    <option selected disabled value="">Semestre&nbsp</option>
+                                    <option selected disabled value=""><?php echo $exibir->CD_Semestre;?></option>
                                     <?php
                                         include_once('Classes/ClassSemestre.php');
 
                                         $semestre = semestre::GerarSemestre();
-                                        echo"<option selected disabled value='".null."'>Professor</option>";
                                         for($i = 0; $i < count($semestre); $i++){
                                             echo"<option type = 'submit' value='".$semestre[$i]."'>".$semestre[$i]."</option>";
                                         }
@@ -125,25 +133,27 @@
 
                                 <label for="nome"><strong>Professor Responsável:&nbsp</strong></label>
                                 <select name = "professor" class="form-select btn btn-secondary" id="validationDefault04" required>
-                                    <option selected disabled value="">Professor&nbsp</option>
+                                    <option selected disabled value=""><?php echo $exibir->CD_Professor;?></option>
                                     <?php
                                         include_once('Classes/ClassPessoa.php');
                                         $professor = new Pessoa();
 
                                         $exibir = $professor->RetornaTabelaPessoaInArray('P');
-                                        echo"<option selected disabled value='".null."'>Professor</option>";
                                         for($i = 0; $i < count($exibir); $i++){
                                             echo"<option type = 'submit' value='".$exibir[$i]->CD_Pessoa."'>".$exibir[$i]->CH_Nome."</option>";
                                         }
                                                     
                                     ?>
                                    
-                                </select>    
-
+                                </select>
                             </div>
-
-                            
                         </div>
+                        <?php
+                            include_once("Classes/ClassTurma.php");
+                            $e = Turma::RetornaTurma($_GET['id']);
+                            $exibir = Turma::TraduzChavesTurmas($e);
+                         ?>
+                        
 
                         <div class="col-6 offset-sm-1" style="margin-top: 10%; border: 1px solid black; height: 20vh; border: 1px solid rgb(235, 217, 217); box-shadow: 1px 1px 15px 5px #968c8c;">
                             <h5 style="margin-top: -40px;">Horário</h5>
@@ -157,12 +167,13 @@
                                         <label for="nome" style="width: 7%; height: 5%; margin-top: 80px;"><strong>Dia</strong></label>
                                         <div class="col-2" style="margin-top: 60px; ">
                                         
-                                            <select name="dia" class="form-select" size="3" aria-label="size 3 select example" style="background-color: rgb(175, 175, 166);">
-                                                <option selected value="2" style="color: rgb(73, 45, 173);" required>Seg</option>
-                                                <option value="3" style="color: rgb(73, 45, 173);" required>Ter</option>
-                                                <option value="4" style="color: rgb(73, 45, 173);" value="2" required>Qua</option>
-                                                <option value="5" style="color: rgb(73, 45, 173);"value="3" required>Qui</option>
-                                                <option value="6" style="color: rgb(73, 45, 173);"value="3 " required>Sex</option>
+                                            <select name="dia" class="form-select" style="background-color: rgb(175, 175, 166);">
+                                                <option selected disabled value=""><?php echo $exibir->CH_Horario;?></option>
+                                                <option value="2">Seg</option>
+                                                <option value="3" required>Ter</option>
+                                                <option value="4" required>Qua</option>
+                                                <option value="5" required>Qui</option>
+                                                <option value="6" required>Sex</option>
                                             </select>
                                         </div>
 
@@ -183,7 +194,7 @@
 
                             <div class="row">
 
-                                <button name="btn_cadTurma" type="submit" class="btn btn-primary" style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;"><a style="text-decoration: none; color: white">Cadastrar</a></button>
+                                <button name="btn_EditarTurma" type="submit" class="btn btn-primary" style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;"><a style="text-decoration: none; color: white">Editar</a></button>
 
                             </div>
 
