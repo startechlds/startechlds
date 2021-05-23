@@ -25,7 +25,7 @@
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
-                    <a href="CoordenadorAlunos.html"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
+                    <a href="CoordenadorAlunos.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Empresas</button></a>
         
@@ -93,7 +93,7 @@
                         <button 
                             class="btn btn-secondary" 
                             style="margin-bottom: 8px;">
-                            <a href="#" 
+                            <a href="php/crud_turma.php?id=<?php echo $_GET['id']?>&finalizarTurma=true" onclick="return confirm('Deseja Finalizar Essa Turma')" 
                             style="text-decoration: none; color: black"><strong>Finalizar Turma</strong></a>
                         </button>                           
     

@@ -93,4 +93,26 @@
         }
     }
 
+    if($_GET['finalizarTurma'] == true){
+        include_once("../Classes/ClassTurma.php");
+        $turma = new Turma();
+        
+        $resposta = $turma->FinalizarTurma($_GET['id']);
+
+        if($resposta){
+            echo "
+            <script>
+                alert('turma FINALIZADA com sucesso');
+                window.location.href = '../CoordenadorTurmas.php';
+            </script>'";
+        }
+        else{
+            echo "
+            <script>
+                alert('Erro ao finalizar turma');
+                window.location.href = '../CoordenadorTurmas.php';
+            </script>'";
+        }
+    }
+
 ?>
