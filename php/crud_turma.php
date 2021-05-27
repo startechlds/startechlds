@@ -93,7 +93,7 @@
         }
     }
 
-    if($_GET['finalizarTurma'] == true){
+    if($_GET['finalizarTurma'] == "verdade"){
         include_once("../Classes/ClassTurma.php");
         $turma = new Turma();
         
@@ -113,6 +113,47 @@
                 window.location.href = '../CoordenadorTurmas.php';
             </script>'";
         }
+    }
+
+    if($_GET['novoAluno'] == "verdade"){
+        include_once("../Classes/ClassTurma.php");
+
+        $aluno = $_COOKIE['alunoInserido'];
+        $idTurma = $_COOKIE['idTurmaSelecionada'];
+
+        $turma = new Turma();
+        $resposta = $turma->InserirAlunoNaTurma($aluno,$idTurma);
+        //print_r($resposta);
+
+        if($resposta == "true"){
+            echo "
+            <script>
+                alert('Aluno inserido na turma');
+                window.location.href = '../CoordenadorTurmasSelect.php?id=$idTurma';
+            </script>'";
+        }
+        else if($resposta == "false"){
+            echo "
+            <script>
+                alert('Erro ao inserir aluno na turma');
+                window.location.href = '../CoordenadorTurmas.php';
+            </script>'";
+        }
+        else if($resposta == "!Existe"){
+            echo "
+            <script>
+                alert('Aluno não existe, impossivel adiciona-lo na turma');
+                window.location.href = '../CoordenadorTurmas.php';
+            </script>'";
+        }
+        else{
+            echo "
+            <script>
+                alert('Turma selecionada está fechada, impossivel adicionar aluno');
+                window.location.href = '../CoordenadorTurmas.php';
+            </script>'";
+        }
+
     }
 
 ?>

@@ -12,7 +12,9 @@
  
 
 <body>
-
+    <?php
+        setcookie('idTurmaSelecionada', $_GET['id']);
+    ?>
     
     <div class="container">
            
@@ -74,7 +76,7 @@
 
                 <div class="row">
 
-                    <div class="col-3 offset-sm-1 mt-4" style="">
+                    <div class="col-3 offset-sm-1 mt-4">
 
                         <p><strong>Professor:</strong> Nome do professor</p>
                         <p style="margin-top: -8px;"><strong>Seg:</strong> 18:30 às 21:00</p>
@@ -93,7 +95,7 @@
                         <button 
                             class="btn btn-secondary" 
                             style="margin-bottom: 8px;">
-                            <a href="php/crud_turma.php?id=<?php echo $_GET['id']?>&finalizarTurma=true" onclick="return confirm('Deseja Finalizar Essa Turma')" 
+                            <a href="php/crud_turma.php?id=<?php echo $_GET['id']?>&finalizarTurma=verdade" onclick="return confirm('Deseja Finalizar Essa Turma')" 
                             style="text-decoration: none; color: black"><strong>Finalizar Turma</strong></a>
                         </button>                           
     

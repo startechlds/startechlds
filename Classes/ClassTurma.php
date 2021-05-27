@@ -327,6 +327,74 @@
                 echo "ERRO  EM RETORNAR TURMA ". $e->getMessage(). "<br>";
             }                
         }
+        
+        public function VerificaSeATumaAberta($idTurma){
+            $select = "SELECT * FROM turma WHERE CD_Turma = :id and VF_Ativo = 1";
+
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->bindParam(':id', $idTurma, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    return true;
+                }
+                else{
+                    echo false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO SELECT na função VerificaSeATumaAberta ". $e->getMessage()."<br/>";
+            }
+        }
+
+        public function InserirAlunoNaTurma($idAluno, $idTurma){
+            include_once('ClassPessoa.php');
+            
+            $p = new Pessoa();
+            if($this->VerificaSeATumaAberta($idTurma)){
+                if($p->VerificaSePessoaExiste($idAluno)){
+                    $insert = "INSERT INTO turma_aluno_estagio(CD_Aluno, CD_Turma, CH_Situacao) 
+                    VALUES (:idAluno, :idTurma, :chSituacao)";
+                    
+                    $conn = new ConexaoBD();
+                    $conect = $conn->ConDB();
+                    $situacao = "Em Andamento";
+
+                    try{
+                        $result = $conect->prepare($insert);
+                        $result->bindParam(':idAluno', $idAluno, PDO::PARAM_INT);
+                        $result->bindParam(':idTurma', $idTurma, PDO::PARAM_INT);
+                        $result->bindParam(':chSituacao', $situacao, PDO::PARAM_STR);
+                        $result->execute();
+
+                        $retorno = $result->rowCount();
+                        if($retorno > 0){
+                            return "true";
+                        }
+                        else{
+                            return "false";
+                        }
+                    }
+                    catch(Exception $e){
+                        echo "ERRO DE PDO SELECT na função InserirAlunoNaTurma ". $e->getMessage()."<br/>";
+
+                    }
+                }
+                else{
+                    return "!Existe";
+                }
+            }
+            else{
+                return "fechada";
+            }
+                
+        }
 
     }
 

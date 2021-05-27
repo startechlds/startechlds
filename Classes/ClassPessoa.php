@@ -19,7 +19,9 @@
             
         }
     
-        
+        public function getId(){
+            return $this->CD_Pessoa;
+        }
     
         public function preencherPessoa($CD_Pessoa, $CH_Nome, $CH_CPF, $CH_Usuario, $CH_Senha, $VF_Tipo, $DOC_Curriculo, $DOC_Relatorio)
         {
@@ -91,6 +93,54 @@
             }
             catch(PDOException $e){
                 echo "ERRO DE PDO SELECT ". $e->getMessage();
+            }
+        }
+
+        public function RetornaUltimo(){
+            $select = "SELECT * FROM pessoa ORDER BY CD_Pessoa desc";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    $arr = $result->fetch(PDO::FETCH_OBJ);
+                    return $arr;
+                }
+                else{
+                    echo"não exixte";
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO SELECT ". $e->getMessage();
+            }
+        }
+
+        public function VerificaSePessoaExiste($id){
+            $select = "SELECT * FROM pessoa WHERE CD_Pessoa = :id";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->bindParam(':id', $id, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    return true;
+                }
+                else{
+                    echo false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO SELECT VerificaSeAlunoExiste". $e->getMessage()."<br/>";
             }
         }
 
