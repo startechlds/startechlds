@@ -10,13 +10,14 @@
         $p = new Pessoa();
         
         $verificaInsercao = $p->InserirNovaPessoa($nome, null, $usuario, $senha, 'A', $situacao);
-
         if($verificaInsercao){
+            $pessoa = $p->RetornaUltimo();
+            setcookie('alunoInserido', $pessoa->CD_Pessoa);
             echo "
             <script>
-                alert('Aluno(a) Adicionado com sucesso!');
-                window.location.href = '../CoordenadorNovoAluno.html';
-            </script>'";
+                alert('ALUNO ADICIONADO COM SUCESSO');
+                window.location.href = 'crud_turma.php?novoAluno=verdade&finalizarTurma=falso';
+            </script>";
         }
         else{
             echo "
