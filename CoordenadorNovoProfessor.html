@@ -80,19 +80,19 @@
 
                                 <div class="col-12 mt-2">
 
-                                    <form class="form-row" method="POST" action="php/CRUD_Aluno.php">
+                                    <form class="form-row" method="POST" action="php/crud_professor.php">
 
                                         <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: space-around;">
 
                                             <label for="nome"><strong>Nome&nbsp</strong></label>
-                                            <input type="text" id="nome" name="nome" placeholder="Nome" class="form-control formInicial" />
+                                            <input type="text" id="nome" name="nome" placeholder="Nome" class="form-control formInicial" required/>
                         
                                         </div>
 
                                         <div class="col-6 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                             <label for="nome"><strong>Sobrenome&nbsp</strong></label>
-                                            <input type="text" id="nome" name="nome" placeholder="Nome" class="form-control formInicial" />                       
+                                            <input type="text" id="nome" name="sbnome" placeholder="Sobrenome" class="form-control formInicial" required />                       
                         
                                         </div>
 
@@ -100,12 +100,27 @@
                                         <div class="col-12 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 40px">
 
                                             <label for="nome"><strong>User&nbsp</strong></label>
-                                            <input type="text" id="usuario" name="usuario" placeholder="Usuário" class="form-control formInicial" />
+                                            <input type="text" id="usuario" name="usuario" placeholder="Usuário" class="form-control formInicial" required/>
                                 
                                         
                                             <label for="nome"><strong>&nbsp&nbsp&nbspSenha&nbsp</strong></label>
-                                            <input type="password" id="senha" name="senha" placeholder="Senha" class="form-control formInicial"/>
+                                            <input type="password" id="senha" name="senha" placeholder="Senha" class="form-control formInicial" required/>
 
+                        
+                                        </div>
+
+                                        <div class="col-1 offset-sm-10" style="margin-top: 50px;">
+
+                                            <div class="row">
+                        
+                                                <button class="btn btn-secondary" 
+                                                        type="submit"
+                                                        name="btn_novoProfessor"
+                                                        style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;">
+                                                        <a style="text-decoration: none; color: black">Salvar</a>
+                                                </button>
+                        
+                                            </div>
                         
                                         </div>
                         
@@ -118,18 +133,6 @@
                            
                         </div>
                        
-                    </div>
-
-                    <div class="col-1 offset-sm-10" style="margin-top: 50px;">
-
-                        <div class="row">
-    
-                            <button class="btn btn-secondary" 
-                                    style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;">
-                                    <a href="CoordenadorCadNovaTurma2.html" style="text-decoration: none; color: black">Salvar</a></button>
-    
-                        </div>
-    
                     </div>
                     
                 </div>

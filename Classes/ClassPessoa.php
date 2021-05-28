@@ -180,20 +180,19 @@
             }
         }
 
-        public function EditarPessoa($id, $nome, $cpf, $usuario, $senha, $tipo){
+        public function EditarPessoa($id, $nome, $cpf, $usuario, $tipo){
             $conn = new ConexaoBD();
             $conect = $conn->ConDB();
 
-            $update = "UPDATE pessoa SET CH_Nome = :nome, CH_CPF = :cpf, CH_Usuario = :usuario, CH_Senha = :senha, VF_Tipo = :tipo 
+            $update = "UPDATE pessoa SET CH_Nome = :nome, CH_CPF = :cpf, CH_Usuario = :usuario, VF_Tipo = :tipo 
             WHERE CD_Pessoa = :idpessoa";
 
             try{
                 $result = $conect->prepare($update);
-                $result->bindParam(':idpessoa', $id, PDO::PARAM_STR);
+                $result->bindParam(':idpessoa', $id, PDO::PARAM_INT);
                 $result->bindParam(':nome', $nome, PDO::PARAM_STR);
                 $result->bindParam(':cpf', $cpf, PDO::PARAM_STR);
                 $result->bindParam(':usuario', $usuario, PDO::PARAM_STR);
-                $result->bindParam(':senha', $senha, PDO::PARAM_STR);
                 $result->bindParam(':tipo', $tipo, PDO::PARAM_STR);
                 $result->execute();
 
@@ -208,7 +207,7 @@
                 }
             }
             catch(PDOException $e){
-                echo "ERRO DE PDO SELECT ". $e->getMessage();
+                echo "ERRO DE PDO UPDATE PROFESSOR  ". $e->getMessage();
             }
         }
 
@@ -223,7 +222,15 @@
                 $result->bindParam(':idPessoa', $idPessoa, PDO::PARAM_INT);
                 $result->execute();
 
-                
+                $verificarRetorno = $result->rowCount();
+
+                if($verificarRetorno > 0){
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch(PDOException $e){
                 echo "ERRO DE PDO DELETE ". $e->getMessage();
