@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/CoordenadorTurmas/style.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" >
-    <title>Coordenador - Editar Professor</title>
+    <title>Coordenador - Professor</title>
 </head>
 
  
@@ -55,88 +55,90 @@
                     <button title="Voltar tela anterior" class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="#"><i class="fas fa-times"></i></a></button>
                         
                     <button title="Sair" class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="loginInicial.html"><i class="fas fa-power-off"></i></a></button>
-
                 </div>               
 
             </div>
 
            
-
             <div clas="row">
 
-                <div class="col-12" style="margin-top: 60px; background-color: rgb(175, 175, 166); height: 40%">
+                <div class="col-12" style="margin-top: 70px; background-color: rgb(175, 175, 166); height: 50%">
 
                     <div class="row">
 
-                        <div class="col-2 offset-sm-1" style="margin-top: 30px;">
+                        <div class="col-6 offset-sm-3">
 
-                            <img style="width: 7vw" src="https://img.icons8.com/ios/452/teacher.png" alt="...">
+                            <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 20px">
 
-                        </div>
+                                <input required type="search" placeholder="Search" id="nome" name="nome" class="form-control formInicial" style="width: 15vw" />    
 
-                        <div class="col-6" style="margin-top: 80px;">
-
-                            <form class="form-row">
-
-                                <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: center;">
-                                    <label for="nome"><strong>Nome&nbsp</strong></label>
-                                    <input type="text" id="nome" name="nome" placeholder="Professor" class="form-control formInicial" required/>                
-                                </div> 
-
-                                <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 20px">
-                                    <label for="nome"><strong>Sobrenome&nbsp</strong></label>
-                                    <input type="text" id="nome" name="nome" placeholder="Sobrenome" class="form-control formInicial"/>
-                
-                                </div>
-                
-                               <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 50px">
-                                    <label for="usuario"><strong>User&nbsp</strong></label>
-                                    <input type="text" id="usuario" name="usuario" placeholder="nome de usuário" class="form-control formInicial" required/>
-                
-                                </div>
-
-                            </form>
-
-                        </div>
-
-                        <div class="col-1 offset-sm-1" style="margin-top: 70px;">
-
-                            <button 
-                                class="btn btn-secondary" 
-                                style="margin-bottom: 8px;">
-                                <a href="CoordenadorEditarProfessor.html" 
-                                style="text-decoration: none; color: black">Apagar</a>
-                            </button>                           
+                            </div>
 
                         </div>
 
                     </div>
-                   
-                </div>
 
-            </div>
+                    <div class="row">
 
-            <div class="row">
+                        <div class="col-2 offset-sm-2" style="margin-top: 100px;">
 
-                <div class="col-8" style="margin-top: 10%;">
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoProfessor.html" style="text-decoration: none; color: black">Novo Professor</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarProfessor.php?acao=editar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?>" style="text-decoration: none; color: black">Editar Professor</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_professor.php?acao=apagar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?> " onclick="return confirm('deseja remover esse professor?')" style="text-decoration: none; color: black">Apagar</a></button>
 
-                    <label for="coordenador">Coordenador Sobrenome</label>
+                        </div>
+
+                        <div class="col-6" style="margin-top: 70px;">
+
+                            <table class="table table-hover">
+                                <thead class="bg-secondary" style="text-align: center;">
+                                  <tr>
+                                    <th scope="col">Nome</th>
+                                  </tr>
+                                </thead>
+                                <tbody style="text-align: center;">
+                                  
+                                    <?php
+                                        include_once('Classes/ClassPessoa.php');
+                                        $p = new Pessoa();
     
-                </div>
+                                        $exibir = $p->RetornaTabelaPessoaInArray('P');
+                                        for($i = 0; $i < count($exibir); $i++){
+                                            echo"<tr>";
+                                            echo"<th scope='row'><a href='CoordenadorProfessor.php?&id=".$exibir[$i]->CD_Pessoa."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Nome."</a></th>";
+                                            echo"</tr>";
+                                        }
+                                    ?>
+                                   
+                                </tbody>
+                              </table>
 
-                <div class="col-2 offset-sm-2" style="margin-top: 4%;">
+                        </div>
 
-                    <button 
-                        class="btn btn-secondary btn-lg" 
-                        style="margin-bottom: 8px;">
-                        <a href="CoordenadorEditarProfessor.html" 
-                        style="text-decoration: none; color: black">Salvar</a>
-                    </button>                           
+                    </div>
 
+                    <div class="col-1 offset-sm-10">
+
+                        <div class="row">
+
+                            <button class="btn btn-secondary" 
+                                    style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;">
+                                    <a href="CoordenadorCadNovaTurma2.html" href="CoordenadorProfessor.html" style="text-decoration: none; color: black">Salvar</a></button>
+
+                        </div>
+
+                    </div>
+
+                    
                 </div>
 
             </div>
-            
+           
+            <div class="col-8" style="margin-top: 5%;">
+
+                <p>Coordenador Sobrenome</p>
+
+            </div>
 
 
        
