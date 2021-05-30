@@ -13,7 +13,7 @@ class ConexaoBD{
             $conect = new PDO("mysql:host=localhost;dbname=gerenciamento_estagio",'root','');
             $conect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          //  echo("CONECTADO COM SUCESSO");
+            echo("CONECTADO COM SUCESSO");
             
             return $conect;
         }
