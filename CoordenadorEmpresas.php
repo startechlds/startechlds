@@ -93,8 +93,8 @@
                         <div class="col-2 offset-sm-2" style="margin-top: 100px;">
 
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovaEmpresa.html" style="text-decoration: none; color: black">Nova Empresa</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarEmpresa.html" style="text-decoration: none; color: black">Editar Empresa</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Apagar</a></button>
+                            <button name="btn_editar" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarEmpresa.php?acao=editar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?>" style="text-decoration: none; color: black">Editar Empresa</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_empresa.php?acao=apagar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?>" onclick="return confirm('deseja remover essa empresa?')" style="text-decoration: none; color: black">Apagar</a></button>
 
                         </div>
 
@@ -119,7 +119,7 @@
                                       //  $data = $data['date'];
                                         for($i = 0; $i < count($exibir); $i++){
                                             echo"<tr>";
-                                                echo"<th scope='row'><a href='Empresa.html' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Fantasia."</a></th>";
+                                                echo"<th scope='row'><a href='CoordenadorEmpresas.php?acao=editar&id=".$exibir[$i]->CD_Empresa."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Fantasia."</a></th>";
                                                 if($exibir[$i]->DT_ExpiracaoConvenio >= $data['date'])
                                                     echo"<th>Sim</th>";
                                                 else if($exibir[$i]->DT_ExpiracaoConvenio == '0000-00-00')

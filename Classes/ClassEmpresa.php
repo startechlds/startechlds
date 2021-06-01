@@ -219,6 +219,100 @@
 
         }
 
+        public function EditarEmpresa($id, $nome_fantasia, $cnpj, $rua_empresa, $bairro_empresa, $num_empresa, $telefone_empresa, $wpp_empresa, 
+            $nome_responsavel, $cargo_responsavel, $telefone_responsavel, $doc_convenio, $dt_expiracao){
+            
+            $update = "UPDATE empresa SET CH_Fantasia = :nomeFantasia , CH_CNPJ = :cnpj, CH_RuaEmpresa = :ruaEmpresa, CH_BairroEmpresa = :bairroEmpresa, 
+            CH_NumeroEmpresa = :numeroEmpresa, CH_TelefoneEmpresa = :telefoneEmpresa, CH_WppEmpresa = :wppEmpresa, CH_NomeResponsavel = :nomeResposavel, CH_CargoDoResponsavel = :cargoResposavel,
+            CH_TelefoneResponsavel = :telefoneResponsavel, DOC_Convenio = :doc_Convenio, DT_ExpiracaoConvenio = :dt_convenio WHERE CD_Empresa = :id";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $vf_ativo = 1;
+                $result = $conect->prepare($update);
+                $result->bindParam(':nomeFantasia', $nome_fantasia, PDO::PARAM_STR);
+                $result->bindParam(':cnpj', $cnpj, PDO::PARAM_STR);
+                $result->bindParam(':ruaEmpresa', $rua_empresa, PDO::PARAM_STR);
+                $result->bindParam(':bairroEmpresa', $bairro_empresa, PDO::PARAM_STR);
+                $result->bindParam(':numeroEmpresa', $num_empresa, PDO::PARAM_STR);
+                $result->bindParam(':telefoneEmpresa', $telefone_empresa, PDO::PARAM_STR);
+                $result->bindParam(':wppEmpresa', $wpp_empresa, PDO::PARAM_STR);
+                $result->bindParam(':cargoResposavel', $cargo_responsavel, PDO::PARAM_STR);
+                $result->bindParam(':nomeResposavel', $nome_responsavel, PDO::PARAM_STR);
+                $result->bindParam(':telefoneResponsavel', $telefone_responsavel, PDO::PARAM_STR);
+                $result->bindParam(':doc_Convenio', $doc_convenio, PDO::PARAM_STR);
+                $result->bindParam(':dt_convenio', $dt_expiracao, PDO::PARAM_STR);
+                $result->bindParam(':id', $id, PDO::PARAM_INT);
+                
+                $result->execute();
+                $verifica = $result->rowCount();
+                if($verifica > 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+
+            }
+            catch(PDOException $e){
+                return "ERRO DE PDO INSERT EMPRESA ". $e->getMessage();
+            }
+
+        }
+
+        public function DeletarEmpresa($idEmpresa){
+            $delete = "DELETE FROM empresa WHERE CD_Empresa = :idEmpresa";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($delete);
+                $result->bindParam(':idEmpresa', $idEmpresa, PDO::PARAM_INT);
+                $result->execute();
+
+                $verificarRetorno = $result->rowCount();
+
+                if($verificarRetorno > 0){
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO DELETE Empresa". $e->getMessage();
+            }
+        }
+
+        public function RetornaEmpresa($id){
+            $select = "SELECT * FROM empresa WHERE CD_Empresa = :id";
+                
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->bindParam(':id', $id, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    return $result->fetch(PDO::FETCH_OBJ);
+                }
+                else{
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Retorna Empresa ". $e->getMessage()."<br>";
+            }
+        }
+
+
         public function RetornaTabelaEmpresaInArray(){
             $select = "SELECT * FROM empresa ORDER BY CH_Fantasia asc";
                 
@@ -238,7 +332,7 @@
                     return $array;
                 }
                 else{
-                    echo null;
+                    return null;
                 }
             }
             catch(PDOException $e){
