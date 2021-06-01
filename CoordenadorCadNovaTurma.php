@@ -16,7 +16,7 @@
             <div class="row" style="height: 15vh; border-radius: 5px; border: 1px solid black; margin-top: 10px; box-shadow: 0px 4px 32px 22px rgba(197, 193, 193, 0.4)
             ">
 
-                <div class="col-8 col-md-8 offset-1 mt-2">
+                <div class="col-8 col-md-8 offset-1 mt-2 h-auto d-inline-block">
 
                     <a href=""><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary" disabled>Turmas</button></a>
 
@@ -28,7 +28,7 @@
         
                     <div class="row">
 
-                        <div class="col-2 mt-4" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
+                        <div class="col-2 mt-4 h-auto d-inline-block" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
 
                             <button class="btn btn-outline-secondary" style="height: 50px; border-radius: 16px; "><i class="fas fa-users" 
                                 style="font-size: 20px; color: rgb(34, 32, 32);">&nbspTURMAS</i></button>
