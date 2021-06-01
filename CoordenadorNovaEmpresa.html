@@ -81,16 +81,16 @@
 
                         <div class="col-10 offset-sm-1 mt-2">
 
-                            <form class="form-row" method="POST" action="php/CRUD_Aluno.php">
+                            <form class="form-row" method="POST" action="php/crud_empresa.php">
 
                                 <div class="col-10 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                     <label for="nome"><strong>Nome:&nbsp</strong></label>
-                                    <input type="text" id="nome" name="nome" placeholder="Nome" class="form-control formInicial" />
+                                    <input type="text" id="nome" name="nome_fantasia" placeholder="Nome" class="form-control formInicial" required/>
                         
                                 
                                     <label for="nome"><strong>&nbsp&nbsp&nbspCNPJ:&nbsp&nbsp</strong></label>
-                                    <input type="text" id="nome" name="sobrenome" placeholder="Digite seu CNPJ" class="form-control formInicial"/>
+                                    <input type="text" id="nome" name="CNPJ" placeholder="Digite seu CNPJ" class="form-control formInicial" required/>
                 
                                 </div>
 
@@ -101,7 +101,7 @@
                         
                                 
                                     <label for="nome"><strong>Nome do sócio 2:</strong></label>
-                                    <input style="width: 30%" type="password" id="senha" name="senha" placeholder="Nome do sócio 2" class="form-control formInicial"/>
+                                    <input style="width: 30%" type="password" name="senha" placeholder="Nome do sócio 2" class="form-control formInicial"/>
              
                                 </div>
 
@@ -110,67 +110,114 @@
                                 <div class="col-10 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 27px">
 
                                     <label for="nome"><strong>Rua:</strong></label>
-                                    <input style="width: 65%" type="text" id="usuario" name="usuario" placeholder="Nome da rua" class="form-control formInicial" />
+                                    <input style="width: 65%" type="text" name="rua_empresa" placeholder="Nome da rua" class="form-control formInicial" required/>
                         
                                 
                                     <label for="nome"><strong>Nº:</strong></label>
-                                    <input style="width: 20%" type="text" id="senha" name="numero" class="form-control formInicial"/>
+                                    <input style="width: 20%" type="text" name="num_empresa" class="form-control formInicial" required/>
              
                                 </div>
 
                                 <div class="col-8 form-group" style="display: flex; align-items: center; margin-top: 40px">
 
                                     <label for="nome"><strong>&nbspBairro:&nbsp</strong></label>
-                                    <input style="width: 70%" type="text" id="usuario" name="usuario" placeholder="Nome do bairro" class="form-control formInicial" />        
+                                    <input style="width: 70%" type="text" id="usuario" name="bairro_empresa" placeholder="Nome do bairro" class="form-control formInicial" required/>        
              
                                 </div>
                                 
                                 <div class="col-10 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 40px">
 
                                     <label for="nome"><strong>Telefone para contato:</strong></label>
-                                    <input style="width: 30%" type="text" id="usuario" name="usuario" placeholder="(00) 00000-0000" class="form-control formInicial" />
+                                    <input style="width: 30%" type="text" id="usuario" name="telefone_empresa" placeholder="(00) 00000-0000" class="form-control formInicial" required/>
                         
                                 
                                     <label for="nome"><strong>WhatsApp:</strong></label>
-                                    <input style="width: 30%" type="password" id="senha" name="senha" class="form-control formInicial"/>
+                                    <input style="width: 30%" type="text" id="senha" name="wpp_empresa" class="form-control formInicial" required/>
              
                                 </div>
+
+                                <div class="col-12" style="border-radius: 5px; padding: 10px;">            
+
+                                    <div class="row">
+   
+                                       <div class="row">
+   
+                                           <div class="col-12">
+   
+                                               <div class="form-check col-3">
+   
+                                                   <input class="form-check-input" name="vf_convenio" type="checkbox" value="on" id="flexCheckDefault">
+                                                   <label class="form-check-label" for="flexCheckDefault">
+                                                       Possui convênio
+                                                   </label>&nbsp
+                                                   <i class="fas fa-upload"></i>
+                                                           
+                                               </div>
+   
+                                               <div class="form-group row col-10 mt-2">
+                                                   <label for="example-datetime-local-input" class="col-3 col-form-label">Data de expiração</label>
+                                                   <div class="col-4">
+                                                       <input class="form-control" name = "dt_convenio" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                                                   </div>
+                                               </div>
+           
+                                           </div>
+   
+                                               
+                                       </div>
+   
+                                   </div>                               
+   
+                               </div>                                
+                               
+                               <div class="col-10 offset-sm-1" style=" margin-top: 80px; border: 1px solid black; height: 16vh; border: 1px solid rgb(235, 217, 217); box-shadow: 1px 1px 15px 5px #968c8c;">
+                    
+                                    <h5 style="margin-top: -40px;">Dados do responsável</h5>
+                    
+                                        <div class="row">
+                    
+                                            <div class="col-10 offset-sm-1 mt-2">
+                    
+                                               <div class="col-10 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
+                
+                                                    <label for="nome"><strong>Nome:&nbsp</strong></label>
+                                                    <input type="text" id="nome" name="nome_responsavel" placeholder="Nome" class="form-control formInicial" required/>
+                                        
+                                                
+                                                    <label for="nome"><strong>&nbsp&nbsp&nbspSobrenome&nbsp&nbsp</strong></label>
+                                                    <input type="text" id="nome" name="sbnome_responsavel" placeholder="Sobrenome" class="form-control formInicial" required/>
+                                
+                                                </div>
+                
+                                                <div class="col-10 form-group mt-4" style="display: flex; align-items: center;"">
+                
+                                                    <label for="nome"><strong>Cargo:&nbsp</strong></label>
+                                                    <input type="text" id="nome" name="cargo" placeholder="Digite seu cargo" class="form-control formInicial" required/>
+                                        
+                                                
+                                                    <label class="col-3" for="nome"><strong>&nbsp&nbsp&nbspTelefone p/ contato:</strong></label>
+                                                    <input type="text" id="nome" name="telefone_responsavel" placeholder="(00) 00000-0000" class="form-control formInicial" required/>
+                                                    
+                                                </div>
+                                                                                  
+                                                    
+                                            </div>
+                    
+                                        </div>                   
+                    
+                                    </div>
+                    
+                                </div>
+
+                                <div class="col-1 offset-sm-9" style="margin-top:3%;">
+
+                                    <button name="btn_novaEmpresa" class="btn btn-primary">Salvar</button>
+                    
+                                </div>
+                
                                 
                             </form>
 
-                            <div class="col-12" style="border-radius: 5px; padding: 10px;">            
-
-                                 <div class="row">
-
-                                    <div class="row">
-
-                                        <div class="col-12">
-
-                                            <div class="form-check col-3">
-
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    Possuo convênio
-                                                </label>&nbsp
-                                                <i class="fas fa-upload"></i>
-                                                        
-                                            </div>
-
-                                            <div class="form-group row col-10 mt-2">
-                                                <label for="example-datetime-local-input" class="col-3 col-form-label">Data de expiração</label>
-                                                <div class="col-4">
-                                                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-                                                </div>
-                                            </div>
-        
-                                        </div>
-
-                                            
-                                    </div>
-
-                                </div>                               
-
-                            </div>                                
                                 
                         </div>
 
@@ -180,60 +227,8 @@
 
             </div>
 
-            <div class="col-10 offset-sm-1" style=" margin-top: 80px; border: 1px solid black; height: 16vh; border: 1px solid rgb(235, 217, 217); box-shadow: 1px 1px 15px 5px #968c8c;">
-                    
-                <h5 style="margin-top: -40px;">Dados do responsável</h5>
-
-                    <div class="row">
-
-                        <div class="col-10 offset-sm-1 mt-2">
-
-                            <form class="form-row" method="POST" action="php/CRUD_Aluno.php">
-
-                                <div class="col-10 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
-
-                                    <label for="nome"><strong>Nome:&nbsp</strong></label>
-                                    <input type="text" id="nome" name="nome" placeholder="Nome" class="form-control formInicial" />
-                        
-                                
-                                    <label for="nome"><strong>&nbsp&nbsp&nbspSobrenome&nbsp&nbsp</strong></label>
-                                    <input type="text" id="nome" name="sobrenome" placeholder="Sobrenome" class="form-control formInicial"/>
-                
-                                </div>
-
-                                <div class="col-10 form-group mt-4" style="display: flex; align-items: center;"">
-
-                                    <label for="nome"><strong>Cargo:&nbsp</strong></label>
-                                    <input type="text" id="nome" name="nome" placeholder="Digite seu cargo" class="form-control formInicial" />
-                        
-                                
-                                    <label class="col-3" for="nome"><strong>&nbsp&nbsp&nbspTelefone p/ contato:</strong></label>
-                                    <input type="text" id="nome" name="sobrenome" placeholder="(00) 00000-0000" class="form-control formInicial"/>
-                
-                                </div>
-                                
-                            </form>                                
-                                
-                        </div>
-
-                    </div>                   
-
-                </div>
-
-            </div>
-
-            <div class="col-1 offset-sm-9" style="margin-top:3%;">
-
-                <a href=""><button class="btn btn-primary">Salvar</button></a>
-
-            </div>
-
-
-
-        
-
             
-            <div class="col-8" style="margin-top: 2%;">
+            <div class="col-2" style="margin-top: 20%;">
 
                 <p>Coordenador Sobrenome</p>
 

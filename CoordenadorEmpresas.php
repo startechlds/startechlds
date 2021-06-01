@@ -92,49 +92,49 @@
 
                         <div class="col-2 offset-sm-2" style="margin-top: 100px;">
 
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoProfessor.html" style="text-decoration: none; color: black">Nova Empresa</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarProfessor.html" style="text-decoration: none; color: black">Editar Empresa</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovaEmpresa.html" style="text-decoration: none; color: black">Nova Empresa</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarEmpresa.html" style="text-decoration: none; color: black">Editar Empresa</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Apagar</a></button>
 
                         </div>
 
                         <div class="col-6" style="margin-top: 70px;">
-
                             <table class="table table-hover">
                                 <thead class="bg-secondary" style="text-align: center;">
-                                  <tr>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Convênio</th>
-                                    <th scope="col">Responsável</th>
-                                    <th scope="col">Contato</th>
-                                  </tr>
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Convênio</th>
+                                        <th scope="col">Responsável</th>
+                                        <th scope="col">Contato</th>
+                                </tr>
                                 </thead>
                                 <tbody style="text-align: center;">
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Sim</th>
-                                    <th scope="row">Fulano</th>
-                                    <th scope="row">(XX) XXXXX-XXXX</th>                                    
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Não</th>
-                                    <th scope="row">Cicrano</th>
-                                    <th scope="row">(XX) XXXXX-XXXX</th>                                                          
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Expirado</th>
-                                    <th scope="row">Beltrano</th>
-                                    <th scope="row">(XX) XXXXX-XXXX</th>                                  
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Sim</th>
-                                    <th scope="row">Outro</th>
-                                    <th scope="row">(XX) XXXXX-XXXX</th>                                   
+                                    <?php
+                                        include_once('Classes/ClassEmpresa.php');
+                                        $emp = new Empresa();
+
+
+                                        $exibir = $emp->RetornaTabelaEmpresaInArray();
+                                        $data = (array) new DateTime();
+                                      //  $data = $data['date'];
+                                        for($i = 0; $i < count($exibir); $i++){
+                                            echo"<tr>";
+                                                echo"<th scope='row'><a href='Empresa.html' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Fantasia."</a></th>";
+                                                if($exibir[$i]->DT_ExpiracaoConvenio >= $data['date'])
+                                                    echo"<th>Sim</th>";
+                                                else if($exibir[$i]->DT_ExpiracaoConvenio == '0000-00-00')
+                                                    echo"<th>Não</th>";
+                                                else if($exibir[$i]->DT_ExpiracaoConvenio < $data['date'])
+                                                    echo"<th>Expirado</th>";
+
+                                                echo"<th>".$exibir[$i]->CH_NomeResponsavel."</th>";
+                                                echo"<th>".$exibir[$i]->CH_TelefoneResponsavel."</th>";
+                                            echo"</tr>";
+                                        }
+                                    ?>
+                                    
                                 </tbody>
-                              </table>
+                            </table>
 
                         </div>
 
