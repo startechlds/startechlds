@@ -21,13 +21,13 @@
 
                 <div class="col-8 col-md-8 offset-1 mt-2 h-auto d-inline-block">
 
-                    <a href=""><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Turmas</button></a>
+                    <a href="CoordenadorTurmas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Turmas</button></a>
 
-                    <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
+                    <a href="CoordenadorProfessor.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
-                    <a href="CoordenadorAlunos.html"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
+                    <a href="CoordenadorAlunos.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
 
-                    <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Empresas</button></a>
+                    <a href="CoordenadorEmpresas.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Empresas</button></a>
         
                     <div class="row">
 
@@ -92,9 +92,9 @@
 
                         <div class="col-2 offset-sm-2" style="margin-top: 100px;">
 
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoProfessor.html" style="text-decoration: none; color: black">Nova Empresa</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarProfessor.html" style="text-decoration: none; color: black">Editar Empresa</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Apagar</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovaEmpresa.html" style="text-decoration: none; color: black">Nova Empresa</a></button>
+                            <button name="btn_editar" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarEmpresa.php?acao=editar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?>" style="text-decoration: none; color: black">Editar Empresa</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_empresa.php?acao=apagar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?>" onclick="return confirm('deseja remover essa empresa?')" style="text-decoration: none; color: black">Apagar</a></button>
 
                         </div>
 
@@ -102,39 +102,40 @@
 
                             <table class="table table-hover">
                                 <thead class="bg-secondary" style="text-align: center;">
-                                  <tr>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Convênio</th>
-                                    <th scope="col">Responsável</th>
-                                    <th scope="col">Contato</th>
-                                  </tr>
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Convênio</th>
+                                        <th scope="col">Responsável</th>
+                                        <th scope="col">Contato</th>
+                                </tr>
                                 </thead>
                                 <tbody style="text-align: center;">
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Sim</th>
-                                    <th scope="row">Fulano</th>
-                                    <th scope="row">(XX) XXXXX-XXXX</th>                                    
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Não</th>
-                                    <th scope="row">Cicrano</th>
-                                    <th scope="row">(XX) XXXXX-XXXX</th>                                                          
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Expirado</th>
-                                    <th scope="row">Beltrano</th>
-                                    <th scope="row">(XX) XXXXX-XXXX</th>                                  
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Sim</th>
-                                    <th scope="row">Outro</th>
-                                    <th scope="row">(XX) XXXXX-XXXX</th>                                   
+                                    <?php
+                                        include_once('Classes/ClassEmpresa.php');
+                                        $emp = new Empresa();
+
+
+                                        $exibir = $emp->RetornaTabelaEmpresaInArray();
+                                        $data = (array) new DateTime();
+                                      //  $data = $data['date'];
+                                        for($i = 0; $i < count($exibir); $i++){
+                                            echo"<tr>";
+                                                echo"<th scope='row'><a href='CoordenadorEmpresas.php?acao=editar&id=".$exibir[$i]->CD_Empresa."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Fantasia."</a></th>";
+                                                if($exibir[$i]->DT_ExpiracaoConvenio >= $data['date'])
+                                                    echo"<th>Sim</th>";
+                                                else if($exibir[$i]->DT_ExpiracaoConvenio == '0000-00-00')
+                                                    echo"<th>Não</th>";
+                                                else if($exibir[$i]->DT_ExpiracaoConvenio < $data['date'])
+                                                    echo"<th>Expirado</th>";
+
+                                                echo"<th>".$exibir[$i]->CH_NomeResponsavel."</th>";
+                                                echo"<th>".$exibir[$i]->CH_TelefoneResponsavel."</th>";
+                                            echo"</tr>";
+                                        }
+                                    ?>
+                                    
                                 </tbody>
-                              </table>
+                            </table>
 
                         </div>
 

@@ -108,11 +108,10 @@
 
                 $retorno = $result->rowCount();
                 if($retorno > 0){
-                    $arr = $result->fetch(PDO::FETCH_OBJ);
-                    return $arr;
+                   return true;
                 }
                 else{
-                    echo"não exixte";
+                    echo false;
                 }
             }
             catch(PDOException $e){

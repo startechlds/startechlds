@@ -27,7 +27,7 @@
 
                             <a href="inicialAlunoVagas.html"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Vagas</button></a>
 
-                            <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Disciplina</button></a>
+                            <a href="inicialAlunoDisciplina.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Disciplina</button></a>
 
                         </div>
 

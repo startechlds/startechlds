@@ -18,13 +18,13 @@
 
                 <div class="col-8 col-md-8 offset-1 mt-2 h-auto d-inline-block">
 
-                    <a href=""><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary" disabled>Turmas</button></a>
+                    <a href="CoordenadorTurmas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary" disabled>Turmas</button></a>
 
-                    <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
+                    <a href="CoordenadorProfessor.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
                     <a href="CoordenadorAlunos.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
 
-                    <a href=""><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Empresas</button></a>
+                    <a href="CoordenadorEmpresas.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Empresas</button></a>
         
                     <div class="row">
 
@@ -110,7 +110,7 @@
                                         include_once('Classes/ClassSemestre.php');
 
                                         $semestre = semestre::GerarSemestre();
-                                        echo"<option selected disabled value='".null."'>Professor</option>";
+                                        echo"<option selected disabled value='".null."'>Semestre</option>";
                                         for($i = 0; $i < count($semestre); $i++){
                                             echo"<option type = 'submit' value='".$semestre[$i]."'>".$semestre[$i]."</option>";
                                         }
