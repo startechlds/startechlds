@@ -81,7 +81,7 @@
                             <button
                                 name="btn_AdcAluno"
                                 class="btn btn-secondary btn-success col-7 mt-4">
-                                <a style="text-decoration: none; color: black"><strong style="color: white">Inserir nova vaga</strong></a>
+                                <a href="CoordenadorVagaAdicionar.php" style="text-decoration: none; color: black"><strong style="color: white">Inserir nova vaga</strong></a>
                             </button>                  
             
                         </div>   
@@ -185,7 +185,7 @@
 
                             <button class="btn btn-secondary" 
                                     style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;">
-                                    <a href="CoordenadorCadNovaTurma2.html" href="CoordenadorProfessor.html" style="text-decoration: none; color: black">Salvar</a></button>
+                                    <a href="CoordenadorProfessor.html" style="text-decoration: none; color: black">Salvar</a></button>
 
                         </div>
 
