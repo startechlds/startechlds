@@ -52,7 +52,7 @@
 
                         <div class="col-2 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            <a href="CoordenadorEmpresasConvenio.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                 <i class="fas fa-check-square" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbsp&nbspConvênios</a>            
                         </div>
 
@@ -160,7 +160,7 @@
                                                     else
                                                         echo"<th>Desativado</th>";
                                                     echo"<th>".$exibir[$i]->DT_Publicacao."</th>";
-                                                    echo"<th><a href='Empresa_Convenio.php'>mais detalhes</a></th>";
+                                                    echo"<th><a href='Empresa_Convenio.php?idEmp=".$exibir[$i]->CD_Empresa."'>mais detalhes</a></th>";
                                                 echo"</tr>";
                                             }
                                         ?>

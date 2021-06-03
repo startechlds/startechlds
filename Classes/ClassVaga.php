@@ -112,7 +112,7 @@
         }
 
         public function RetornaTabelaDadosVagas(){
-            $select = "SELECT vaga.CD_Vaga, vaga.CH_Cargo, E.CH_Fantasia as Empresa, vaga.DT_Publicacao, vaga.VF_Ativo
+            $select = "SELECT vaga.CD_Vaga, vaga.CH_Cargo, E.CH_Fantasia as Empresa, vaga.DT_Publicacao, vaga.VF_Ativo, vaga.CD_Empresa
                         FROM vaga
                         JOIN empresa E ON E.CD_Empresa = vaga.CD_Empresa 
                         ORDER BY DT_Publicacao desc";

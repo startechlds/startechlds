@@ -52,7 +52,7 @@
 
                         <div class="col-2 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            <a href="CoordenadorEmpresasConvenio.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                 <i class="fas fa-check-square" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbsp&nbspConvênios</a>            
                         </div>
 
@@ -77,41 +77,41 @@
                     
                     
                     <div class="row">
-                        <h3 class="col-4 offset-sm-2 mt-4">Empresa 1</h3>
+                    <?php
+                        include_once('Classes/ClassEmpresa.php');
+                        $e = new Empresa();
+
+                        $exibir = $e->RetornaEmpresa($_GET['idEmp']);
+                    ?>
+                        <h3 class="col-4 offset-sm-2 mt-4"><?php echo $exibir->CH_Fantasia;?></h3>
 
                         <div class="col-4 offset-4" style="margin-top: 70px;">
-
-                            <table class="table table-hover">
-                                <thead class="bg-secondary" style="text-align: center;">
-                                  <tr>
-                                    <th scope="col">Documento</th>
-                                    <th scope="col">Data</th>
-                                  </tr>
-                                </thead>
-                                <tbody style="text-align: center;">
-                                  <tr>
-                                    <th scope="row">ConvênioUVA.pdf</th>
-                                    <th scope="row">2020</th>
+                        <table class="table table-hover">
+                                    <thead class="bg-secondary" style="text-align: center;">
+                                    <tr>
+                                        <th scope="col">Responsável</th>
+                                        <th scope="col">Contato Responsavel</th>
+                                        <th scope="col">Contato Empresa</th>
+                                        <th scope="col">Doc Convênio</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="text-align: center;">
+                                        <?php
+                                         
+                                            echo"<tr>";
+                                                echo"<th>".$exibir->CH_NomeResponsavel."</th>";
+                                                echo"<th>".$exibir->CH_TelefoneResponsavel."</th>";
+                                                echo"<th>".$exibir->CH_TelefoneEmpresa."</th>";
+                                                if($exibir->DOC_Convenio == null)
+                                                    echo"<th>Sem Convênio</th>";
+                                                else
+                                                    echo"<th><a href=''>".$exibir->DOC_Convenio."</a></th>";
+                                            echo"</tr>";
+                                            
+                                        ?>
                                     
-                                                                       
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Convevio.pdf</th>
-                                    <th scope="row">2018</th>
-                                                                                         
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Convenio</th>
-                                    <th scope="row">2019</th>
-                                                                  
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">&nbsp</th>
-                                    <th scope="row">&nbsp</th>
-                                    
-                                                                       
-                                </tbody>
-                              </table>
+                                    </tbody>
+                                </table>
 
                         </div>
 
