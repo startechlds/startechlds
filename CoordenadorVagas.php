@@ -129,8 +129,8 @@
                     <div class="row">
 
                         <div class="col-2 offset-sm-2" style="margin-top: 100px;">
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a title="Tela em construção" href="CoordenadorVagaEditar.html?acao=editar&<?php if(!empty($_GET['id'])) echo $_GET['id'];?>" style="text-decoration: none; color: black">Editar Vaga</a></button>&nbsp&nbsp&nbsp
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Apagar</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a title="" href="CoordenadorVagaEditar.php?acao=editar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?>" style="text-decoration: none; color: black">Editar Vaga</a></button>&nbsp&nbsp&nbsp
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_vaga.php?acao=apagar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?> " onclick="return confirm('deseja remover essa vaga?')" style="text-decoration: none; color: black">Apagar</a></button>
 
                         </div>
 
@@ -160,7 +160,7 @@
                                                     else
                                                         echo"<th>Fechado</th>";
                                                     echo"<th>".$exibir[$i]->DT_Publicacao."</th>";
-                                                    echo"<th><a href=''>mais detalhes</a></th>";
+                                                    echo"<th><a href='Empresa_Convenio.php'>mais detalhes</a></th>";
                                                 echo"</tr>";
                                             }
                                         ?>

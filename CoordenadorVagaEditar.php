@@ -13,156 +13,190 @@
 
 <body>
 
-    
-    <div class="container">
+    <?php
+        if(isset($_GET['acao'])){
+            if($_GET['acao'] == "editar"){
+                setcookie("acaoV", "editar");
+                if(empty($_GET['id'])){
+                    echo "
+                    <script>
+                        alert('Selecione uma vaga para poder editá-la');
+                        window.location.href = 'CoordenadorVagas.php';
+                    </script>";
+                }
+                else{
+                    setcookie("idVaga", $_GET['id']);
+
+                }
+            }
+        }
+    ?>
+
+<div class="container">
            
-            <div class="row" style="height: 15vh; border-radius: 5px; border: 1px solid black; margin-top: 10px; box-shadow: 0px 4px 32px 22px rgba(197, 193, 193, 0.4)
-            ">
+           <div class="row" style="height: 15vh; border-radius: 5px; border: 1px solid black; margin-top: 10px; box-shadow: 0px 4px 32px 22px rgba(197, 193, 193, 0.4)
+           ">
 
-                <div class="col-8 col-md-8 offset-1 mt-2">
+               <div class="col-8 col-md-8 offset-1 mt-2">
 
-                    <a href="CoordenadorTurmas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Turmas</button></a>
+                   <a href="CoordenadorTurmas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Turmas</button></a>
 
-                    <a href="CoordenadorProfessor.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
+                   <a href="CoordenadorProfessor.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Professor</button></a>
 
-                    <a href="CoordenadorAlunos.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
+                   <a href="CoordenadorAlunos.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Alunos</button></a>
 
-                    <a href="CoordenadorEmpresas.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Empresas</button></a>
-        
-                    <div class="row">
+                   <a href="CoordenadorEmpresas.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Empresas</button></a>
+       
+                   <div class="row">
 
-                        <div class="col-2 mt-4" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
+                       <div class="col-2 mt-4" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="CoordenadorEmpresas.html"><button class="btn btn-outline-secondary" style="height: 85%; border-radius: 16px; "><i class="far fa-handshake" 
-                                style="font-size: 20px; color: rgb(34, 32, 32);">&nbspEMPRESAS</i></button></a>
-                            
-                        </div>
+                           <a href="CoordenadorEmpresas.html"><button class="btn btn-outline-secondary" style="height: 85%; border-radius: 16px; "><i class="far fa-handshake" 
+                               style="font-size: 20px; color: rgb(34, 32, 32);">&nbspEMPRESAS</i></button></a>
+                           
+                       </div>
 
-                        <div class="col-1 offset-sm-1 mt-3 " style="height: 7vh;">
+                       <div class="col-1 offset-sm-1 mt-3 " style="height: 7vh;">
 
-                            <div style="border: 1px solid black; height: 5vh; width: 2px"></div>
-                                        
-                        </div>
+                           <div style="border: 1px solid black; height: 5vh; width: 2px"></div>
+                                       
+                       </div>
 
-                        <div class="col-2 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
+                       <div class="col-2 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="#" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                                <i class="fas fa-briefcase" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbspVagas</a>            
-                        </div>
+                           <a href="#" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                               <i class="fas fa-briefcase" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbspVagas</a>            
+                       </div>
 
-                        <div class="col-2 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
+                       <div class="col-2 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                                <i class="fas fa-check-square" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbsp&nbspConvênios</a>            
-                        </div>
+                           <a href="" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                               <i class="fas fa-check-square" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbsp&nbspConvênios</a>            
+                       </div>
 
-                    </div>
-    
-                </div>
+                   </div>
+   
+               </div>
 
-                <div class="col-4 col-md-2 offset-sm-1 mt-3">
+               <div class="col-4 col-md-2 offset-sm-1 mt-3">
 
-                    <button title="Voltar tela anterior" class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="CoordenadorVagas.html"><i class="fas fa-times"></i></a></button>
-                        
-                    <button title="Sair" class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="loginInicial.html"><i class="fas fa-power-off"></i></a></button>
+                   <button title="Voltar tela anterior" class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="CoordenadorVagas.html"><i class="fas fa-times"></i></a></button>
+                       
+                   <button title="Sair" class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="loginInicial.html"><i class="fas fa-power-off"></i></a></button>
 
-                </div>               
+               </div>               
 
-            </div>
+           </div>
 
-            <div clas="row">
+           <div clas="row">
 
-                <div class="col-12" style="margin-top: 60px; background-color: rgb(175, 175, 166); height: 70%">
+               <div class="col-12" style="margin-top: 60px; background-color: rgb(175, 175, 166); height: 70%">
 
-                    <div class="row">
+                   <div class="row">
 
-                        <h3 class="offset-sm-5 mt-4">Editar Vaga</h3>
+                       <h3 class="offset-sm-5 mt-4">Editar Vaga</h3>
 
-                        <div class="col-6 offset-sm-3" style="margin-top: 50px;">
+                       <div class="col-6 offset-sm-3" style="margin-top: 50px;">
 
-                            <div class="row">
+                           <div class="row">
 
-                                <div class="col-12 mt-2">
+                               <div class="col-12 mt-2">
 
-                                    <form class="form-row" method="POST" action="php/CRUD_Aluno.php">
+                                   <form id="formEditar" class="form-row" method="POST" action="php/crud_vaga.php">
 
-                                        <div class="col-12 form-group" style="display: flex; align-items: center; justify-content: space-around;">
+                                       <div class="col-12 form-group" style="display: flex; align-items: center; justify-content: space-around;">
+                                            <?php
+                                                include_once('Classes/ClassVaga.php');
+                                                $v = new Vaga();
+                                                $res = $v->RetornaVagaEspecifica($_GET['id']);
+                                            ?>
 
-                                            <label for="nome"><strong>Cargo:&nbsp</strong></label>
-                                            <input type="text" id="nome" name="nome" placeholder="Seu cargo" class="form-control formInicial" />
-                                            
-                                
-                                            <div class="col-5 offset-sm-1">
-                                                <select class="form-select btn btn-secondary" id="validationDefault04" name="cbx_situacao">
-                                                    <option selected disabled value="">Empresa&nbsp</option>
-                                                    <option>SantaCatech</option>
-                                                    <option>Grentech</option>
-                                                    <option>Automatech</option>
-                                                    <option>Unitech</option>
-                                                </select>
-                                            </div>
-                                            
-                        
-                                        </div>
+                                           <label for="nome"><strong>Cargo:&nbsp</strong></label>
+                                           <input type="text" id="nome" name="cargo" placeholder="Seu cargo" class="form-control formInicial"  value="<?php echo $res->CH_Cargo;?>"/>
+                                           
+                               
+                                           <div class="col-5 offset-sm-1">
+                                               <select class='form-select btn btn-secondary' id='validationDefault04' name ='cbx_Empresa' require>
+                                                   <?php
+                                                       include_once('Classes/ClassEmpresa.php');
 
-                                        <div class="col-12 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 40px">
+                                                       $empresa = new Empresa();
+                                                       $cd_e = $empresa->RetornaEmpresa($res->CD_Empresa);
 
-                                            <div class="col-6" style="display: flex; align-items: center; justify-content: center">
+                                                       $exibir = $empresa->RetornaTabelaEmpresaInArray();
+                                                       echo"<option selected value='".$cd_e->CD_Empresa."'>".$cd_e->CH_Fantasia."</option>";
+                                                       for($i = 0; $i < count($exibir); $i++){
+                                                           echo"<option type = 'submit' value='".$exibir[$i]->CD_Empresa."'>".$exibir[$i]->CH_Fantasia."</option>";
+                                                       }
+                                                   ?>
+                                               </select>
+                                               
+                                           </div>
+                                           
+                       
+                                       </div>
 
-                                                <label for="nome"><strong>Bolsa:&nbsp</strong></label>
-                                            <input type="text" id="usuario" name="usuario" class="form-control formInicial" />
+                                       <div class="col-12 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 40px">
 
-                                            </div>
-                                            
-                                            <div class="col-4 offset-sm-2" style="display: flex; align-items: center; justify-content: space-around">
+                                           <div class="col-6" style="display: flex; align-items: center; justify-content: center">
 
-                                                <label for="example-number-input" class="col-3 col-form-label"><strong>Quantidade:&nbsp&nbsp&nbsp</strong></label>
-                                                <div class="col-4">
-                                                    <input class="form-control" type="number" value="42" id="example-number-input">
-                                                </div>
+                                               <label for="nome"><strong>Valor da Bolsa:&nbsp</strong></label>
+                                           <input type="number" id="usuario" name="valor_bolsa" class="form-control formInicial" placeholder="R$" value="<?php echo $res->VR_Valor;?>"/>
 
-                                            </div>
-                                                                                                           
-                                        </div>
+                                           </div>
+                                           
+                                           <div class="col-4 offset-sm-2" style="display: flex; align-items: center; justify-content: space-around">
 
-                                        <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 40px">
+                                               <label for="example-number-input" class="col-3 col-form-label"><strong>Quantidade:&nbsp&nbsp&nbsp</strong></label>
+                                               <div class="col-4">
+                                                   <input class="form-control" type="number" value="<?php echo $res->CD_Qtd_Vaga;?>" name ="qtd" id="example-number-input">
+                                               </div>
 
-                                            <label for="nome"><strong>Horas Semanais&nbsp</strong></label>
-                                            <input type="text" id="usuario" name="usuario" placeholder="Usuário" class="form-control formInicial" />
-                        
-                                        </div>                       
-                        
+                                           </div>
+                                                                                                          
+                                       </div>
+
+                                       <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 40px">
+
+                                           <label for="nome"><strong>Horas Semanais&nbsp</strong></label>
+                                           <input type="text" id="usuario" name="HSemanais" placeholder="X horas Semanais" class="form-control formInicial" value="<?php echo $res->CD_Horas_Semanais;?>"/>
+                       
+                                       </div>                       
+                       
+                                   
+
+                               </div>
+
+                                       <div class="row">
+
+                                           <div class="col-10">
+
+                                               <div class="form-group mt-4">
+                                                   <label for="exampleTextarea" ><strong>Descrição da vaga:</strong></label>
+                                                   <textarea style="margin-top: 3%" class="form-control" id="exampleTextarea" name = "descricao" rows="3" ><?php echo $res->CH_Descricao;?></textarea>
+                                               </div>
+
+                                           </div>    
+                                               
+
+                                           <div class="col-2" style="margin-top: 10%;">
+
+                                               <div class="col-1 offset-sm-11" style="margin-top:3%;">
+                   
+                                                   <a ><button name="btn_EditarVaga" class="btn btn-primary">Salvar</button></a>
+                                       
+                                               </div>
+               
+                                           </div>
                                     </form>
 
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-10">
-
-                                        <div class="form-group mt-4">
-                                            <label for="exampleTextarea" ><strong>Descrição da vaga:</strong></label>
-                                            <textarea style="margin-top: 3%" class="form-control" id="exampleTextarea" rows="3"></textarea>
+                                    <form id="formDesavivar">
+                                        <div class="col-3 offset-sm-11">
+                
+                                            <a href="php/crud_vaga.php"><button class="btn btn-primary" name="btn_desativaVaga">Desativar vaga</button></a>
+                                    
                                         </div>
-
-                                    </div>    
-                                        
-
-                                    <div class="col-2" style="margin-top: 10%;">
-
-                                        <div class="col-1 offset-sm-11" style="margin-top:3%;">
-            
-                                            <a href=""><button class="btn btn-primary">Salvar</button></a>
-                                
-                                        </div>
-        
-                                    </div>
-
-                                    <div class="col-3 offset-sm-11">
-            
-                                        <a href=""><button class="btn btn-primary">Desativar vaga</button></a>
-                                
-                                    </div>
+                                    </form>
         
                                 </div> 
                                 
