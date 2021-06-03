@@ -82,4 +82,38 @@
             </script>";
         }
     }
+
+    if($_GET['acao'] == "desativar"){
+        if(!empty($_GET['id'])){
+            include_once("../Classes/ClassVaga.php");
+            $id = $_GET['id'];
+
+            $v = new Vaga();
+
+            $verificaUpdate = $v->DesativarVaga($id);
+            if($verificaUpdate){
+                echo "
+                <script>
+                    alert('VAGA DESATIVADA COM SUCESSO');
+                    window.location.href = '../CoordenadorVagas.php';
+                </script>";
+            }
+            else{
+                echo "
+                <script>
+                    alert('ERRO AO DESATIVAR VAGA');
+                
+                </script>";
+                echo"$verificaUpdate";
+            }
+
+        }
+        else{
+            echo "
+            <script>
+                alert('Para Apagar uma vaga é preciso selecioná-la');
+                window.location.href = '../CoordenadorVagas.php';
+            </script>";
+        }
+    }
 ?>

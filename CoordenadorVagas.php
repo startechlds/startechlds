@@ -158,7 +158,7 @@
                                                     if($exibir[$i]->VF_Ativo == 1)
                                                         echo"<th>Aberta</th>";
                                                     else
-                                                        echo"<th>Fechado</th>";
+                                                        echo"<th>Desativado</th>";
                                                     echo"<th>".$exibir[$i]->DT_Publicacao."</th>";
                                                     echo"<th><a href='Empresa_Convenio.php'>mais detalhes</a></th>";
                                                 echo"</tr>";

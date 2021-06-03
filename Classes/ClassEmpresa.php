@@ -340,6 +340,33 @@
             }
         }
 
+        public function RetornaTabelaEmpresaAtivasInArray(){
+            $select = "SELECT * FROM empresa WHERE VF_Ativo = 1 ORDER BY CH_Fantasia asc";
+                
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    while($empresa = $result->fetch(PDO::FETCH_OBJ)){
+                        $array[] = $empresa;
+                    }
+                    
+                    return $array;
+                }
+                else{
+                    return null;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Retorna Tabela ". $e->getMessage()."<br>";
+            }
+        }
+
 
     }
 ?>

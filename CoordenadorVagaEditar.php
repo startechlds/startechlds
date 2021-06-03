@@ -123,7 +123,7 @@
                                                        $empresa = new Empresa();
                                                        $cd_e = $empresa->RetornaEmpresa($res->CD_Empresa);
 
-                                                       $exibir = $empresa->RetornaTabelaEmpresaInArray();
+                                                       $exibir = $empresa->RetornaTabelaEmpresaAtivasInArray();
                                                        echo"<option selected value='".$cd_e->CD_Empresa."'>".$cd_e->CH_Fantasia."</option>";
                                                        for($i = 0; $i < count($exibir); $i++){
                                                            echo"<option type = 'submit' value='".$exibir[$i]->CD_Empresa."'>".$exibir[$i]->CH_Fantasia."</option>";
@@ -190,13 +190,13 @@
                                            </div>
                                     </form>
 
-                                    <form id="formDesavivar">
+                                    
                                         <div class="col-3 offset-sm-11">
                 
-                                            <a href="php/crud_vaga.php"><button class="btn btn-primary" name="btn_desativaVaga">Desativar vaga</button></a>
+                                            <a href="php/crud_vaga.php?acao=desativar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?> " onclick="return confirm('deseja desativar essa vaga?')"><button class="btn btn-primary" name="btn_desativaVaga">Desativar vaga</button></a>
                                     
                                         </div>
-                                    </form>
+                                
         
                                 </div> 
                                 

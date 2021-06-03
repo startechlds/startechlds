@@ -80,7 +80,7 @@
             
             }
             catch(PDOException $e){
-                echo "<strong> ERRO DE PDO ADICIONAR VAGA <strong>".$e->getMessage();
+                echo "<strong> ERRO DE PDO EDITAR VAGA <strong>".$e->getMessage();
             }
             
         }
@@ -141,6 +141,37 @@
             }
         }
 
+        public function RetornaTabelaDadosVagasAtivas(){
+            $select = "SELECT vaga.CD_Vaga, vaga.CH_Cargo, E.CH_Fantasia as Empresa, vaga.DT_Publicacao, vaga.VF_Ativo
+                        FROM vaga
+                        JOIN empresa E ON E.CD_Empresa = vaga.CD_Empresa
+                        WHERE VF_ATIVO = 1  
+                        ORDER BY DT_Publicacao desc";
+                
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    while($empresa = $result->fetch(PDO::FETCH_OBJ)){
+                        $array[] = $empresa;
+                    }
+                    
+                    return $array;
+                }
+                else{
+                    return null;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Retorna Dados Tabela ". $e->getMessage()."<br>";
+            }
+        }
+
         public function RetornaVagaEspecifica($idVaga){
             $select = "SELECT * FROM vaga WHERE CD_VAGA = :id";
                 
@@ -165,4 +196,40 @@
             }
         }
 
+        public function DesativarVaga($id){
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            $insert = "UPDATE vaga SET DT_Edicao = :data_edicao, VF_Ativo = :vf_ativo WHERE CD_Vaga = :id";
+
+            try{
+                $vf_ativo = 0;
+                $temp = (array) new DateTime();
+                $data = $temp['date'];
+
+                $result = $conect->prepare($insert);
+                $result->bindParam(':data_edicao', $data, PDO::PARAM_STR);
+                $result->bindParam(':vf_ativo', $vf_ativo, PDO::PARAM_STR);
+                $result->bindParam(':id', $id, PDO::PARAM_INT);
+                $result->execute();
+
+                $verificarRetorno = $result->rowCount();
+
+                if($verificarRetorno > 0){
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            
+            }
+            catch(PDOException $e){
+                echo "<strong> ERRO DE PDO DESATIVAR VAGA <strong>".$e->getMessage();
+            }
+            
+        }
+
     }
+?>
