@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="PT-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -104,9 +104,8 @@
                                     
                             <select class="form-select btn btn-secondary mt-4" id="validationDefault04" name="cbx_situacao">
                                 <option selected disabled value="">Situação&nbsp</option>
-                                <option>Aprovado</option>
-                                <option>Reprovado</option>
-                                <option>Cursando</option>
+                                <option value="0">Fechado</option>
+                                <option value="1">Aberto</option>
                             </select>
                                    
                         </div>
@@ -130,51 +129,44 @@
                     <div class="row">
 
                         <div class="col-2 offset-sm-2" style="margin-top: 100px;">
-
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a title="Tela em construção" href="CoordenadorNovoProfessor.html" style="text-decoration: none; color: black">Nova Vaga</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a title="Tela em construção" href="CoordenadorEditarProfessor.html" style="text-decoration: none; color: black">Editar Vaga</a></button>&nbsp&nbsp&nbsp
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a title="Tela em construção" href="CoordenadorVagaEditar.html?acao=editar&<?php if(!empty($_GET['id'])) echo $_GET['id'];?>" style="text-decoration: none; color: black">Editar Vaga</a></button>&nbsp&nbsp&nbsp
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Apagar</a></button>
 
                         </div>
 
                         <div class="col-6" style="margin-top: 70px;">
-
                             <table class="table table-hover">
-                                <thead class="bg-secondary" style="text-align: center;">
-                                  <tr>
-                                    <th scope="col">Área</th>
-                                    <th scope="col">Empresa</th>
-                                    <th scope="col">Situação</th>
-                                    <th scope="col">Data de publicação</th>
-                                  </tr>
-                                </thead>
-                                <tbody style="text-align: center;">
-                                  <tr>
-                                    <th scope="row"><a href="#" title="Tela em construção">Programador JS</a></th>
-                                    <th scope="row">SantaCatech</th>
-                                    <th scope="row">Aberta</th>
-                                    <th scope="row">XX/XX/XXXX</th>                                    
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Programador PHP</th>
-                                    <th scope="row">Automatech</th>
-                                    <th scope="row">Aberta</th>
-                                    <th scope="row">XX/XX/XXXX</th>                                                          
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Programador Java</th>
-                                    <th scope="row">Grentech</th>
-                                    <th scope="row">Fechada</th>
-                                    <th scope="row">XX/XX/XXXX</th>                                  
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Programador Python</th>
-                                    <th scope="row">Unitech</th>
-                                    <th scope="row">Fechada</th>
-                                    <th scope="row">XX/XX/XXXX</th>                                   
-                                </tbody>
-                              </table>
+                                    <thead class="bg-secondary" style="text-align: center;">
+                                    <tr>
+                                        <th scope="col">Cargo</th>
+                                        <th scope="col">Empresa</th>
+                                        <th scope="col">Situação</th>
+                                        <th scope="col">Data de publicação</th>
+                                        <th scope="col">---</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="text-align: center;">
+                                        <?php
+                                            include_once('Classes/ClassVaga.php');
+                                            $vaga = new Vaga();
 
+                                            $exibir = $vaga->RetornaTabelaDadosVagas();
+                                            for($i = 0; $i < count($exibir); $i++){
+                                                echo"<tr>";
+                                                    echo"<th scope='row'><a href='CoordenadorVagas.php?id=".$exibir[$i]->CD_Vaga."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Cargo."</a></th>";
+                                                    echo"<th>".$exibir[$i]->Empresa."</th>";
+                                                    if($exibir[$i]->VF_Ativo == 1)
+                                                        echo"<th>Aberta</th>";
+                                                    else
+                                                        echo"<th>Fechado</th>";
+                                                    echo"<th>".$exibir[$i]->DT_Publicacao."</th>";
+                                                    echo"<th><a href=''>mais detalhes</a></th>";
+                                                echo"</tr>";
+                                            }
+                                        ?>
+                                    
+                                    </tbody>
+                                </table>
                         </div>
 
                     </div>

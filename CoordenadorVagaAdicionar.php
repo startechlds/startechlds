@@ -89,11 +89,11 @@
                                         <div class="col-12 form-group" style="display: flex; align-items: center; justify-content: space-around;">
 
                                             <label for="nome"><strong>Cargo:&nbsp</strong></label>
-                                            <input type="text" id="nome" name="nome" placeholder="Seu cargo" class="form-control formInicial" />
+                                            <input type="text" id="nome" name="cargo" placeholder="Seu cargo" class="form-control formInicial"  require/>
                                             
                                 
                                             <div class="col-5 offset-sm-1">
-                                                <select class='form-select btn btn-secondary' id='validationDefault04' name ='cbx_Professor' >
+                                                <select class='form-select btn btn-secondary' id='validationDefault04' name ='cbx_Empresa' require>
                                                     <?php
                                                         include_once('Classes/ClassEmpresa.php');
                                                         $empresa = new Empresa();
@@ -116,7 +116,7 @@
                                             <div class="col-6" style="display: flex; align-items: center; justify-content: center">
 
                                                 <label for="nome"><strong>Valor da Bolsa:&nbsp</strong></label>
-                                            <input type="number" id="usuario" name="usuario" class="form-control formInicial" placeholder="R$"/>
+                                            <input type="number" id="usuario" name="valor_bolsa" class="form-control formInicial" placeholder="R$"/>
 
                                             </div>
                                             
@@ -124,7 +124,7 @@
 
                                                 <label for="example-number-input" class="col-3 col-form-label"><strong>Quantidade:&nbsp&nbsp&nbsp</strong></label>
                                                 <div class="col-4">
-                                                    <input class="form-control" type="number" value="1" id="example-number-input">
+                                                    <input class="form-control" type="number" value="1" name ="qtd" id="example-number-input">
                                                 </div>
 
                                             </div>
@@ -134,7 +134,7 @@
                                         <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 40px">
 
                                             <label for="nome"><strong>Horas Semanais&nbsp</strong></label>
-                                            <input type="text" id="usuario" name="usuario" placeholder="X horas Semanais" class="form-control formInicial" />
+                                            <input type="text" id="usuario" name="HSemanais" placeholder="X horas Semanais" class="form-control formInicial" />
                         
                                         </div>                       
                         
@@ -148,7 +148,7 @@
 
                                                 <div class="form-group mt-4">
                                                     <label for="exampleTextarea" ><strong>Descrição da vaga:</strong></label>
-                                                    <textarea style="margin-top: 3%" class="form-control" id="exampleTextarea" rows="3"></textarea>
+                                                    <textarea style="margin-top: 3%" class="form-control" id="exampleTextarea" name = "descricao" rows="3"></textarea>
                                                 </div>
 
                                             </div>    
@@ -158,7 +158,7 @@
 
                                                 <div class="col-1 offset-sm-11" style="margin-top:3%;">
                     
-                                                    <a href=""><button class="btn btn-primary">Salvar</button></a>
+                                                    <a ><button name="btn_novaVaga" class="btn btn-primary">Salvar</button></a>
                                         
                                                 </div>
                 
