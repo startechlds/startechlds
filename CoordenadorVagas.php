@@ -173,13 +173,7 @@
 
                     <div class="col-1 offset-sm-10">
 
-                        <div class="row">
-
-                            <button class="btn btn-secondary" 
-                                    style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;">
-                                    <a href="CoordenadorProfessor.html" style="text-decoration: none; color: black">Salvar</a></button>
-
-                        </div>
+                        
 
                     </div>
 

@@ -142,11 +142,11 @@
         }
 
         public function RetornaTabelaDadosVagasAtivas(){
-            $select = "SELECT vaga.CD_Vaga, vaga.CH_Cargo, E.CH_Fantasia as Empresa, vaga.DT_Publicacao, vaga.VF_Ativo
+            $select = "SELECT vaga.CD_Vaga, vaga.CH_Cargo, vaga.CD_Horas_Semanais, E.CH_Fantasia as Empresa, vaga.DT_Publicacao, vaga.VF_Ativo
                         FROM vaga
                         JOIN empresa E ON E.CD_Empresa = vaga.CD_Empresa
-                        WHERE VF_ATIVO = 1  
-                        ORDER BY DT_Publicacao desc";
+                        WHERE vaga.VF_ATIVO = 1  
+                        ORDER BY DT_Publicacao asc";
                 
             $conn = new ConexaoBD();
             $conect = $conn->ConDB();
