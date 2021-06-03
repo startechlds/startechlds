@@ -84,7 +84,7 @@
 
                                 <div class="col-12 mt-2">
 
-                                    <form class="form-row" method="POST" action="php/crud_vaga.php">
+                                    <form class="form-row" method="POST" action="php/crud_vaga.php" >
 
                                         <div class="col-12 form-group" style="display: flex; align-items: center; justify-content: space-around;">
 

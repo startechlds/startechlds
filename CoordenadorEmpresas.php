@@ -105,8 +105,8 @@
                                     <tr>
                                         <th scope="col">Nome</th>
                                         <th scope="col">Convênio</th>
-                                        <th scope="col">Responsável</th>
                                         <th scope="col">Contato</th>
+                                        <th scope="col">---</th>
                                 </tr>
                                 </thead>
                                 <tbody style="text-align: center;">
@@ -128,8 +128,8 @@
                                                 else if($exibir[$i]->DT_ExpiracaoConvenio < $data['date'])
                                                     echo"<th>Expirado</th>";
 
-                                                echo"<th>".$exibir[$i]->CH_NomeResponsavel."</th>";
                                                 echo"<th>".$exibir[$i]->CH_TelefoneResponsavel."</th>";
+                                                echo"<th><a href='CoordenadorEmpresasConvenio.php?idEmp=".$exibir[$i]->CD_Empresa."'>mais detalhes</a></th>";
                                             echo"</tr>";
                                         }
                                     ?>
