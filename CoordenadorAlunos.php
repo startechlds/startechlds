@@ -69,7 +69,7 @@
                        
                         echo"<div class='col-2'>
                                 <select class='form-select btn btn-secondary' id='validationDefault04' required>
-                                    <option selected disabled value=''>Semestre&nbsp</option>";
+                                    <option selected disabled value=''>Semestre&nbsp&nbsp</option>";
                         for($i = 0; $i < count($exibir); $i++){
                             echo"<option value='".$exibir[$i]->NUM_Semestre."'>".$exibir[$i]->NUM_Semestre."</option>";
                         }
@@ -82,7 +82,7 @@
                             <option selected disabled value="">Situação</option>
                             <option>Aprovado</option>
                             <option>Reprovado</option>
-                            <option>Cursando</option>
+                            <option>Teste</option>
                         </select>
                     </div>
                     
@@ -137,8 +137,7 @@
                         </div>
 
                     </div>
-
-                    
+                 
                 </div>
 
             </div>
@@ -148,8 +147,6 @@
                 <p>Coordenador Sobrenome</p>
 
             </div>
-
-
        
     </div>
 
