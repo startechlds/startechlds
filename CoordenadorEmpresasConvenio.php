@@ -99,41 +99,36 @@
 
                         <div class="col-6 h-auto d-inline-block" style="margin-top: 70px;">
 
-                            <table class="table table-hover">
-                                <thead class="bg-secondary" style="text-align: center;">
-                                  <tr>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Convênio</th>
-                                    <th scope="col">Responsável</th>
-                                    <th scope="col">Data</th>
-                                  </tr>
-                                </thead>
-                                <tbody style="text-align: center;">
-                                  <tr>
-                                    <th scope="row"><a href="empresa.html" style="text-decoration: none; color: rgb(31, 29, 29)">Empresa 1</a></th>
-                                    <th scope="row">Sim</th>
-                                    <th scope="row">Fulano</th>
-                                    <th scope="row"> </th>                                    
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Não</th>
-                                    <th scope="row">Cicrano</th>
-                                    <th scope="row"> </th>                                                          
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Expirado</th>
-                                    <th scope="row">Beltrano</th>
-                                    <th scope="row"> </th>                                  
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Empresa 1</th>
-                                    <th scope="row">Sim</th>
-                                    <th scope="row">Outro</th>
-                                    <th scope="row"> </th>                                   
-                                </tbody>
-                              </table>
+                        <table class="table table-hover">
+                                    <thead class="bg-secondary" style="text-align: center;">
+                                    <tr>
+                                        <th scope="col">Empresa</th>
+                                        <th scope="col">Responsável</th>
+                                        <th scope="col">Contato Responsavel</th>
+                                        <th scope="col">Doc Convênio</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="text-align: center;">
+                                        <?php
+                                            include_once('Classes/ClassEmpresa.php');
+                                            $emp = new Empresa();
+
+                                            $exibir = $emp->RetornaEmpresa($_GET['idEmp']);
+                                         
+                                            echo"<tr>";
+                                                echo"<th>".$exibir->CH_Fantasia."</th>";
+                                                echo"<th>".$exibir->CH_NomeResponsavel."</th>";
+                                                echo"<th>".$exibir->CH_TelefoneResponsavel."</th>";
+                                                if($exibir->DOC_Convenio == null)
+                                                    echo"<th>Sem Convênio</th>";
+                                                else
+                                                    echo"<th><a href='php/crud_empresa.php?acao=abrirDoc&nameDoc=".$exibir->DOC_Convenio."'>".$exibir->DOC_Convenio."</a></th>";
+                                            echo"</tr>";
+                                            
+                                        ?>
+                                    
+                                    </tbody>
+                                </table>
 
                         </div>
 

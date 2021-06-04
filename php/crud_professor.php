@@ -57,8 +57,9 @@
 
         }
     }
-    if(isset($_GET['acao'])){
-        if($_GET['acao'] == "apagar"){
+
+    if($_GET['acao'] == "apagar"){
+        if(!empty($_GET['id'])){
             include_once("../Classes/ClassPessoa.php");
             $id = $_GET['id'];
 
@@ -78,6 +79,13 @@
                 
                 </script>";
             }
+        }
+        else{
+            echo "
+            <script>
+                alert('Para Apagar um professor é preciso selecioná-lo');
+                window.location.href = '../CoordenadorEmpresas.php';
+            </script>";
         }
     }
 

@@ -312,6 +312,29 @@
             }
         }
 
+        public function RetornaUltimaEmpresa(){
+            $select = "SELECT * FROM empresa ORDER BY CD_Empresa desc";
+                
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    return $result->fetch(PDO::FETCH_OBJ);
+                }
+                else{
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Retorna Ultima Empresa ". $e->getMessage()."<br>";
+            }
+        }
+
 
         public function RetornaTabelaEmpresaInArray(){
             $select = "SELECT * FROM empresa ORDER BY CH_Fantasia asc";
@@ -340,6 +363,123 @@
             }
         }
 
+        public function RetornaTabelaEmpresaAtivasInArray(){
+            $select = "SELECT * FROM empresa WHERE VF_Ativo = 1 ORDER BY CH_Fantasia asc";
+                
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    while($empresa = $result->fetch(PDO::FETCH_OBJ)){
+                        $array[] = $empresa;
+                    }
+                    
+                    return $array;
+                }
+                else{
+                    return null;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Retorna Tabela ". $e->getMessage()."<br>";
+            }
+        }
+
+        public function PrepraDiretorioDoc($id){
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            $caminho = "C:/xampp/htdocs/projeto_final/startechlds/docs/DOC_Convenio/";
+
+            $updateDOC = "UPDATE empresa SET DOC_Convenio = :nulo WHERE CD_Empresa = :idEmpresa";
+            
+
+            $array = $this->RetornaEmpresa($id);
+          //  var_dump($array);
+            if($array->DOC_Convenio != NULL){
+              //  var_dump($array);
+                unlink("$caminho".$array->DOC_Convenio);
+                $nulo =  NULL;
+                
+              
+                $result = $conect->prepare($updateDOC);
+                $result->bindParam(':idEmpresa', $id, PDO::PARAM_INT);
+                $result->bindParam(':nulo',$nulo,PDO::PARAM_NULL);
+                $result->execute();
+
+                //echo"<br/>limpado e removido<br/>";
+
+                return;
+            }
+
+
+        }
+
+
+        public function AdicionarConvenio($file, $id, $nomeEmpresa,){
+            //tipo = relatorio, curriculo
+            $formatP = array("pdf");
+
+           
+            $extensao = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+          //  echo "$extensao";
+
+            if(in_array($extensao,$formatP)){
+             //   $caminho = "../docs/".$tipo."/";
+                $temp = $file['tmp_name'];
+
+                $this->PrepraDiretorioDoc($id);
+
+                $inserirDOC = "UPDATE empresa set DOC_Convenio = :nomeArquivo WHERE CD_Empresa = :idEmpresa";
+                $caminho = "C:/xampp/htdocs/projeto_final/startechlds/docs/DOC_Convenio/";
+                $doc = "DOC_Curriculo";
+
+                $nomeArquivo = $nomeEmpresa."_Convenio";
+                if(move_uploaded_file($temp, $caminho.$nomeArquivo.".pdf")){
+                    try{
+                        $conn = new ConexaoBD();
+                        $conect = $conn->ConDB();
+
+                        $result = $conect->prepare($inserirDOC);
+                        $result->bindParam(':nomeArquivo', $nomeArquivo, PDO::PARAM_STR);
+                        $result->bindParam(':idEmpresa', $id, PDO::PARAM_INT);
+                        $result->execute();
+
+                       
+
+                        $funcionou = $result->rowCount();
+                        
+                        
+                        if($funcionou > 0){
+                            return true;
+                        }
+                        else{
+                         //   echo"não retornou linha nenhuma";
+                            return false;
+                        }
+                    }
+                    catch(PDOException $e){
+                        echo "erro de PDO ".$e->getMessage();
+                    }
+
+                }
+                else{
+                    echo"erro ao mover para pasta<br/>";
+                   // var_dump(move_uploaded_file($temp, $this->caminhoCurriculo.$nomeAluno.".pdf"));
+                }
+
+            }
+            else{
+                echo "Formato inválido";
+            }
+
+        }
 
     }
 ?>

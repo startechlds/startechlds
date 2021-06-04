@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="PT-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +46,7 @@
 
                         <div class="col-2 mt-4 h-auto d-inline-block" style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="CoordenadorVagas.html" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            <a href="CoordenadorVagas.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                 <i class="fas fa-briefcase" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbspVagas</a>            
                         </div>
 
@@ -105,8 +105,8 @@
                                     <tr>
                                         <th scope="col">Nome</th>
                                         <th scope="col">Convênio</th>
-                                        <th scope="col">Responsável</th>
                                         <th scope="col">Contato</th>
+                                        <th scope="col">---</th>
                                 </tr>
                                 </thead>
                                 <tbody style="text-align: center;">
@@ -128,8 +128,8 @@
                                                 else if($exibir[$i]->DT_ExpiracaoConvenio < $data['date'])
                                                     echo"<th>Expirado</th>";
 
-                                                echo"<th>".$exibir[$i]->CH_NomeResponsavel."</th>";
                                                 echo"<th>".$exibir[$i]->CH_TelefoneResponsavel."</th>";
+                                                echo"<th><a href='CoordenadorEmpresasConvenio.php?idEmp=".$exibir[$i]->CD_Empresa."'>mais detalhes</a></th>";
                                             echo"</tr>";
                                         }
                                     ?>

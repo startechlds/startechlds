@@ -13,18 +13,26 @@
         $nome_responsavel = $_POST['nome_responsavel']. ' '. $_POST['sbnome_responsavel'];
         $cargo_responsavel = $_POST['cargo'];
         $telefone_responsavel = $_POST['telefone_responsavel'];
-        $doc_convenio = null;
+        
         $dt_expiracao = $_POST['dt_convenio'];
 
         $emp = new Empresa();
-        $result = $emp->CadastrarEmpresa($nome_fantasia, $cnpj, $rua_empresa, $bairro_empresa, $num_empresa, $telefone_empresa, $wpp_empresa, 
-        $nome_responsavel, $cargo_responsavel, $telefone_responsavel, $doc_convenio, $dt_expiracao);
+        $result = true;// $emp->CadastrarEmpresa($nome_fantasia, $cnpj, $rua_empresa, $bairro_empresa, $num_empresa, $telefone_empresa, $wpp_empresa, 
+        //$nome_responsavel, $cargo_responsavel, $telefone_responsavel, $doc_convenio, $dt_expiracao);
 
         if($result){
+            if(!isset($_POST['!convenio'])){
+                if(!$_POST['!convenio'] == "on"){
+                    if($_FILES['doc_convenio']){
+                        $e = $emp->RetornaUltimaEmpresa();
+                        $res = $emp->AdicionarConvenio($_FILES['doc_convenio'], $e->CD_Empresa, $e->CH_Fantasia);
+                    }
+                }
+            }
             echo "
             <script>
                 alert('EMPRESA ADICIONADA COM SUCESSO');
-                window.location.href = '../CoordenadorEmpresa.php';
+                window.location.href = '../CoordenadorEmpresas.php';
             </script>";
         }
         else{
@@ -61,6 +69,14 @@
 
             //print_r($result);
             if($result == true){
+                if(!isset($_POST['!convenio'])){
+                    if(!$_POST['!convenio'] == "on"){
+                        if($_FILES['doc_convenio']){
+                            $e = $emp->RetornaUltimaEmpresa();
+                            $res = $emp->AdicionarConvenio($_FILES['doc_convenio'], $e->CD_Empresa, $e->CH_Fantasia);
+                        }
+                    }
+                }
                 echo "
                 <script>
                     alert('EMPRESA EDITADA COM SUCESSO');
@@ -106,6 +122,25 @@
                 alert('Para Apagar uma empresa é preciso selecioná-la');
                 window.location.href = '../CoordenadorEmpresas.php';
             </script>";
+        }
+    }
+
+    if($_GET['acao'] == "abrirDoc"){
+        if(!empty($_GET['nameDoc'])){
+           /* $arquivo = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Convenio\\".$_GET['nameDoc'].".pdf";
+            fgets(fopen($arquivo, "r"));
+            print_r(fopen($arquivo, "r"));*/
+
+            $file = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Convenio\\".$_GET['nameDoc'].".pdf";
+            $filename = "Custom file name for".$_GET['nameDoc']." .pdf"; /* Note: Always use .pdf at the end. */
+
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename="' . $filename . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . filesize($file));
+            header('Accept-Ranges: bytes');
+
+            @readfile($file);
         }
     }
 ?>

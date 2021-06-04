@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/CoordenadorTurmasSelect/style.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" >
-    <title>Editar Vaga</title>
+    <title>Adicionar Vaga</title>
 </head>
 
  
@@ -52,7 +52,7 @@
 
                         <div class="col-2 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            <a href="CoordenadorEmpresasConvenio.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                 <i class="fas fa-check-square" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbsp&nbspConvênios</a>            
                         </div>
 
@@ -76,7 +76,7 @@
 
                     <div class="row">
 
-                        <h3 class="offset-sm-5 mt-4">Editar Vaga</h3>
+                        <h3 class="offset-sm-5 mt-4">Adicionar Vaga</h3>
 
                         <div class="col-6 offset-sm-3" style="margin-top: 50px;">
 
@@ -84,22 +84,28 @@
 
                                 <div class="col-12 mt-2">
 
-                                    <form class="form-row" method="POST" action="php/CRUD_Aluno.php">
+                                    <form class="form-row" method="POST" action="php/crud_vaga.php" >
 
                                         <div class="col-12 form-group" style="display: flex; align-items: center; justify-content: space-around;">
 
                                             <label for="nome"><strong>Cargo:&nbsp</strong></label>
-                                            <input type="text" id="nome" name="nome" placeholder="Seu cargo" class="form-control formInicial" />
+                                            <input type="text" id="nome" name="cargo" placeholder="Seu cargo" class="form-control formInicial"  require/>
                                             
                                 
                                             <div class="col-5 offset-sm-1">
-                                                <select class="form-select btn btn-secondary" id="validationDefault04" name="cbx_situacao">
-                                                    <option selected disabled value="">Empresa&nbsp</option>
-                                                    <option>SantaCatech</option>
-                                                    <option>Grentech</option>
-                                                    <option>Automatech</option>
-                                                    <option>Unitech</option>
+                                                <select class='form-select btn btn-secondary' id='validationDefault04' name ='cbx_Empresa' require>
+                                                    <?php
+                                                        include_once('Classes/ClassEmpresa.php');
+                                                        $empresa = new Empresa();
+
+                                                        $exibir = $empresa->RetornaTabelaEmpresaInArray();
+                                                        echo"<option selected disabled value='".null."'>Empresa</option>";
+                                                        for($i = 0; $i < count($exibir); $i++){
+                                                            echo"<option type = 'submit' value='".$exibir[$i]->CD_Empresa."'>".$exibir[$i]->CH_Fantasia."</option>";
+                                                        }
+                                                    ?>
                                                 </select>
+                                                
                                             </div>
                                             
                         
@@ -109,8 +115,8 @@
 
                                             <div class="col-6" style="display: flex; align-items: center; justify-content: center">
 
-                                                <label for="nome"><strong>Bolsa:&nbsp</strong></label>
-                                            <input type="text" id="usuario" name="usuario" class="form-control formInicial" />
+                                                <label for="nome"><strong>Valor da Bolsa:&nbsp</strong></label>
+                                            <input type="number" id="usuario" name="valor_bolsa" class="form-control formInicial" placeholder="R$"/>
 
                                             </div>
                                             
@@ -118,7 +124,7 @@
 
                                                 <label for="example-number-input" class="col-3 col-form-label"><strong>Quantidade:&nbsp&nbsp&nbsp</strong></label>
                                                 <div class="col-4">
-                                                    <input class="form-control" type="number" value="42" id="example-number-input">
+                                                    <input class="form-control" type="number" value="1" name ="qtd" id="example-number-input">
                                                 </div>
 
                                             </div>
@@ -128,44 +134,39 @@
                                         <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 40px">
 
                                             <label for="nome"><strong>Horas Semanais&nbsp</strong></label>
-                                            <input type="text" id="usuario" name="usuario" placeholder="Usuário" class="form-control formInicial" />
+                                            <input type="text" id="usuario" name="HSemanais" placeholder="X horas Semanais" class="form-control formInicial" />
                         
                                         </div>                       
                         
-                                    </form>
+                                    
 
                                 </div>
 
-                                <div class="row">
+                                        <div class="row">
 
-                                    <div class="col-10">
+                                            <div class="col-10">
 
-                                        <div class="form-group mt-4">
-                                            <label for="exampleTextarea" ><strong>Descrição da vaga:</strong></label>
-                                            <textarea style="margin-top: 3%" class="form-control" id="exampleTextarea" rows="3"></textarea>
-                                        </div>
+                                                <div class="form-group mt-4">
+                                                    <label for="exampleTextarea" ><strong>Descrição da vaga:</strong></label>
+                                                    <textarea style="margin-top: 3%" class="form-control" id="exampleTextarea" name = "descricao" rows="3"></textarea>
+                                                </div>
 
-                                    </div>    
+                                            </div>    
+                                                
+
+                                            <div class="col-2" style="margin-top: 10%;">
+
+                                                <div class="col-1 offset-sm-11" style="margin-top:3%;">
+                    
+                                                    <a ><button name="btn_novaVaga" class="btn btn-primary">Salvar</button></a>
                                         
+                                                </div>
+                
+                                            </div>
 
-                                    <div class="col-2" style="margin-top: 10%;">
+                                        </div> 
+                                    </form>                               
 
-                                        <div class="col-1 offset-sm-11" style="margin-top:3%;">
-            
-                                            <a href=""><button class="btn btn-primary">Salvar</button></a>
-                                
-                                        </div>
-        
-                                    </div>
-
-                                    <div class="col-3 offset-sm-11">
-            
-                                        <a href=""><button class="btn btn-primary">Desativar vaga</button></a>
-                                
-                                    </div>
-        
-                                </div> 
-                                
                             </div>
                          
                         </div>
