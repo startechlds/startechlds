@@ -45,7 +45,7 @@
 
                             <button class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="inicialAlunoVagas.html"><i class="fas fa-home"></i></a></button>
                     
-                            <button class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="loginInicial.html"><i class="fas fa-power-off"></i></a></button>
+                            <button class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="index.php"><i class="fas fa-power-off"></i></a></button>
 
                         </div>
 
