@@ -69,7 +69,7 @@
                        
                         echo"<div class='col-2'>
                                 <select class='form-select btn btn-secondary' id='validationDefault04' required>
-                                    <option selected disabled value=''>Semestre&nbsp</option>";
+                                    <option selected disabled value=''>Semestre&nbsp&nbsp</option>";
                         for($i = 0; $i < count($exibir); $i++){
                             echo"<option value='".$exibir[$i]->NUM_Semestre."'>".$exibir[$i]->NUM_Semestre."</option>";
                         }
@@ -92,7 +92,7 @@
 
             <div clas="row">
 
-                <div class="col-12" style="margin-top: 70px; background-color: rgb(175, 175, 166); height: 50%">
+                <div class="col-12 h-auto d-inline-block" style="margin-top: 70px; background-color: rgb(175, 175, 166); height: 50%">
 
                     <div class="row">
 
@@ -103,9 +103,7 @@
 
                         </div>
 
-                        <div class="col-8 offset-sm-1" style="margin-top: 50px;">
-
-                            
+                        <div class="col-8 offset-sm-1 h-auto" style="margin-top: 50px;">
 
                             <table class="table table-hover">
                                 <thead class="bg-secondary" style="text-align: center;">

@@ -19,7 +19,7 @@
             <div class="row" style="height: 15vh; border-radius: 5px; border: 1px solid black; margin-top: 10px; box-shadow: 0px 4px 32px 22px rgba(197, 193, 193, 0.4)
             ">
 
-                <div class="col-5 col-md-8 offset-1 mt-2">
+                <div class="col-5 col-md-8 offset-1 mt-2 h-auto d-inline-block">
 
                     <a href="CoordenadorTurmas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Turmas</button></a>
 
@@ -62,7 +62,7 @@
            
             <div clas="row">
 
-                <div class="col-12" style="margin-top: 70px; background-color: rgb(175, 175, 166); height: 50%">
+                <div class="col-12 h-auto d-inline-block" style="margin-top: 70px; background-color: rgb(175, 175, 166); height: 50%">
 
                     <div class="row">
 
@@ -88,7 +88,7 @@
 
                         </div>
 
-                        <div class="col-6" style="margin-top: 70px;">
+                        <div class="col-6 h-auto d-inline-block" style="margin-top: 70px;">
 
                             <table class="table table-hover">
                                 <thead class="bg-secondary" style="text-align: center;">

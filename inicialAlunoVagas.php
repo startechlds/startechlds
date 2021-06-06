@@ -19,7 +19,7 @@
             <div class="row" style="height: 12vh; border-radius: 5px; border: 1px solid black; margin-top: 10px; box-shadow: 0px 4px 32px 22px rgba(197, 193, 193, 0.4)
             ">
 
-                <div class="col-8 col-md-9" style="display: flex; align-items: center; justify-content: center;">
+                <div class="col-8 col-md-9 h-auto d-inline-block" style="display: flex; align-items: center; justify-content: center;">
 
                     <div class="row">
 
@@ -69,11 +69,11 @@
                             echo "<div class='row mt-4'> ";
                           //  echo ($i % 2)."<br>";
                         }
-                            echo "<div class='col-6 offset-sm-2 mt-4' style='padding-left: 40px; border: 1px solid rgb(235, 217, 217); height: 130px; width: 20vw; border-radius: 20px; box-shadow: 1px 1px 15px 5px #525050;'>";
+                            echo "<div class='col-6 offset-sm-2 mt-4' style='background-color: #9FA5A4; padding-left: 40px; border: 1px solid rgb(235, 217, 217); height: 130px; width: 20vw; border-radius: 20px; box-shadow: 1px 1px 5px 5px #525050;'>";
                                 echo"<div class='row mt-4'>";
                                     echo"<div class='d-flex col-10' style='display: flex; align-items: center; justify-content: space-between'>";
                                         echo"<strong>Vaga".$v.":&nbsp".$exibir[$i]->CH_Cargo."</strong> <br >";
-                                        echo"<a href='' style='color: black; '><i class='far fa-heart' style='font-size: 26p'></i> </a>";
+                                        echo"<a href='' style='color: black; '><i class='far fa-heart' style='font-size: 100p'></i> </a>";
                                     echo"</div>";
                                     echo"<div class='d-flex col-12' style='height: 23px'>";
                                         echo"<p>".$exibir[$i]->Empresa."</p>";

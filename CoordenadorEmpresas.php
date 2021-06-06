@@ -72,7 +72,7 @@
 
             <div clas="row">
 
-                <div class="col-12" style="margin-top: 70px; background-color: rgb(175, 175, 166); height: 50%">
+                <div class="col-12 h-auto d-inline-block" style="margin-top: 70px; background-color: rgb(175, 175, 166); height: 50%">
 
                     <div class="row">
 

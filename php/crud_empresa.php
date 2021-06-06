@@ -17,8 +17,8 @@
         $dt_expiracao = $_POST['dt_convenio'];
 
         $emp = new Empresa();
-        $result = true;// $emp->CadastrarEmpresa($nome_fantasia, $cnpj, $rua_empresa, $bairro_empresa, $num_empresa, $telefone_empresa, $wpp_empresa, 
-        //$nome_responsavel, $cargo_responsavel, $telefone_responsavel, $doc_convenio, $dt_expiracao);
+        $result = $emp->CadastrarEmpresa($nome_fantasia, $cnpj, $rua_empresa, $bairro_empresa, $num_empresa, $telefone_empresa, $wpp_empresa, 
+        $nome_responsavel, $cargo_responsavel, $telefone_responsavel, $doc_convenio, $dt_expiracao);
 
         if($result){
             if(!isset($_POST['!convenio'])){

@@ -101,7 +101,7 @@
                     <div class="col-12 mt-4">
 
                         <div class="row">
-                            <div class="col-6 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 20px">
+                            <div class="col-3 offset-sm-2 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 20px">
 
                                 <label for="nome"><strong>Semestre:&nbsp</strong></label>
                                 <select name = "semestreSelecionado" class="form-select btn btn-secondary" id="validationDefault04" required>
@@ -121,9 +121,9 @@
 
                             </div>
 
-                            <div class="col-4 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 20px">
+                            <div class="col-5 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 20px">
 
-                                <label for="nome"><strong>Professor Responsável:&nbsp</strong></label>
+                                <label for="nome"><strong>Professor Responsável:</strong></label>
                                 <select name = "professor" class="form-select btn btn-secondary" id="validationDefault04" required>
                                     <option selected disabled value="">Professor&nbsp</option>
                                     <?php
@@ -141,11 +141,10 @@
                                 </select>    
 
                             </div>
-
-                            
+                     
                         </div>
 
-                        <div class="col-6 offset-sm-1" style="margin-top: 10%; border: 1px solid black; height: 20vh; border: 1px solid rgb(235, 217, 217); box-shadow: 1px 1px 15px 5px #968c8c;">
+                        <div class="col-6 offset-sm-2" style="margin-top: 10%; border: 1px solid black; height: 20vh; border: 1px solid rgb(235, 217, 217); box-shadow: 1px 1px 15px 5px #968c8c;">
                             <h5 style="margin-top: -40px;">Horário</h5>
         
                             <div class="row">
@@ -187,8 +186,7 @@
 
                             </div>
 
-                        </div>
-                    
+                        </div>    
 
                     </div>
 
@@ -197,10 +195,8 @@
 
             </div>
         
-
-            
-            
-            <div class="col-8" style="margin-top: 5%;">
+    
+            <div class="col-8 h-auto d-inline-block" style="margin-top: 5%;">
 
                 <p>Coordenador Sobrenome</p>
 

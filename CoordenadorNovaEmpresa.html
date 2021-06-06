@@ -94,17 +94,6 @@
                 
                                 </div>
 
-                                <div class="col-11 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 40px">
-
-                                    <label for="nome"><strong>Nome do sócio 1:</strong></label>
-                                    <input style="width: 30%" type="text" id="usuario" name="usuario" placeholder="Nome do sócio 1" class="form-control formInicial" />
-                        
-                                
-                                    <label for="nome"><strong>Nome do sócio 2:</strong></label>
-                                    <input style="width: 30%" type="password" name="senha" placeholder="Nome do sócio 2" class="form-control formInicial"/>
-             
-                                </div>
-
                                 <h5 style="margin-top: 50px">Endereço:</h5>
 
                                 <div class="col-10 form-group" style="display: flex; align-items: center; justify-content: space-around; margin-top: 27px">
@@ -177,14 +166,7 @@
                     
                                     </div>
                     
-                                </div>
-
-                                <div class="col-1 offset-sm-9" style="margin-top:3%;">
-
-                                    <button name="btn_novaEmpresa" class="btn btn-primary">Salvar</button>
-                    
-                                </div>
-                
+                                </div>            
                                 
                             </form>
 
@@ -197,8 +179,54 @@
 
             </div>
 
+            <div class="col-10 offset-sm-1" style=" margin-top: 80px; border: 1px solid black; height: 16vh; border: 1px solid rgb(235, 217, 217); box-shadow: 1px 1px 15px 5px #968c8c;">
+                    
+                <h5 style="margin-top: -40px;">Dados do responsável</h5>
+
+                    <div class="row">
+
+                        <div class="col-10 offset-sm-1 mt-2">
+
+                            <form class="form-row" method="POST" action="php/CRUD_Aluno.php">
+
+                                <div class="col-10 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
+
+                                    <label for="nome"><strong>Nome:&nbsp</strong></label>
+                                    <input type="text" id="nome" name="nome" placeholder="Nome" class="form-control formInicial" />
+                        
+                                
+                                    <label for="nome"><strong>&nbsp&nbsp&nbspSobrenome&nbsp&nbsp</strong></label>
+                                    <input type="text" id="nome" name="sobrenome" placeholder="Sobrenome" class="form-control formInicial"/>
+                
+                                </div>
+
+                                <div class="col-10 form-group mt-4" style="display: flex; align-items: center;"">
+
+                                    <label for="nome"><strong>Cargo:&nbsp</strong></label>
+                                    <input type="text" id="nome" name="nome" placeholder="Digite seu cargo" class="form-control formInicial" />
+                        
+                                
+                                    <label class="col-3" for="nome"><strong>&nbsp&nbsp&nbspTelefone p/ contato:</strong></label>
+                                    <input type="text" id="nome" name="sobrenome" placeholder="(00) 00000-0000" class="form-control formInicial"/>
+                
+                                </div>
+                                
+                            </form>                                
+                                
+                        </div>
+
+                    </div>                   
+
+            </div>
+
+            <div class="col-1 offset-sm-9" style="margin-top:3%;">
+
+                <a href=""><button class="btn btn-primary">Salvar</button></a>
+
+            </div>
+
             
-            <div class="col-2" style="margin-top: 20%;">
+            <div class="col-2" style="margin-top: 3%;">
 
                 <p>Coordenador Sobrenome</p>
 
