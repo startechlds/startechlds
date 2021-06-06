@@ -25,7 +25,7 @@
 
                         <div class="col-12 col-sm-12 col-md-12 mx-auto" style="padding-left: 150px; height: 12vh; width: 20vw; display: flex; align-items: flex-end; justify-content: space-around;">
 
-                            <a href="inicialAlunoVagas.html"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Vagas</button></a>
+                            <a href="inicialAlunoVagas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Vagas</button></a>
 
                             <a href="inicialAlunoDisciplina.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Disciplina</button></a>
 
@@ -80,6 +80,7 @@
                                     
                                     <div class="alert alert-danger">
                                         <strong style="color: rgb(112, 99, 99)">Situação: &nbsp</strong>
+                                        <input type="text" disabled value="">
                                     </div>
 
                             </div>
@@ -117,6 +118,9 @@
                                     
                                 <div class="form-group">
                                     <input style="margin-top: 20px" type="file" id="fileC" name="curriculo" class="form-group-file" value="adicionar">
+                                    <div class="alert alert-danger">
+                                        <input type="text" disabled value="----">
+                                    </div>
                                 </div>
 
                             </div>

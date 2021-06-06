@@ -77,7 +77,7 @@
                         $_SESSION['loginSenha'] = $_POST['senha'];
                         $_SESSION['tipoUsuario'] = $tipoUsuario;
                         if($tipoUsuario == 'A'){
-                            header("Location: inicialAlunoVagas.html");
+                            header("Location: inicialAlunoVagas.php");
                         }
                         else if ($tipoUsuario == 'C' or $tipoUsuario == 'P'){
                             header("Location: BemVindoCoordenador.html");

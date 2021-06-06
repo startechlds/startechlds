@@ -60,7 +60,7 @@
                     $exibir = $vaga->RetornaTabelaDadosVagasAtivas();
                     $pos = 0;
                     $v = 1;
-                    $control = 0;
+                   // $control = 0;
 
                     //print_r($exibir);
 
@@ -73,7 +73,7 @@
                                 echo"<div class='row mt-4'>";
                                     echo"<div class='d-flex col-10' style='display: flex; align-items: center; justify-content: space-between'>";
                                         echo"<strong>Vaga".$v.":&nbsp".$exibir[$i]->CH_Cargo."</strong> <br >";
-                                        echo"<a href='' style='color: black; '><i class='far fa-heart' style='font-size: 26p'></i> </a>";
+                                        echo"<a href='#' onclick='javascript:add_like(".$exibir[$i]->CD_Vaga.");' style='color: black; '><i class='far fa-heart' style='font-size: 26p'></i> </a>";
                                     echo"</div>";
                                     echo"<div class='d-flex col-12' style='height: 23px'>";
                                         echo"<p>".$exibir[$i]->Empresa."</p>";
@@ -84,8 +84,8 @@
                                 echo"</div>";
                             echo"</div>";
                             $v++;
-                            $control++;
-                       if($control== 2){
+                           // $control++;
+                       if($i== 1){
                             echo "</div> ";
                             $control = 0;
                        }
