@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="PT-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -82,7 +82,7 @@
                             <option selected disabled value="">Situação</option>
                             <option>Aprovado</option>
                             <option>Reprovado</option>
-                            <option>Cursando</option>
+                            <option>Teste</option>
                         </select>
                     </div>
                     
@@ -135,8 +135,7 @@
                         </div>
 
                     </div>
-
-                    
+                 
                 </div>
 
             </div>
@@ -146,8 +145,6 @@
                 <p>Coordenador Sobrenome</p>
 
             </div>
-
-
        
     </div>
 
