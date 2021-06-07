@@ -72,10 +72,10 @@
                             echo "<div class='col-6 offset-sm-2 mt-4' style='background-color: #9FA5A4; padding-left: 40px; border: 1px solid rgb(235, 217, 217); height: 130px; width: 20vw; border-radius: 20px; box-shadow: 1px 1px 5px 5px #525050;'>";
                                 echo"<div class='row mt-4'>";
                                     echo"<div class='d-flex col-10' style='display: flex; align-items: center; justify-content: space-between'>";
-                                        echo"<strong>Vaga".$v.":&nbsp".$exibir[$i]->CH_Cargo."</strong> <br >";
-                                        echo"<a href='' style='color: black; '><i class='far fa-heart' style='font-size: 100p'></i> </a>";
+                                        echo"<strong>Vaga&nbsp".$v.":&nbsp".$exibir[$i]->CH_Cargo."</strong> <br >";
+                                        echo"<a href='' style='color: black;'><i class='far fa-heart' style='font-size: 25px; fill: red;'></i> </a>";
                                     echo"</div>";
-                                    echo"<div class='d-flex col-12' style='height: 23px'>";
+                                    echo"<div class='d-flex col-9' style='height: 23px'>";
                                         echo"<p>".$exibir[$i]->Empresa."</p>";
                                     echo"</div>";
                                     echo"<div class='d-flex col-10'>";
