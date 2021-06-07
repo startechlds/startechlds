@@ -51,4 +51,36 @@
         }
     }
 
+    if($_COOKIE['acaoA'] == "editar"){
+        if(isset($_POST['btn_Editar'])){
+            include_once("../Classes/ClassPessoa.php");
+
+            $nome = $_POST['nome']. ' '. $_POST['sobrenome'];
+            $usuario =  $_POST['usuario'];
+            $id = $_COOKIE['idAluno'];
+
+            $p = new Pessoa();
+        
+            $verificaUpdate = $p->EditarPessoa($id,$nome, null, $usuario,'A');
+
+            if($verificaUpdate){
+                echo "
+                <script>
+                    alert('ALUNO EDITADO COM SUCESSO');
+                    window.location.href = '../CoordenadorTurmas.php';
+                </script>";
+            }
+            else{
+                echo "
+                <script>
+                    alert('ERRO AO EDITAR ALUNO');
+                
+                </script>";
+                echo $nome."<br>";
+                echo $usuario."<br>";
+            }
+
+        }
+    }
+
 ?>

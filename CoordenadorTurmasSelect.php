@@ -115,7 +115,7 @@
                         <div class="col-4 offset-sm-1" style="margin-top: 100px;">
                         
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Editar Aluno</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarAluno.php?acao=editar&id=id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Editar Aluno</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir dados dos estagiários</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir notas</a></button>
 
@@ -149,7 +149,7 @@
                                             if($exibir != null){
                                                 for($i = 0; $i < count($exibir); $i++){
                                                     echo "<tr>";
-                                                        echo "<th scope='row'>".$exibir[$i]->Aluno."</th>";
+                                                        echo "<th scope='row'><a href='CoordenadorTurmasSelect.php?acao=editar&idAluno=".$exibir[$i]->IDAluno."&id=".$_GET['id']."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->Aluno."</th>";
                                                         echo "<th scope='row'>".$exibir[$i]->Estagio."</th>";
                                                         echo "<th scope='row'>".$exibir[$i]->Empresa."</th>";
                                                     echo "</tr>";

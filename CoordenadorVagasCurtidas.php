@@ -80,7 +80,7 @@
                                                   if($exibir->Curriculo == null)
                                                       echo"<th>Aluno Sem Curriculo</th>";
                                                   else
-                                                      echo"<th><a href='php/CRUD_Aluno.php?acao=abrirDoc&nameDoc=".$exibir->Curriculo."'>".$exibir->Curriculo."</a></th>";
+                                                      echo"<th><a href='php/CRUD_Aluno.php?acao=abrirDoc&tipo=C&nameDoc=".$exibir->Curriculo."'>".$exibir->Curriculo."</a></th>";
                                               echo"</tr>";
                                             }
                                             
