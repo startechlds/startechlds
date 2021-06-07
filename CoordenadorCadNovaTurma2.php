@@ -67,7 +67,7 @@
 
             </div>
 
-            <div class="col-12 mt-2" style="border: 1px solid black; height: 50%; background-color: rgb(175, 175, 166);"> 
+            <div class="col-12 mt-2 h-auto d-inline-block" style="border: 1px solid black; height: 50%; background-color: rgb(175, 175, 166);"> 
 
                 <div class="row">  
 

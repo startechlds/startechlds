@@ -26,13 +26,13 @@
 
         <form class="form-row" method="POST" action="">
 
-            <div class="col form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 10px">
+            <div class="col-4 offset-sm-4 form-group" style="display: flex; align-items: center; justify-content: center; margin-top: 10px">
 
                 <input type="email" id="usuario" name="usuario" placeholder="Usuário" class="form-control formInicial"/>
 
             </div>
         
-            <div class="col form-group" style="display: flex; align-items: center; justify-content: center;">
+            <div class="col-4 mt-1 offset-sm-4 form-group" style="display: flex; align-items: center; justify-content: center;">
 
                 <input type="password" id="senha" name="senha" placeholder="Senha" required class="form-control formInicial"/>
 
@@ -40,7 +40,7 @@
 
             <div class="row">
 
-                <div class="col" style="display: flex; align-items: center; justify-content: center;">
+                <div class="col mt-4" style="display: flex; align-items: center; justify-content: center;">
 
                     <button class="btn btn-primary" name="btn_login" type="submit" >Entrar</button>
 

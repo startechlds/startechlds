@@ -20,7 +20,7 @@
                 <div class="row" style="height: 15vh; border-radius: 5px; border: 1px solid black; margin-top: 10px; box-shadow: 0px 4px 32px 22px rgba(197, 193, 193, 0.4)
                 ">
 
-                    <div class="col-8 col-md-8 offset-1 mt-2">
+                    <div class="col-8 col-md-8 offset-1 mt-2 h-auto d-inline-block">
 
                         <a href="CoordenadorTurmas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary" disabled>Turmas</button></a>
 
@@ -32,26 +32,26 @@
             
                         <div class="row">
 
-                            <div class="col-2 mt-4" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
+                            <div class="col-2 mt-4 h-auto d-inline-block" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
 
                                 <button class="btn btn-outline-secondary" style="height: 50px; border-radius: 16px; "><i class="fas fa-users" 
                                     style="font-size: 20px; color: rgb(34, 32, 32);">&nbspTURMAS</i></button>
                                 
                             </div>
 
-                            <div class="col-4 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
+                            <div class="col-4 mt-4 h-auto d-inline-block" style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
                                 <a href="CoordenadorCadNovaTurma.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                     <i class="fas fa-plus-circle" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbspCadastrar nova<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturma</a>            
                             </div>
 
-                            <div class="col-1 mt-3 " style="height: 7vh;">
+                            <div class="col-1 mt-2 h-auto d-inline-block" style="height: 5vh;">
 
                                 <div style="border: 1px solid black; height: 7vh; width: 2px"></div>
                                             
                             </div>
 
-                            <div class="col-2 mt-3 " style="height: 7vh; display: flex; align-items: center; justify-content: center;">
+                            <div class="col-2 mt-4 h-auto d-inline-block" style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
                                 <a href="" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                     <i class="fas fa-file-alt" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbsp&nbspRelatórios</a>            
@@ -71,11 +71,11 @@
 
                 </div>
 
-                <div class="col-12" style="border: 1px solid black; height: 13vh; background-color: rgb(175, 175, 166);"> 
+                <div class="col-12 " style="border: 1px solid black; height: 13vh; background-color: rgb(175, 175, 166);"> 
 
                     <div class="row">  
 
-                        <div class="col-6 offset-sm-1">
+                        <div class="col-6 offset-sm-1 h-auto d-inline-block">
 
                             <div class="row">
 
@@ -125,11 +125,11 @@
 
             <div clas="row">
 
-                <div class="col-12" style="margin-top: 70px; background-color: rgb(175, 175, 166); height: 50%">
+                <div class="col-12" style="margin-top: 50px; background-color: rgb(175, 175, 166); height: 50%">
 
                     <div class="row">
 
-                        <div class="col-8 offset-sm-2" style="margin-top: 70px;">
+                        <div class="col-8 offset-sm-2 h-auto d-inline-block" style="margin-top: 70px;">
 
                             <table class="table table-hover">
                                 <thead class="bg-secondary" style="text-align: center;">
@@ -145,7 +145,7 @@
                                         $t = new Turma();
 
                                         if(!isset($_GET['cbx_Professor'])){
-                                            echo"ok";
+                                            echo"";
                                         }
 
                                         $exibir = $t->RetornaDadosTurmaProfessorSituacao(null);
