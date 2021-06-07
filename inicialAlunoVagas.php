@@ -89,7 +89,7 @@
                                 echo"<div class='row mt-4'>";
                                     echo"<div class='d-flex col-10' style='display: flex; align-items: center; justify-content: space-between'>";
                                         echo"<strong>Vaga&nbsp".$v.":&nbsp".$exibir[$i]->CH_Cargo."</strong> <br >";
-                                        echo"<a href='' style='color: black;'><i class='far fa-heart' style='font-size: 25px; fill: red;'></i> </a>";
+                                        echo"<a href='#' onclick='javascript:add_like(".$exibir[$i]->CD_Vaga.");' style='color: black;'><i class='far fa-heart' style='font-size: 25px; fill: red;'></i> </a>";
                                     echo"</div>";
                                     echo"<div class='d-flex col-9' style='height: 23px'>";
                                         echo"<p>".$exibir[$i]->Empresa."</p>";
