@@ -231,5 +231,138 @@
             
         }
 
+        public static function verificar_clicado($id_vaga, $id_usuario){
+            $select = "SELECT * FROM vaga_curtida WHERE CD_Pessoa = :id_usuario AND CD_Vaga = :id_vaga";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->bindParam(':id_vaga', $id_vaga, PDO::PARAM_INT);
+                $result->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Verifica Vaga curtida ". $e->getMessage()."<br>";
+            }
+        }
+
+        public static function Adicionar_Curtida($id_vaga, $id_usuario){
+            $update = "UPDATE Vaga SET QTD_Curtida = QTD_Curtida+1 WHERE CD_Vaga = :id_vaga";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($update);
+                $result->bindParam(':id_vaga', $id_vaga, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    $inserir_Fav = self::Favoritar_Vaga($id_vaga, $id_usuario);
+                    if($inserir_Fav)
+                        return true;
+                    else
+                        return false;
+                }
+                else{
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Adiconar Curtida ". $e->getMessage()."<br>";
+            }
+        }
+
+        Public static function RemoverCurtida($id_vaga, $id_usuario){
+            $update = "UPDATE Vaga SET QTD_Curtida = QTD_Curtida-1 WHERE CD_Vaga = :id_vaga";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($update);
+                $result->bindParam(':id_vaga', $id_vaga, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    $remove_Fav = self::RemoverFavoritar($id_vaga, $id_usuario);
+                    if($remove_Fav)
+                        return true;
+                    else
+                        return false;
+                }
+                else{
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Remover Curtida ". $e->getMessage()."<br>";
+            }
+        }
+
+        public static function Favoritar_Vaga($id_vaga, $id_usuario){
+            $insert = "INSERT INTO vaga_curtida (CD_Vaga, CD_Pessoa) VALUES (:id_vaga,:id_usuario)";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($insert);
+                $result->bindParam(':id_vaga', $id_vaga, PDO::PARAM_INT);
+                $result->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Favoritar_Vaga ". $e->getMessage()."<br>";
+            }
+        }
+
+       
+        public static function RemoverFavoritar($id_vaga, $id_usuario){
+            $insert = "DELETE FROM vaga_curtida WHERE CD_Vaga = :id_vaga AND CD_Pessoa = :id_usuario";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($insert);
+                $result->bindParam(':id_vaga', $id_vaga, PDO::PARAM_INT);
+                $result->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO RemoverFavoritar ". $e->getMessage()."<br>";
+            }
+        }
+
+
     }
 ?>
