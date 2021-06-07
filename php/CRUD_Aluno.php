@@ -34,8 +34,11 @@
            /* $arquivo = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Convenio\\".$_GET['nameDoc'].".pdf";
             fgets(fopen($arquivo, "r"));
             print_r(fopen($arquivo, "r"));*/
+            if($_GET['tipo'] == 'C')
+                $file = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Curriculo\\".$_GET['nameDoc']."_DOC_Curriculo.pdf";
+            else
+                $file = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Relatorio\\".$_GET['nameDoc']."_DOC_Relatorio.pdf";
 
-            $file = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Curriculo\\".$_GET['nameDoc']."_DOC_Curriculo.pdf";
             $filename = "Custom file name for".$_GET['nameDoc']." .pdf"; /* Note: Always use .pdf at the end. */
 
             header('Content-type: application/pdf');

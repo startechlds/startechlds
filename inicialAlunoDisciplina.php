@@ -92,7 +92,18 @@
                                     
                                     <div class="alert alert-danger">
                                         <strong style="color: rgb(112, 99, 99)">Situação: &nbsp</strong>
-                                        <input type="text" disabled value="">
+                                        <?php
+                                            include_once('Classes/ClassPessoa.php');
+                                            $p = new Pessoa();
+
+                                            $dados = $p->RetornaPessoa((int)$_SESSION['id_usuario']);
+                                            if($dados->DOC_Relatorio == null)
+                                                echo "<input type='text' disabled value='Não enviado'>";
+                                            else{
+                                                echo "<input type='text' disabled value='Enviado:'> <a href='php/CRUD_Aluno.php?acao=abrirDoc&tipo=R&nameDoc=".$dados->DOC_Relatorio."'>".$dados->DOC_Relatorio."</a>";
+                                            }
+                                        ?>
+                                        
                                     </div>
 
                             </div>
@@ -131,7 +142,17 @@
                                 <div class="form-group">
                                     <input style="margin-top: 20px" type="file" id="fileC" name="curriculo" class="form-group-file" value="adicionar">
                                     <div class="alert alert-danger">
-                                        <input type="text" disabled value="----">
+                                    <?php
+                                            include_once('Classes/ClassPessoa.php');
+                                            $p = new Pessoa();
+
+                                            $dados = $p->RetornaPessoa((int)$_SESSION['id_usuario']);
+                                            if($dados->DOC_Relatorio == null)
+                                                echo "<input type='text' disabled value='Não enviado'>";
+                                            else{
+                                                echo "<input type='text' disabled value='Enviado:'> <a href='php/CRUD_Aluno.php?acao=abrirDoc&tipo=C&nameDoc=".$dados->DOC_Curriculo."'>".$dados->DOC_Curriculo."</a>";
+                                            }
+                                        ?>
                                     </div>
                                 </div>
 
