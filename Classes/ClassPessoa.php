@@ -11,8 +11,8 @@
         protected $DOC_Curriculo;
         protected $DOC_Relatorio;
 
-        private $caminhoCurriculo = "C:/xampp/htdocs/projeto_final/startechlds/docs/DOC_Curriculo/";
-        private $caminhoRelatorio = "C:/xampp/htdocs/projeto_final/startechlds/docs/DOC_Relatorio/";
+        private $caminhoCurriculo = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Curriculo\\";
+        private $caminhoRelatorio = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Relatorio\\";
 
 
         public function __construct(){

@@ -12,7 +12,7 @@
         $verificaInsercao = $p->InserirNovaPessoa($nome, null, $usuario, $senha, 'A', $situacao);
         if($verificaInsercao){
             $pessoa = $p->RetornaUltimo();
-            setcookie('alunoInserido', $pessoa->CD_Pessoa);
+            setcookie('alunoInserido', $p->CD_Pessoa);
             echo "
             <script>
                 alert('ALUNO ADICIONADO COM SUCESSO');
@@ -27,6 +27,25 @@
             </script>'";
         }
          
+    }
+
+    if($_GET['acao'] == "abrirDoc"){
+        if(!empty($_GET['nameDoc'])){
+           /* $arquivo = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Convenio\\".$_GET['nameDoc'].".pdf";
+            fgets(fopen($arquivo, "r"));
+            print_r(fopen($arquivo, "r"));*/
+
+            $file = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Curriculo\\".$_GET['nameDoc']."_DOC_Curriculo.pdf";
+            $filename = "Custom file name for".$_GET['nameDoc']." .pdf"; /* Note: Always use .pdf at the end. */
+
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename="' . $filename . '"');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . filesize($file));
+            header('Accept-Ranges: bytes');
+
+            @readfile($file);
+        }
     }
 
 ?>

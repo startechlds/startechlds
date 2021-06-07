@@ -58,37 +58,36 @@
                     <div class="row">
 
                         <div class="col-6 offset-sm-3 h-auto d-inline-block" style="margin-top: 90px;">
-
                                 <table class="table table-hover">
                                     <thead class="bg-secondary" style="text-align: center;">
-                                      <tr>
+                                    <tr>
                                         <th scope="col">Vaga</th>
                                         <th scope="col">Aluno Interessado</th>
                                         <th scope="col">Currrículo</th>
-                                      </tr>
+                                    </tr>
                                     </thead>
                                     <tbody style="text-align: center;">
-                                      <tr>
-                                        <th scope="row">&nbsp</th>
-                                        <th scope="row">&nbsp</th>
-                                        <th scope="row">&nbsp</th>                                   
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">&nbsp</th>
-                                        <th scope="row">&nbsp</th>
-                                        <th scope="row">&nbsp</th>                                                         
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">&nbsp</th>
-                                        <th scope="row">&nbsp</th>
-                                        <th scope="row">&nbsp</th>                             
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">&nbsp</th>
-                                        <th scope="row">&nbsp</th>
-                                        <th scope="row">&nbsp</th>                                 
+                                        <?php
+                                            include_once('Classes/ClassVaga.php');
+                                            $v = new Vaga();
+
+                                            $arr = $v->RetornaTabelaDadosVagasFav();
+                                         
+                                            foreach($arr as $exibir){
+                                              echo"<tr>";
+                                                  echo"<th>".$exibir->Vaga."</th>";
+                                                  echo"<th>".$exibir->Aluno."</th>";
+                                                  if($exibir->Curriculo == null)
+                                                      echo"<th>Aluno Sem Curriculo</th>";
+                                                  else
+                                                      echo"<th><a href='php/CRUD_Aluno.php?acao=abrirDoc&nameDoc=".$exibir->Curriculo."'>".$exibir->Curriculo."</a></th>";
+                                              echo"</tr>";
+                                            }
+                                            
+                                        ?>
+                                    
                                     </tbody>
-                                  </table>
+                                 </table>
     
                         </div>
 

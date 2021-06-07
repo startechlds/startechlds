@@ -82,7 +82,7 @@
                             header("Location: inicialAlunoVagas.php");
                         }
                         else if ($tipoUsuario == 'C' or $tipoUsuario == 'P'){
-                            header("Location: BemVindoCoordenador.html");
+                            header("Location: BemVindoCoordenador.php");
                         }
                         
                     }

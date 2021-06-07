@@ -13,7 +13,9 @@
 
 <body>
 
-    
+    <?php
+        session_start();
+    ?>
     <div class="container">
            
             <div class="row" style="height: 15vh; border-radius: 5px; border: 1px solid black; margin-top: 10px; box-shadow: 0px 4px 32px 22px rgba(197, 193, 193, 0.4)
@@ -161,7 +163,14 @@
             
             <div class="col-8" style="margin-top: 2%;">
 
-                <p>Coordenador Sobrenome</p>
+                <p><strong>
+                    <?php
+                        if(isset($_SESSION['Nome']))
+                            echo $_SESSION['Nome'];
+                        else
+                            echo "Usuário não logado"
+                    ?>
+                </strong></p>
 
             </div>
 

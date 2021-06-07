@@ -364,5 +364,35 @@
         }
 
 
+        public function RetornaTabelaDadosVagasFav(){
+            $select = "Select VC.CD_Vaga_Curtida, P.CH_Nome as Aluno, V.CH_Cargo as Vaga, P.DOC_Curriculo as Curriculo
+                        from vaga_curtida VC
+                        Join pessoa P on P.CD_Pessoa = VC.CD_Pessoa
+                        Join vaga V ON V.CD_Vaga = VC.CD_Vaga";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    while($empresa = $result->fetch(PDO::FETCH_OBJ)){
+                        $array[] = $empresa;
+                    }
+                    
+                    return $array;
+                }
+                else{
+                    return null;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO Retorna Dados Tabela ". $e->getMessage()."<br>";
+            }
+        }
+
     }
 ?>

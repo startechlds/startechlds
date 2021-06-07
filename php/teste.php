@@ -1,11 +1,10 @@
 <?php
-                        include_once('C:/xampp/htdocs/projeto_final/startechlds/Classes/ClassPessoa.php');
-                        include_once('C:/xampp/htdocs/projeto_final/startechlds/Classes/ClassVaga.php');
+    
+    session_start();
+    include_once('C:/xampp/htdocs/projeto_final/startechlds/Classes/ClassPessoa.php');
+    include_once('C:/xampp/htdocs/projeto_final/startechlds/Classes/ClassVaga.php');
 
-                        $v = Vaga::RemoverCurtida(1,1);
-                        var_dump($v);
-                        //$semestre = semestre::AbrirSemestre("2023.1");
+    $nome = str_replace(' ', '_', $_SESSION['Nome']);
+    echo$nome;
 
-                        //print_r($exibir);
-                     
-                       ?>
+?>

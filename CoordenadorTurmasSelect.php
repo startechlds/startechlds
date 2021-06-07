@@ -54,7 +54,7 @@
 
                         <div class="col-3 mt-3 h-auto d-inline-block" style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="CoordenadorVagasCurtidas.html" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            <a href="CoordenadorVagasCurtidas.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                 <i class="fas fa-thumbs-up" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbsp&nbspVagas Interessadas</a>            
                         </div>
 
@@ -114,12 +114,6 @@
 
                         <div class="col-4 offset-sm-1" style="margin-top: 100px;">
                         
-<<<<<<< HEAD
-                            <button class="btn btn-secondary ml-4" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Editar Aluno</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir dados dos estagiários</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir notas</a></button>
-=======
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Editar Aluno</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir dados dos estagiários</a></button>
@@ -128,7 +122,6 @@
                         <form method = "GET">
                             <button name="btn_ApagarTurma" type="submit" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_turma.php?btn_ApagarTurma=<?php echo$_GET['id'];?>" onclick="return confirm('deseja remover o contato')" style="text-decoration: none; color: black">Apagar Turma</a></button>
                         </form>
->>>>>>> 11e0d1480b87169e65c65dcc38c4762c226a38c0
 
                         </div>
 

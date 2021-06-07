@@ -15,6 +15,7 @@
 <body>
 
     <?php
+        session_start();
         if(isset($_GET['acao'])){
             if($_GET['acao'] == "editar"){
                 setcookie("acaoEmp", "editar");
@@ -261,7 +262,14 @@
             
             <div class="col-5 offset-sm-2">
 
-                <p>Coordenador Sobrenome</p>
+                <p><strong>
+                    <?php
+                        if(isset($_SESSION['Nome']))
+                            echo $_SESSION['Nome'];
+                        else
+                            echo "Usuário não logado"
+                    ?>
+                </strong></p>
 
             </div>
 

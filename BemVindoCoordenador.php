@@ -12,6 +12,9 @@
  
 
 <body>
+<?php
+    session_start();
+?>
 
     
     <div class="container">
@@ -51,7 +54,14 @@
 
             <div class="col-8 animation-left" id="coordenador" style="margin-top: 250px;">
 
-                <p>Coordenador Sobrenome</p>
+                <p><strong>
+                    <?php
+                        if(isset($_SESSION['Nome']))
+                            echo $_SESSION['Nome'];
+                        else
+                            echo "Usuário não logado"
+                    ?>
+                </strong></p>
 
             </div>
 

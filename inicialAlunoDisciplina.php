@@ -157,6 +157,12 @@
                                                     
                             if(isset($_FILES['relatorio'])){
                                 include_once('Classes/ClassPessoa.php');
+
+                                if(isset($_SESSION['id_usuario'])){
+                                    $idAluno = $_SESSION['id_usuario'] ;
+                                    $nome = str_replace(' ', '_', $_SESSION['Nome']);
+
+                                }
                                 
 
                                 // var_dump($_FILES['curriculo']);
@@ -167,7 +173,7 @@
                                 //   $p->AdicionarDOC($_FILES['curriculo'], 1, "talithaSouza", "curriculo");
 
 
-                                $resultado = $p->AdicionarDOC($_FILES['relatorio'], 1, "talithaSouza", "relatorio");
+                                $resultado = $p->AdicionarDOC($_FILES['relatorio'], $idAluno, $nome, "relatorio");
 
                                 if($resultado){
                                     echo"<div class='container'>
@@ -196,6 +202,12 @@
                             
                             if(isset($_FILES['curriculo'])){
                                 include_once('Classes/ClassPessoa.php');
+
+                                if(isset($_SESSION['id_usuario'])){
+                                    $idAluno = $_SESSION['id_usuario'] ;
+                                    $nome = str_replace(' ', '_', $_SESSION['Nome']);
+
+                                }
                                 
                         
                                 // var_dump($_FILES['curriculo']);
@@ -206,7 +218,7 @@
                                  //   $p->AdicionarDOC($_FILES['curriculo'], 1, "talithaSouza", "curriculo");
                         
 
-                                $resultado = $p->AdicionarDOC($_FILES['curriculo'], 1, "talithaSouza", "curriculo");
+                                $resultado = $p->AdicionarDOC($_FILES['curriculo'], $idAluno, $nome, "curriculo");
 
                                 if($resultado){
                                     echo"<div class='container'>
