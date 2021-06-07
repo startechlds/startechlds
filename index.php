@@ -73,9 +73,11 @@
                         $arr = $resultLogin->fetch(PDO::FETCH_ASSOC);
                         $tipoUsuario = $arr['VF_Tipo'];
 
-                        $_SESSION['loginUser'] = $_POST['usuario'];
-                        $_SESSION['loginSenha'] = $_POST['senha'];
+                        session_start();
+                        $_SESSION['Nome'] = $arr['CH_Nome'];
+                        $_SESSION['loginSenha'] = $senha;
                         $_SESSION['tipoUsuario'] = $tipoUsuario;
+                        $_SESSION['id_usuario'] = $arr['CD_Pessoa'];
                         if($tipoUsuario == 'A'){
                             header("Location: inicialAlunoVagas.php");
                         }

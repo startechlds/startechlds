@@ -13,6 +13,10 @@
 
 <body>
 
+<?php
+    session_start();
+?>
+
     
     <div class="container">
            
@@ -39,9 +43,17 @@
 
                     <div class="row">
 
-                        <div class="col-12" style="display: flex; align-items: flex-end; justify-content: flex-end; height: 12vh;">
+                    <div class="col-12" style="display: flex; align-items: flex-end; justify-content: flex-end; height: 12vh;">
 
-                            <p style="margin-right: 30px;"><strong>Nome Sobrenome</strong></p>
+                    <p style="margin-right: 30px;">
+                    <strong>
+                        <?php
+                            if(isset($_SESSION['Nome']))
+                                echo $_SESSION['Nome'];
+                            else
+                                echo "Usuário não logado"
+                        ?>
+                    </strong></p>
 
                             <button class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="inicialAlunoVagas.html"><i class="fas fa-home"></i></a></button>
                     

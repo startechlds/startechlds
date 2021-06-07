@@ -6,12 +6,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/InicialAlunoVagas/style.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" >
+    
     <title>Inicial Aluno - Vagas</title>
+
 </head>
 
  
 
 <body>
+<?php
+    session_start();
+?>
 
     
    <div class="container">
@@ -41,7 +46,15 @@
 
                         <div class="col-12" style="display: flex; align-items: flex-end; justify-content: flex-end; height: 12vh;">
 
-                            <p style="margin-right: 30px;"><strong>Nome Sobrenome</strong></p>
+                            <p style="margin-right: 30px;">
+                            <strong>
+                                <?php
+                                    if(isset($_SESSION['Nome']))
+                                        echo $_SESSION['Nome'];
+                                    else
+                                        echo "Usuário não logado"
+                                ?>
+                            </strong></p>
 
                             <button class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="inicialAlunoVagas.html"><i class="fas fa-home"></i></a></button>
                     
@@ -51,15 +64,18 @@
 
                     </div>
                     
-                </div>   
+                </div>
+                <script type="text/javascript" src="JS/jquery.js"> </script>
+                <script type="text/javascript" src="JS/funcao.js"> </script>   
                 
                 <?php
                     include_once('Classes/ClassVaga.php');
-
+                   // print_r($_SESSION['usuario']);
                     $vaga = new Vaga();
                     $exibir = $vaga->RetornaTabelaDadosVagasAtivas();
                     $pos = 0;
                     $v = 1;
+                    $text = "deseja remover o contato";
                    // $control = 0;
 
                     //print_r($exibir);
@@ -73,7 +89,7 @@
                                 echo"<div class='row mt-4'>";
                                     echo"<div class='d-flex col-10' style='display: flex; align-items: center; justify-content: space-between'>";
                                         echo"<strong>Vaga".$v.":&nbsp".$exibir[$i]->CH_Cargo."</strong> <br >";
-                                        echo"<a href='#' onclick='javascript:add_like(".$exibir[$i]->CD_Vaga.");' style='color: black; '><i class='far fa-heart' style='font-size: 26p'></i> </a>";
+                                        echo'<a href="#" onclick="javascript:add_like('.$exibir[$i]->CD_Vaga.');" style="color: black; "><i class="far fa-heart" style="font-size: 26p"></i> </a>';
                                     echo"</div>";
                                     echo"<div class='d-flex col-12' style='height: 23px'>";
                                         echo"<p>".$exibir[$i]->Empresa."</p>";
