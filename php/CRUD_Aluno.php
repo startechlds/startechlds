@@ -1,6 +1,7 @@
 <?php
     if(isset($_POST['btn_AdcAluno'])){
         include_once("../Classes/ClassPessoa.php");
+        include_once("../Classes/ClassTurma.php");
 
         $nome = $_POST['nome']. ' '. $_POST['sobrenome'];
         $usuario =  $_POST['usuario'];
@@ -8,21 +9,29 @@
         $situacao =  $_POST['cbx_situacao'];
 
         $p = new Pessoa();
-        
-        $verificaInsercao = $p->InserirNovaPessoa($nome, null, $usuario, $senha, 'A', $situacao);
-        if($verificaInsercao){
-            $pessoa = $p->RetornaUltimo();
-            setcookie('alunoInserido', $p->CD_Pessoa);
-            echo "
-            <script>
-                alert('ALUNO ADICIONADO COM SUCESSO');
-                window.location.href = 'crud_turma.php?novoAluno=verdade&finalizarTurma=falso';
-            </script>";
+        if(Turma::VerificaSeATumaAberta($_COOKIE['idTurmaSelecionada'])){
+            $verificaInsercao = $p->InserirNovaPessoa($nome, null, $usuario, $senha, 'A', $situacao);
+            if($verificaInsercao){
+                $pessoa = $p->RetornaUltimo();
+                setcookie('alunoInserido', $pessoa->CD_Pessoa);
+                echo "
+                <script>
+                    alert('ALUNO ADICIONADO COM SUCESSO');
+                    window.location.href = 'crud_turma.php?novoAluno=verdade&finalizarTurma=falso';
+                </script>";
+            }
+            else{
+                echo "
+                <script>
+                    alert('ERRO AO ADICIONAR NOVO ALUNO');
+                    window.location.href = '../CoordenadorNovoAluno.html';
+                </script>'";
+            }
         }
         else{
             echo "
             <script>
-                alert('ERRO AO ADICIONAR NOVO ALUNO');
+                alert('Turma Selecionada Fechada, Impossivel adicionar aluno');
                 window.location.href = '../CoordenadorNovoAluno.html';
             </script>'";
         }

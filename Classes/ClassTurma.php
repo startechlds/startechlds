@@ -328,7 +328,7 @@
             }                
         }
         
-        public function VerificaSeATumaAberta($idTurma){
+        public static function VerificaSeATumaAberta($idTurma){
             $select = "SELECT * FROM turma WHERE CD_Turma = :id and VF_Ativo = 1";
 
 
@@ -357,7 +357,7 @@
             include_once('ClassPessoa.php');
             
             $p = new Pessoa();
-            if($this->VerificaSeATumaAberta($idTurma)){
+            if(self::VerificaSeATumaAberta($idTurma)){
                 if($p->VerificaSePessoaExiste($idAluno)){
                     $insert = "INSERT INTO turma_aluno_estagio(CD_Aluno, CD_Turma, CH_Situacao) 
                     VALUES (:idAluno, :idTurma, :chSituacao)";

@@ -108,10 +108,10 @@
 
                 $retorno = $result->rowCount();
                 if($retorno > 0){
-                   return true;
+                   return $result->fetch(PDO::FETCH_OBJ);
                 }
                 else{
-                    echo false;
+                    return null;
                 }
             }
             catch(PDOException $e){
