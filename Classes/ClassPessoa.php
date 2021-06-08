@@ -171,7 +171,7 @@
                     }
                 }
                 else{
-                    echo"não exixte";
+                    echo"TABELA VAZIA";
                 }
             }
             catch(PDOException $e){

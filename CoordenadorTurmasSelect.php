@@ -120,7 +120,8 @@
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir notas</a></button>
 
                         <form method = "GET">
-                            <button name="btn_ApagarTurma" type="submit" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_turma.php?btn_ApagarTurma=<?php echo$_GET['id'];?>" onclick="return confirm('deseja remover o contato')" style="text-decoration: none; color: black">Apagar Turma</a></button>
+                            <button name="btn_ApagarTurma" type="submit" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_turma.php?btn_ApagarTurma=<?php echo$_GET['id'];?>" onclick="return confirm('deseja remover essa turma')" style="text-decoration: none; color: black">Apagar Turma</a></button>
+                            <button name="btn_EditarTurma" type="submit" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo$_GET['id'];?>" style="text-decoration: none; color: black">Editar Turma</a></button>
                         </form>
 
                         </div>

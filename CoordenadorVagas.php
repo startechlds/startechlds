@@ -151,17 +151,19 @@
                                             $vaga = new Vaga();
 
                                             $exibir = $vaga->RetornaTabelaDadosVagas();
-                                            for($i = 0; $i < count($exibir); $i++){
-                                                echo"<tr>";
-                                                    echo"<th scope='row'><a href='CoordenadorVagas.php?id=".$exibir[$i]->CD_Vaga."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Cargo."</a></th>";
-                                                    echo"<th>".$exibir[$i]->Empresa."</th>";
-                                                    if($exibir[$i]->VF_Ativo == 1)
-                                                        echo"<th>Aberta</th>";
-                                                    else
-                                                        echo"<th>Desativado</th>";
-                                                    echo"<th>".$exibir[$i]->DT_Publicacao."</th>";
-                                                    echo"<th><a href='Empresa_Convenio.php?idEmp=".$exibir[$i]->CD_Empresa."'>mais detalhes</a></th>";
-                                                echo"</tr>";
+                                            if($exibir != null){
+                                                for($i = 0; $i < count($exibir); $i++){
+                                                    echo"<tr>";
+                                                        echo"<th scope='row'><a href='CoordenadorVagas.php?id=".$exibir[$i]->CD_Vaga."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Cargo."</a></th>";
+                                                        echo"<th>".$exibir[$i]->Empresa."</th>";
+                                                        if($exibir[$i]->VF_Ativo == 1)
+                                                            echo"<th>Aberta</th>";
+                                                        else
+                                                            echo"<th>Desativado</th>";
+                                                        echo"<th>".$exibir[$i]->DT_Publicacao."</th>";
+                                                        echo"<th><a href='Empresa_Convenio.php?idEmp=".$exibir[$i]->CD_Empresa."'>mais detalhes</a></th>";
+                                                    echo"</tr>";
+                                                }
                                             }
                                         ?>
                                     

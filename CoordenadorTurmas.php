@@ -144,17 +144,15 @@
                                         include_once('Classes/ClassTurma.php');
                                         $t = new Turma();
 
-                                        if(!isset($_GET['cbx_Professor'])){
-                                            echo"";
-                                        }
-
                                         $exibir = $t->RetornaDadosTurmaProfessorSituacao(null);
-                                        for($i = 0; $i < count($exibir); $i++){
-                                            echo"<tr>";
-                                                echo"<th scope='row'><a href='CoordenadorTurmasSelect.php?id=".$exibir[$i]->Id."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->Semestre."</a></th>";
-                                                echo"<td>".$exibir[$i]->Professor."</td>";
-                                                echo"<td>".$exibir[$i]->Situacao."</td>";
-                                            echo"</tr>";
+                                        if($exibir != null){
+                                            for($i = 0; $i < count($exibir); $i++){
+                                                echo"<tr>";
+                                                    echo"<th scope='row'><a href='CoordenadorTurmasSelect.php?id=".$exibir[$i]->Id."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->Semestre."</a></th>";
+                                                    echo"<td>".$exibir[$i]->Professor."</td>";
+                                                    echo"<td>".$exibir[$i]->Situacao."</td>";
+                                                echo"</tr>";
+                                            }
                                         }
                                     ?>
                                   

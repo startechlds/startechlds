@@ -10,8 +10,8 @@
         echo "
             <script>
                 alert('".$mensagem."');
-                window.location.href = '../CoordenadorTurmasSelect.php?id=".$idtuma."';
-            </script>'";
+                window.location.href = '../CoordenadorTurmas.php';
+            </script>";
     }
 
     //CADASTRAR TURMA

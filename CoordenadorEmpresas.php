@@ -120,19 +120,21 @@
                                         $exibir = $emp->RetornaTabelaEmpresaInArray();
                                         $data = (array) new DateTime();
                                       //  $data = $data['date'];
-                                        for($i = 0; $i < count($exibir); $i++){
-                                            echo"<tr>";
-                                                echo"<th scope='row'><a href='CoordenadorEmpresas.php?acao=editar&id=".$exibir[$i]->CD_Empresa."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Fantasia."</a></th>";
-                                                if($exibir[$i]->DT_ExpiracaoConvenio >= $data['date'])
-                                                    echo"<th>Sim</th>";
-                                                else if($exibir[$i]->DT_ExpiracaoConvenio == '0000-00-00')
-                                                    echo"<th>Não</th>";
-                                                else if($exibir[$i]->DT_ExpiracaoConvenio < $data['date'])
-                                                    echo"<th>Expirado</th>";
+                                        if($exibir != null){
+                                            for($i = 0; $i < count($exibir); $i++){
+                                                echo"<tr>";
+                                                    echo"<th scope='row'><a href='CoordenadorEmpresas.php?acao=editar&id=".$exibir[$i]->CD_Empresa."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Fantasia."</a></th>";
+                                                    if($exibir[$i]->DT_ExpiracaoConvenio >= $data['date'])
+                                                        echo"<th>Sim</th>";
+                                                    else if($exibir[$i]->DT_ExpiracaoConvenio == '0000-00-00')
+                                                        echo"<th>Não</th>";
+                                                    else if($exibir[$i]->DT_ExpiracaoConvenio < $data['date'])
+                                                        echo"<th>Expirado</th>";
 
-                                                echo"<th>".$exibir[$i]->CH_TelefoneResponsavel."</th>";
-                                                echo"<th><a href='CoordenadorEmpresasConvenio.php?idEmp=".$exibir[$i]->CD_Empresa."'>mais detalhes</a></th>";
-                                            echo"</tr>";
+                                                    echo"<th>".$exibir[$i]->CH_TelefoneResponsavel."</th>";
+                                                    echo"<th><a href='CoordenadorEmpresasConvenio.php?idEmp=".$exibir[$i]->CD_Empresa."'>mais detalhes</a></th>";
+                                                echo"</tr>";
+                                            }
                                         }
                                     ?>
                                     
@@ -147,9 +149,7 @@
 
                         <div class="row">
 
-                            <button class="btn btn-secondary h-auto d-inline-block" 
-                                    style="margin-right: 10px; margin-bottom: 8px; margin-top: 50px;">
-                                    <a href="CoordenadorCadNovaTurma2.html" href="CoordenadorProfessor.html" style="text-decoration: none; color: black">Salvar</a></button>
+                            
 
                         </div>
 

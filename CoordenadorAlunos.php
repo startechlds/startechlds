@@ -99,7 +99,7 @@
                         <div class="col-1 offset-sm-1" style="margin-top: 100px;">
 
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarProfessor.html" style="text-decoration: none; color: black">Editar/Inserir nota</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Apagar</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/CRUD_Aluno.php?acao=apagar&id=<?php if(!empty($_GET['id'])) echo $_GET['id'];?> " onclick="return confirm('deseja remover esse Aluno?')"" style="text-decoration: none; color: black">Apagar</a></button>
 
                         </div>
 
@@ -122,7 +122,8 @@
                                         $exibir = $p->RetornaTabelaPessoaInArray('A');
                                         for($i = 0; $i < count($exibir); $i++){
                                             echo"<tr>";
-                                            echo"<th scope='row'>".$exibir[$i]->CH_Nome."</th>";
+                                            echo"<th scope='row'><a href='CoordenadorAlunos.php?acao=editar&id=".$exibir[$i]->CD_Pessoa."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Nome."</a></th>";
+                                           // echo"<th scope='row'>".$exibir[$i]->CH_Nome."</th>";
                                             echo"<td>".$exibir[$i]->CD_Semestre."</td>";
                                             echo"<td>".$exibir[$i]->CH_Situacao."</td>";
                                             echo"</tr>";

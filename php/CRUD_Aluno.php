@@ -92,4 +92,35 @@
         }
     }
 
+    if($_GET['acao'] == "apagar"){
+        if(!empty($_GET['id'])){
+            include_once("../Classes/ClassPessoa.php");
+            $id = $_GET['id'];
+
+            $p = new Pessoa();
+
+            if($p->DeletarPessoa($id)){
+                echo "
+                <script>
+                    alert('ALUNO DELETADO COM SUCESSO');
+                    window.location.href = '../CoordenadorAlunos.php';
+                </script>";
+            }
+            else{
+                echo "
+                <script>
+                    alert('ERRO AO DELETAR ALUNO');
+                
+                </script>";
+            }
+        }
+        else{
+            echo "
+            <script>
+                alert('Para Apagar um aluno é preciso selecioná-lo');
+                window.location.href = '../CoordenadorAlunos.php';
+            </script>";
+        }
+    }
+
 ?>

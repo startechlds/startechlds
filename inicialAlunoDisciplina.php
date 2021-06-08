@@ -174,7 +174,7 @@
                     </form>
 
                     <?php
-
+                        $atualizar = true;
                         //enviar relatorio
                         if(isset($_POST['btn_enviarRelatorio'])){
                                                     
@@ -250,7 +250,7 @@
                                                 <h5><i class='icon fas fa-check'></i> OK!</h5> 
                                                 Curriculo Adicionado com sucesso. 
                                             </div>
-                                        </div>";
+                                        </div><br>";
                                     //  header("Refresh: 3, http://localhost/projeto_final/startechlds/inicialAlunoDisciplina.php");
                                 }
                                 else{
@@ -262,10 +262,11 @@
                                             </div>
                                          </div>";
                                 }
+                               
                             }
                         }
                     ?>
-
+                    
                 </div>
 
             </div>
