@@ -33,6 +33,8 @@
 
                             <a href="inicialAlunoDisciplina.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Disciplina</button></a>
 
+                            <a href="VagasFavoritadas.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Favoritos&nbsp&nbsp<i class='far fa-heart' style='font-size: 15px; fill: red;'></i></button></a>
+
                         </div>
 
                     </div>                    

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/InicialAlunoVagas/style.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" >
     
-    <title>Inicial Aluno - Vagas</title>
+    <title>Favoritos</title>
 
 </head>
 
@@ -30,11 +30,11 @@
 
                         <div class="col-12 col-sm-12 col-md-12 mx-auto" style="padding-left: 150px; height: 12vh; width: 20vw; display: flex; align-items: flex-end; justify-content: space-around;">
 
-                            <a href=""><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary" disabled>Vagas</button></a>
+                            <a href="inicialAlunoVagas.php"><button style="margin-bottom: 8px; width: 8vw" class="btn btn-primary">Vagas</button></a>
 
                             <a href="inicialAlunoDisciplina.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Disciplina</button></a>
 
-                            <a href="VagasFavoritadas.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary">Favoritos&nbsp&nbsp<i class='far fa-heart' style='font-size: 15px; fill: red;'></i></button></a>
+                            <a href="inicialAlunoDisciplina.php"><button style="margin-bottom: 8px; width: 8vw; margin-left: 40px;" class="btn btn-primary" disabled>Favoritos&nbsp&nbsp<i class='far fa-heart' style='font-size: 15px; fill: red;'></i></button></a>
 
                         </div>
 
