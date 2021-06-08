@@ -74,39 +74,40 @@
                     include_once('Classes/ClassVaga.php');
                    // print_r($_SESSION['usuario']);
                     $vaga = new Vaga();
-                    $exibir = $vaga->RetornaTabelaDadosVagasAtivas();
+                    $exibir = $vaga->RetornaVagasFavAlunoEspecifico((int)$_SESSION['id_usuario']);
                     $pos = 0;
                     $v = 1;
                     $text = "deseja remover o contato";
                    // $control = 0;
 
                     //print_r($exibir);
-
-                    for($i = 0; $i < count($exibir); $i++){
-                        if($i % 2 == 0){
-                            echo "<div class='row mt-4'> ";
-                          //  echo ($i % 2)."<br>";
-                        }
-                            echo "<div class='col-6 offset-sm-2 mt-4' style='background-color: #9FA5A4; padding-left: 40px; border: 1px solid rgb(235, 217, 217); height: 130px; width: 20vw; border-radius: 20px; box-shadow: 1px 1px 5px 5px #525050;'>";
-                                echo"<div class='row mt-4'>";
-                                    echo"<div class='d-flex col-10' style='display: flex; align-items: center; justify-content: space-between'>";
-                                        echo"<strong>Vaga&nbsp".$v.":&nbsp".$exibir[$i]->CH_Cargo."</strong> <br >";
-                                        echo"<a href='#' onclick='javascript:add_like(".$exibir[$i]->CD_Vaga.");' style='color: black;'><i class='far fa-heart' style='font-size: 25px; fill: red;'></i> </a>";
-                                    echo"</div>";
-                                    echo"<div class='d-flex col-9' style='height: 23px'>";
-                                        echo"<p>".$exibir[$i]->Empresa."</p>";
-                                    echo"</div>";
-                                    echo"<div class='d-flex col-10'>";
-                                        echo"<p>Carga horária: ". $exibir[$i]->CD_Horas_Semanais." horas semanais</p>";
+                    if($exibir != null){
+                        for($i = 0; $i < count($exibir); $i++){
+                            if($i % 2 == 0){
+                                echo "<div class='row mt-4'> ";
+                            //  echo ($i % 2)."<br>";
+                            }
+                                echo "<div class='col-6 offset-sm-2 mt-4' style='background-color: #9FA5A4; padding-left: 40px; border: 1px solid rgb(235, 217, 217); height: 130px; width: 20vw; border-radius: 20px; box-shadow: 1px 1px 5px 5px #525050;'>";
+                                    echo"<div class='row mt-4'>";
+                                        echo"<div class='d-flex col-10' style='display: flex; align-items: center; justify-content: space-between'>";
+                                            echo"<strong>Vaga&nbsp".$v.":&nbsp".$exibir[$i]->CH_Cargo."</strong> <br >";
+                                            echo"<a href='#' onclick='javascript:add_like(".$exibir[$i]->CD_Vaga.");' onClick='window.location.reload()' style='color: black;'><i class='far fa-heart' style='font-size: 25px; fill: red;'></i> </a>";
+                                        echo"</div>";
+                                        echo"<div class='d-flex col-9' style='height: 23px'>";
+                                            echo"<p>".$exibir[$i]->Empresa."</p>";
+                                        echo"</div>";
+                                        echo"<div class='d-flex col-10'>";
+                                            echo"<p>Carga horária: ". $exibir[$i]->CD_Horas_Semanais." horas semanais</p>";
+                                        echo"</div>";
                                     echo"</div>";
                                 echo"</div>";
-                            echo"</div>";
-                            $v++;
-                           // $control++;
-                       if($i== 1){
-                            echo "</div> ";
-                            $control = 0;
-                       }
+                                $v++;
+                            // $control++;
+                            if($i== 1){
+                                    echo "</div> ";
+                                    $control = 0;
+                            }
+                        }
                     }
                 ?>
                 

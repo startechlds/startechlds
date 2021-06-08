@@ -394,5 +394,39 @@
             }
         }
 
+        public function RetornaVagasFavAlunoEspecifico($idAluno){
+            $select = "SELECT V.CD_Vaga, V.CH_Cargo, V.CD_Horas_Semanais, E.CH_Fantasia as Empresa, V.DT_Publicacao, V.VF_Ativo
+                        FROM vaga_curtida VC
+                        JOIN vaga V ON V.CD_Vaga = VC.CD_Vaga
+                        JOIN empresa E on E.CD_Empresa = V.CD_Empresa
+                        WHERE VC.CD_Pessoa = :idAluno and V.VF_ATIVO = 1
+                        ORDER BY V.DT_Publicacao ASC";
+    
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->bindParam(':idAluno', $idAluno, PDO::PARAM_INT);
+                $result->execute();
+
+                $retorno = $result->rowCount();    
+                if($retorno > 0){
+                    while($empresa = $result->fetch(PDO::FETCH_OBJ)){
+                        $array[] = $empresa;
+                    }
+                    
+                    return $array;
+                }
+                else{
+                    return null;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDORetornaVagasFavAlunoEspecifico ". $e->getMessage()."<br>";
+            }
+        }
+
     }
+
 ?>
