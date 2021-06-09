@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/DadosDoEstagio/style.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" >
-    <title>Dados do Estágio</title>
+    <title>Dados do Estágio - Final</title>
 </head>
 
  
@@ -96,80 +96,53 @@
 
                     <div class="row mt-4"> 
 
-                        <div class="col-2 offset-sm-1">
+                        <div class="col-3 offset-sm-1">
                                     
                             <select class="form-select btn btn-secondary mt-4" id="validationDefault04" name="cbx_situacao">
-                                <option selected disabled value="">Estágio?</option>
-                                <option value="0">Sim</option>
-                                <option value="1">Não</option>
+                                <option selected disabled value="">Situação do Relatório</option>
+                                <option value="0">Não postado</option>
+                                <option value="1">Para revisão do aluno</option>
+                                <option value="1">Aprovado</option>
                             </select>
                                            
                         </div>
+                          
+                    </div>
 
-                        <div class="col-1 mt-4">
-                                    
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                   <strong> Concluído </strong>
-                                </label>
-                            </div>
-                                   
-                        </div>     
+                    <div class="offset-sm-1 col-3" style="border: 1px solid black; margin-top: 60px; padding: 10px">     
+
+                        <h4 class="offset-sm-1"> Notas </h4>
+
+                        <div class="row mt-3">
                             
-                        <div class="form-group row col-3 mt-3 offset-sm-1">
-                            <label for="example-datetime-local-input" class="col-2 col-form-label"><strong>Data Inicial:</strong>&nbsp&nbsp</label>
-                                <div class="col-8 mt-2">
-                                    <input style="margin-left: 8px" class="form-control" type="date" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-                                </div>
-                        </div>
+                            <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
-                        <div class="form-group row col-3 mt-3">
-                            <label for="example-datetime-local-input" class="col-2 col-form-label"><strong>Data Final:</strong></label>
-                                <div class="col-8 mt-2">
-                                    <input class="form-control" type="date" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-                                </div>
-                        </div>                      
+                                <label for="nome"><strong>AP1:&nbsp</strong></label>
+                                <input type="text" id="nome" name="nome_fantasia" class="form-control formInicial" required/>
 
-                    </div>
-
-                    <div class="row mt-4"> 
-
-                        <div class="col-3 offset-sm-2 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
-
-                            <label for="nome"><strong>Empresa:&nbsp</strong></label>
-                            <input type="text" id="nome" name="nome_fantasia" placeholder="Nome" class="form-control formInicial" required/>
-
-                        </div>
-
-                        <div class="col-1 mt-4">
-                                    
-                            <div class="form-check mt-2 offset-sm-1">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                   <strong> Convênio </strong>
-                                </label>
                             </div>
-                                   
-                        </div>     
 
-                        <div class="form-group row col-4 mt-3 offset-sm-1">
-                            <label for="example-datetime-local-input" class="col-3 col-form-label mt-1"><strong>Expira em:</strong></label>
-                                <div class="col-5 mt-2">
-                                    <input class="form-control col-6" type="date" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-                                </div>
-                        </div>                      
+                        </div>
+                        <div class="row mt-1">
+                            
+                            <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
-                    </div>
+                                <label for="nome"><strong>AP2:&nbsp</strong></label>
+                                <input type="text" id="nome" name="nome_fantasia" class="form-control formInicial" required/>
 
-                    <div class="row mt-4"> 
+                            </div>
 
-                        <div class="form-check mt-2 offset-sm-1 mt-4">
-                            <input class="form-check-input mt-4" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label mt-4" for="flexCheckDefault">
-                                <strong> Aluno(a) já estagiou nessa empresa</strong>
-                            </label>
-                        </div>                    
+                        </div>
+                        <div class="row mt-1">
+                            
+                            <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
+
+                                <label for="nome"><strong>AP3:&nbsp</strong></label>
+                                <input type="text" id="nome" name="nome_fantasia" class="form-control formInicial" required/>
+
+                            </div>
+
+                        </div>
 
                     </div>
                     
@@ -180,17 +153,6 @@
                             style="margin-bottom: 8px;"
                             name="btn_editar">
                             <a style="text-decoration: none;">Salvar</a>
-                        </button>                           
-
-                    </div>
-
-                    <div class="col-3 offset-sm-10">
-
-                        <button 
-                            class="btn btn-primary" 
-                            style="margin-bottom: 8px;"
-                            name="btn_editar">
-                            <a href="DadosDoEstagioParte02.php" style="text-decoration: none;">Próximo</a>
                         </button>                           
 
                     </div>
