@@ -6,7 +6,7 @@
 
     $p = new pessoa();
 
-    $return =  $p->RetornaUltimo();
+    $return =  $p->RetornaNotasAluno(2);
     print_r($return);
 
 ?>

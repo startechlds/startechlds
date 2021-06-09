@@ -116,8 +116,8 @@
                         
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarAluno.php?acao=editar&id=id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Editar Aluno</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir dados dos estagiários</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir notas</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDoEstagio.php" style="text-decoration: none; color: black">Inserir dados dos estagiários</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDasNotas.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir notas</a></button>
 
                         <form method = "GET">
                             <button name="btn_ApagarTurma" type="submit" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_turma.php?btn_ApagarTurma=<?php echo$_GET['id'];?>" onclick="return confirm('deseja remover essa turma')" style="text-decoration: none; color: black">Apagar Turma</a></button>

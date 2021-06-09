@@ -131,8 +131,6 @@
                                                 
                                                 <select class="form-select btn btn-secondary" id="validationDefault04" name="cbx_situacao">
                                                     <option selected disabled value="">Situação&nbsp</option>
-                                                    <option>Aprovado</option>
-                                                    <option>Reprovado</option>
                                                     <option>Cursando</option>
                                                 </select>
                                                 

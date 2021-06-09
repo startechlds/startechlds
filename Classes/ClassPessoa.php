@@ -10,6 +10,8 @@
         protected $VF_Tipo;
         protected $DOC_Curriculo;
         protected $DOC_Relatorio;
+        protected $Media;
+        protected $Situacao;
 
         private $caminhoCurriculo = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Curriculo\\";
         private $caminhoRelatorio = "C:\\xampp\\htdocs\\projeto_final\\startechlds\\docs\\DOC_Relatorio\\";
@@ -21,6 +23,26 @@
     
         public function getId(){
             return $this->CD_Pessoa;
+        }
+
+        public function setMedia($Media)
+        {
+                $this->Media = $Media;
+        }
+
+        public function getMedia()
+        {
+            return $this->Media;
+        }
+
+        public function setSituacap($Situacao)
+        {
+                $this->Situacao = $Situacao;
+        }
+
+        public function getSituacao()
+        {
+            return $this->Situacao;
         }
     
         public function preencherPessoa($CD_Pessoa, $CH_Nome, $CH_CPF, $CH_Usuario, $CH_Senha, $VF_Tipo, $DOC_Curriculo, $DOC_Relatorio)
@@ -354,9 +376,212 @@
 
         }
 
-        public function SituacaoRelatorio(){
+        public function CalculoMediaAluno($n1, $n2, $n3, $nf){            
+            if($n1 == null && $n2 == null && $n3 == null){
+                //$array = array("Media" => 0.0, "Situacao" => "Cursando");
+                $this->Media = 0.0;
+                $this->Situacao = "Cursando";
+            }
+            else{
+                if($n1 != null && $n2 == null && $n3 == null){
+                    $media =  0.0;
+                    $situacao = "Cursando";
+                }
+                else if($n1 != null && $n2 != null && $n3 == null){
+                    $media = number_format(($n1 + $n2) / 3, 1);
+                    $situacao = "Cursando";
+                }
+                else{ 
+                    $media = ($n1 + $n2 + $n3) / 3;
+                    //$this->Media = number_format($media, 1);
+                  //  echo "$n1 $n2 $n3";
+
+                    if($media >= 7)
+                        //$array = array("Media" =>  number_format($media, 2), "Situacao" => "Aprovado", , "naf" => false);
+                        $situacao = "Aprovado";
+                    else if($media < 4)
+                        //$array = array("Media" =>  number_format($media, 2), "Situacao" => "Reprovado", , "naf" => false);
+                        $situacao = "Reprovado";
+                    else{
+                        if($nf == null)
+                            $situacao = "Avaliação Final";
+                        else{
+                            $media += $nf;
+                            $media = $media/2;
+
+                            if($media >= 5){
+                                $situacao = "Aprovado";
+                            }
+                            else{
+                                $situacao = "Reprovado";
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            return $array = array("media" => round($media,1), "situacao" => $situacao);
+        }
+
+        public function VerificaTabelaDeNotas($idAluno){
+            $select = "SELECT * FROM notas_aluno WHERE CD_Aluno = :idAluno";
+            
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->bindParam(':idAluno', $idAluno, PDO::PARAM_INT);
+                $result->execute();
+
+                $verificarRetorno = $result->rowCount();
+
+                if($verificarRetorno > 0){
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO VerificaTabelaDeNota ". $e->getMessage();
+            }
 
         }
+
+        public function AtualizaNotas($idAluno, $n1, $n2, $n3, $nf, $relatorio, $media, $situacao){
+            $update = "UPDATE notas_aluno SET N1=:n1, N2=:n2, N3=:n1, NF=:n1, MEDIA=:media, CH_SitucaoAluno=:situacaoAluno, 
+                CH_SituacaoRelatorio=:relatorio WHERE CD_Aluno = :cdAluno";
+                try{
+                    $conn = new ConexaoBD();
+                    $conect = $conn->ConDB();
+
+                    $result = $conect->prepare($update);
+                    $result->bindParam(':n1', $n1, PDO::PARAM_STR);
+                    $result->bindParam(':n2', $n2, PDO::PARAM_STR);
+                    $result->bindParam(':n3', $n3, PDO::PARAM_STR);
+                    $result->bindParam(':nf', $nf, PDO::PARAM_STR);
+                    $result->bindParam(':media', $media, PDO::PARAM_STR);
+                    $result->bindParam(':situacaoAluno', $situacao, PDO::PARAM_STR);
+                    $result->bindParam(':relatorio', $relatorio, PDO::PARAM_STR);
+                    $result->bindParam(':cdAluno', $idAluno, PDO::PARAM_INT);
+                    
+                    $result->execute();
+
+                   
+
+                    $result = $result->rowCount();
+                    
+                    
+                    if($result > 0){
+                        return true;
+                    }
+                    else{
+                     //   echo"não retornou linha nenhuma";
+                        return false;
+                    }
+                }
+                catch(PDOException $e){
+                    echo "erro de PDO AtualizaNotas ".$e->getMessage();
+                }
+
+        }
+
+        public function InsereNota($idAluno, $n1, $n2, $n3, $nf, $relatorio, $media, $situacao){
+            $insert = "INSERT INTO notas_aluno(CD_Aluno, N1, N2, N3, NF, MEDIA, CH_SitucaoAluno, CH_SituacaoRelatorio) 
+                           VALUES (:cdAluno, :n1, :n2, :n3, :nf,:media,:situacaoAluno,:relatorio)";
+
+            try{
+                $conn = new ConexaoBD();
+                $conect = $conn->ConDB();
+
+                $result = $conect->prepare($insert);
+                $result->bindParam(':cdAluno', $idAluno, PDO::PARAM_INT);
+                $result->bindParam(':n1', $n1, PDO::PARAM_STR);
+                $result->bindParam(':n2', $n2, PDO::PARAM_STR);
+                $result->bindParam(':n3', $n3, PDO::PARAM_STR);
+                $result->bindParam(':nf', $nf, PDO::PARAM_STR);
+                $result->bindParam(':media', $media, PDO::PARAM_STR);
+                $result->bindParam(':situacaoAluno', $situacao, PDO::PARAM_STR);
+                $result->bindParam(':relatorio', $relatorio, PDO::PARAM_STR);
+                
+                $result->execute();
+
+            
+
+                $result = $result->rowCount();
+                
+                
+                if($result > 0){
+                    return true;
+                }
+                else{
+                //   echo"não retornou linha nenhuma";
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "erro de PDO <strong> InsereNota </strong> ".$e->getMessage();
+            }
+
+        }
+
+        public function AtualizaNotaAlunos($idAluno, $n1, $n2, $n3, $nf, $relatorio){
+
+            $notas = $this->CalculoMediaAluno($n1, $n2, $n3, $nf);
+            /* == null ? -1 : $n1;
+            $n2 == null ? -1 : $n2;
+            $n3 == null ? -1 : $n3;*/
+
+            try{
+                if($this->VerificaTabelaDeNotas($idAluno)){
+                    $result = $this->AtualizaNotas($idAluno, $n1, $n2, $n3, $nf, $relatorio, $notas['media'], $notas['situacao']);
+
+                    return $result;
+                }
+                else{
+                    $result = $this->InsereNota($idAluno, $n1, $n2, $n3, $nf, $relatorio, $notas['media'], $notas['situacao']);
+
+                    return $result;
+                }
+            }
+            catch(PDOException $e){
+                echo "erro de PDO AtualizaNotaAlunos ".$e->getMessage();
+            }
+
+
+
+        }
+
+        public function RetornaNotasAluno($idAluno){
+            $select = "SELECT * FROM notas_aluno WHERE CD_Aluno = :cd_aluno";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+                $result->bindParam(':cd_aluno', $idAluno, PDO::PARAM_INT);
+                $result->execute();
+
+                $verificarRetorno = $result->rowCount();
+
+                if($verificarRetorno > 0){
+                    return $result->fetch(PDO::FETCH_OBJ);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO RetornaNotasAluno ". $e->getMessage();
+            }
+        }
+        
+
         
     }
 ?>
