@@ -14,6 +14,24 @@
 <body>
     <?php
         session_start();
+        if(isset($_GET['acao'])){
+            if($_GET['acao'] == "INotas"){
+                setcookie("acaoA", "INotas");
+                if(empty($_GET['idAluno'])){
+                    echo "
+                    <script>
+                        alert('Selecione um aluno para poder editar as notas');
+                        window.location.href = 'CoordenadorTurmas.php'
+                    </script>";
+                }
+                else{
+                    setcookie("idAluno", $_GET['idAluno']);
+                    setcookie("idTurma", $_GET['id']);
+
+                }
+            }
+                
+        }
     ?>
     
     <div class="container">
@@ -46,7 +64,7 @@
 
                 <div class="col-4 col-md-2 offset-sm-1 mt-3">
 
-                    <button title="Voltar tela anterior" class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="#"><i class="fas fa-times"></i></a></button>
+                    <button title="Voltar tela anterior" class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="CoordenadorTurmasSelect.php?id=<?php echo $_GET['id'];?>"><i class="fas fa-times"></i></a></button>
                         
                     <button title="Sair" class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="index.php"><i class="fas fa-power-off"></i></a></button>
 
@@ -59,20 +77,30 @@
                 
 
                 <div class="col-12 h-auto d-inline-block" style="margin-top: 50px; background-color: rgb(175, 175, 166); height: 70%">
+                        <?php
+                            include_once("Classes/ClassTurma.php");
+                           include_once("Classes/ClassPessoa.php");
+                            $t = new Turma();
+                            $p = new Pessoa();
+
+                            $dadosP = $p->RetornaPessoa($_GET['idAluno']);
+                            $dadosT = $t->RetornaTurma($_GET['id']);
+                        ?>
 
                      <div class="row mt-4">
                          
                         <div class="col-2 mt-4 offset-sm-2">
                                     
-                            <i class="fas fa-user" style="font-size: 50px;"></i>&nbsp&nbsp&nbspAluno Fulano
+                            <i class="fas fa-user" style="font-size: 50px;"></i>&nbsp&nbsp&nbsp<?php echo $dadosP->CH_Nome;?>
                                            
                         </div>
 
                         <div class="col-2 offset-sm-1">
 
                             <div class="col-12 form-group mt-4" >
+                            
 
-                                <p style="border: 1px solid rgb(28,28,28); height: 4vh; padding: 5px; display: flex; align-items: center; justify-content: center; color: grey11"><strong>Semestre 2021.1</strong></p>   
+                                <p style="border: 1px solid rgb(28,28,28); height: 4vh; padding: 5px; display: flex; align-items: center; justify-content: center; color: grey11"><strong>Semestre <?php echo $dadosT->CD_Semestre;?></strong></p>   
 
                             </div>
 
@@ -91,26 +119,49 @@
                     </div>
 
                     <form method="POST" action="php/CRUD_Aluno.php">
+                    <?php
+                        $dadosN = $p->RetornaNotasAluno($_GET['idAluno']);
+
+                      //  var_dump($dadosN);
+                        $vf = $dadosN == null ? true: false;
+                    ?>
 
                         <div class="row mt-4"> 
 
                             <div class="col-3 offset-sm-1">
                                         
                                 <select class="form-select btn btn-secondary mt-4" id="validationDefault04" name="cbx_situacaoRelatorio">
-                                   
-                                    <option selected disabled value="">Situação do Relatório</option>
-                                    <option value="NP">Não postado</option>
-                                    <option value="RA">Para revisão do aluno</option>
-                                    <option value="AP">Aprovado</option>
+                                  <?php 
+                                    if(!$vf){
+                                        switch ($dadosN->CH_SituacaoRelatorio){
+                                            case "NP":
+                                                echo "<option selected value='NP'>Relatório: Não Postado</option>";
+                                                break;
+                                            case "RA":
+                                                echo "<option selected value='RA'>Relatório: Para revisão do aluno</option>";
+                                                break;
+                                            case "AP":
+                                                echo "<option selected value='AP'>Relatório: Aprovado</option>";
+                                                break;
+                                        }
+                                       
+                                    }
+                                    else{
+                                       echo "<option selected disabled value=''>Situação do relatório </option>";
+                                    }
+
+                                    echo "<option value='NP'>Não Postado </option>";
+                                    echo "<option value='RA'>Para Revisão do Aluno </option>";
+                                    echo "<option value='AP'>Aprovado </option>";
+                                  ?>
                                 </select>
                                             
                             </div>
 
                             <div class="col-3 offset-sm-1">
-                                <?php
-
-                                ?>
-                                <input type="text" class="btn btn-secondary mt-4" id="validationDefault04" name="situacaoAluno">     
+                                <input type="text" class="btn btn-secondary mt-4" id="validationDefault04"
+                                 value="<?php if(!$vf) echo "Situação: ". $dadosN->CH_SitucaoAluno;?>"
+                                 name="situacaoAluno">     
                                             
                             </div>
                                 
@@ -125,7 +176,7 @@
                                     <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                         <label for="nome"><strong>AP1:&nbsp</strong></label>
-                                        <input type="number" id="nome" name="n1" class="form-control formInicial"/>
+                                        <input type="text" id="nome" name="n1" class="form-control formInicial" value="<?php if(!$vf) echo $dadosN->N1;?>"/>
 
                                     </div>
 
@@ -135,7 +186,7 @@
                                     <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                         <label for="nome"><strong>AP2:&nbsp</strong></label>
-                                        <input type="number" id="nome" name="n2" class="form-control formInicial"/>
+                                        <input type="text" id="nome" name="n2" class="form-control formInicial" value="<?php if(!$vf) echo $dadosN->N2;?>"/>
 
                                     </div>
 
@@ -145,7 +196,7 @@
                                     <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                         <label for="nome"><strong>AP3:&nbsp</strong></label>
-                                        <input type="number" id="nome" name="n3" class="form-control formInicial" required/>
+                                        <input type="text" id="nome" name="n3" class="form-control formInicial" value="<?php if(!$vf) echo $dadosN->N3;?>"/>
 
                                     </div>
 
@@ -155,7 +206,14 @@
                                     <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                         <label for="nome"><strong>NAF:&nbsp</strong></label>
-                                        <input type="number" id="nome" name="naf" disabled class="form-control formInicial" required/>
+                                        <?php
+                                            if(!$vf){
+                                                if($dadosN->CH_SitucaoAluno == "Avaliação Final")
+                                                    echo"<input type='text' id='nome' name='naf' class='form-control formInicial' required/>";
+                                                else
+                                                    echo"<input type='text' id='nome' name='naf' disabled class='form-control formInicial' required value= '".$dadosN->NF."'/>";
+                                            }
+                                        ?>
 
                                     </div>
 
@@ -166,7 +224,7 @@
                                     <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                         <label for="nome"><strong>Media Final:&nbsp</strong></label>
-                                        <input type="number" id="nome" name="naf" disabled class="form-control formInicial" required/>
+                                        <input type="text" id="nome" name="media" disabled class="form-control formInicial" value="<?php if(!$vf) echo $dadosN->MEDIA;?>"/>
 
                                     </div>
 
@@ -181,7 +239,7 @@
                                     style="margin-bottom: 8px;"
                                     type = "submit"
                                     name="btn_salvarNotas">
-                                    <a style="text-decoration: none;">Salvar</a>
+                                    <a style="text-decoration: none;">Salvar Notas</a>
                                 </button>                           
 
                             </div>

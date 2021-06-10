@@ -67,6 +67,7 @@
             $nome = $_POST['nome']. ' '. $_POST['sobrenome'];
             $usuario =  $_POST['usuario'];
             $id = $_COOKIE['idAluno'];
+            $idTurma = $_COOKIE['idTurma'];
 
             $p = new Pessoa();
         
@@ -76,7 +77,7 @@
                 echo "
                 <script>
                     alert('ALUNO EDITADO COM SUCESSO');
-                    window.location.href = '../CoordenadorTurmas.php';
+                    window.location.href = '../CoordenadorTurmasSelect.php?id=$idTurma';
                 </script>";
             }
             else{
@@ -120,6 +121,45 @@
                 alert('Para Apagar um aluno é preciso selecioná-lo');
                 window.location.href = '../CoordenadorAlunos.php';
             </script>";
+        }
+    }
+
+    if($_COOKIE['acaoA'] == "INotas"){
+        if(isset($_POST['btn_salvarNotas'])){
+            include_once("../Classes/ClassPessoa.php");
+
+            $situacao = $_POST['situacaoAluno'];
+            $relatorio =  $_POST['cbx_situacaoRelatorio'];
+            $n1 =  empty($_POST['n1']) ? null : $_POST['n1'];
+            $n2 =  empty($_POST['n2']) ? null : $_POST['n1'];
+            $n3 =  empty($_POST['n3']) ? null : $_POST['n3'];
+            $naf = empty($_POST['naf']) ? null : $_POST['naf'];
+            $idAluno = $_COOKIE['idAluno'];
+            $idTurma = $_COOKIE['idTurma'];
+
+            $p = new Pessoa();
+           // echo "$relatorio";
+
+           // $res = $p->CalculoMediaAluno($n1, $n2, $n3, $naf);
+           // print_r($res);
+        
+           $verificaUpdate = $p->AtualizaNotaAlunos($idAluno, $n1, $n2, $n3, $naf, $relatorio);
+
+            if($verificaUpdate){
+                echo "
+                <script>
+                    alert('NOTAS EDITADAS COM SUCESSO');
+                    window.location.href = '../DadosDasNotas.php?id=$idTurma&idAluno=$idAluno';
+                </script>";
+            }
+            else{
+                echo "
+                <script>
+                    alert('ERRO AO EDITAR ALUNO');
+                    window.location.href = '../DadosDasNotas.php?id=$idTurma&idAluno=$idAluno';
+                </script>";
+            }
+
         }
     }
 

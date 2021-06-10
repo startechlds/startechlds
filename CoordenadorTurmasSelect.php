@@ -64,7 +64,7 @@
 
                 <div class="col-4 col-md-2 offset-sm-1 mt-3 h-auto d-inline-block">
 
-                    <button title="Voltar tela anterior" class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="#"><i class="fas fa-times"></i></a></button>
+                    <button title="Voltar tela anterior" class="btn btn-outline-dark" style="margin-right: 10px; margin-bottom: 8px;"><a href="CoordenadorTurmas.php"><i class="fas fa-times"></i></a></button>
                         
                     <button title="Sair" class="btn btn-outline-dark" style="margin-bottom: 8px;"><a href="index.php"><i class="fas fa-power-off"></i></a></button>
 
@@ -115,9 +115,9 @@
                         <div class="col-4 offset-sm-1" style="margin-top: 100px;">
                         
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarAluno.php?acao=editar&id=id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Editar Aluno</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarAluno.php?acao=editar&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Editar Aluno</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDoEstagio.php" style="text-decoration: none; color: black">Inserir dados dos estagiários</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDasNotas.php?id=<?php echo $_GET['id']?>" style="text-decoration: none; color: black">Inserir notas</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDasNotas.php?acao=INotas&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Inserir notas</a></button>
 
                         <form method = "GET">
                             <button name="btn_ApagarTurma" type="submit" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_turma.php?btn_ApagarTurma=<?php echo$_GET['id'];?>" onclick="return confirm('deseja remover essa turma')" style="text-decoration: none; color: black">Apagar Turma</a></button>
@@ -150,7 +150,7 @@
                                             if($exibir != null){
                                                 for($i = 0; $i < count($exibir); $i++){
                                                     echo "<tr>";
-                                                        echo "<th scope='row'><a href='CoordenadorTurmasSelect.php?acao=editar&idAluno=".$exibir[$i]->IDAluno."&id=".$_GET['id']."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->Aluno."</th>";
+                                                        echo "<th scope='row'><a href='CoordenadorTurmasSelect.php?idAluno=".$exibir[$i]->IDAluno."&id=".$_GET['id']."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->Aluno."</th>";
                                                         echo "<th scope='row'>".$exibir[$i]->Estagio."</th>";
                                                         echo "<th scope='row'>".$exibir[$i]->Empresa."</th>";
                                                     echo "</tr>";

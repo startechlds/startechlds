@@ -394,7 +394,7 @@
                 else{ 
                     $media = ($n1 + $n2 + $n3) / 3;
                     //$this->Media = number_format($media, 1);
-                  //  echo "$n1 $n2 $n3";
+                    //echo "$n1 $n2 $n3";
 
                     if($media >= 7)
                         //$array = array("Media" =>  number_format($media, 2), "Situacao" => "Aprovado", , "naf" => false);
@@ -452,7 +452,7 @@
         }
 
         public function AtualizaNotas($idAluno, $n1, $n2, $n3, $nf, $relatorio, $media, $situacao){
-            $update = "UPDATE notas_aluno SET N1=:n1, N2=:n2, N3=:n1, NF=:n1, MEDIA=:media, CH_SitucaoAluno=:situacaoAluno, 
+            $update = "UPDATE notas_aluno SET N1=:n1, N2=:n2, N3=:n3, NF=:nf, MEDIA=:media, CH_SitucaoAluno=:situacaoAluno, 
                 CH_SituacaoRelatorio=:relatorio WHERE CD_Aluno = :cdAluno";
                 try{
                     $conn = new ConexaoBD();

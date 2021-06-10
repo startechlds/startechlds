@@ -26,6 +26,7 @@
             }
             else{
                 setcookie("idAluno", $_GET['idAluno']);
+                setcookie("idTurma", $_GET['id']);
 
             }
         }
