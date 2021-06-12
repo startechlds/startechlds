@@ -116,7 +116,7 @@
                         
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarAluno.php?acao=editar&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Editar Aluno</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDoEstagio.php" style="text-decoration: none; color: black">Inserir dados dos estagiários</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDoEstagio.php?acao=dEstagios&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Inserir dados de Estágios</a></button>
                             <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDasNotas.php?acao=INotas&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Inserir notas</a></button>
 
                         <form method = "GET">

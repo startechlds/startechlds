@@ -256,6 +256,14 @@
             }
         }
 
+        public function RetornaDadosDoEstágio(){
+            $select = "SELECT ES.*,  T.CD_Turma, T.CD_Semestre
+                        FROM turma_aluno_estagio TAE
+                        Join turma T on T.CD_Turma = TAE.CD_Turma
+                        Join estagio ES on ES.CD_Estagio = TAE.COD_Estagio
+                        Where T.CD_Turma = :idTurma and TAE.CD_Aluno = :idAluno";
+        }
+
         public static function RetornaTurma($id){
             $select = "SELECT * FROM turma WHERE CD_Turma = :idTurma";
 
@@ -394,6 +402,33 @@
                 return "fechada";
             }
                 
+        }
+
+        public static function UpdateEstagio($idTurma, $idAuno, $codEstagio){
+            $update = "UPDATE turma_aluno_estagio SET COD_Estagio = :cod_Estagio WHERE CD_Turma = :idTurma AND CD_Aluno = :idAluno";
+
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+
+                $result = $conect->prepare($update);
+                $result->bindParam(':cod_Estagio', $codEstagio, PDO::PARAM_INT);
+                $result->bindParam(':idTurma', $idTurma, PDO::PARAM_INT);
+                $result->bindParam(':idAluno', $idAuno, PDO::PARAM_STR);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            catch(PDOException $e){
+                echo "<strong> ERRO DE PDO Função UpdateEstagio <strong> ".$e->getMessage();
+            }
         }
 
     }

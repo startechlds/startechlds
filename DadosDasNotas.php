@@ -21,7 +21,7 @@
                     echo "
                     <script>
                         alert('Selecione um aluno para poder editar as notas');
-                        window.location.href = 'CoordenadorTurmas.php'
+                        window.location.href = 'CoordenadorTurmasSelect.php?id=".$_GET['id']."'
                     </script>";
                 }
                 else{

@@ -163,4 +163,55 @@
         }
     }
 
+    if($_COOKIE['acaoA'] == "dEstagios"){
+        include_once("../Classes/ClassTurma.php");
+
+        if(Turma::VerificaSeATumaAberta($_COOKIE['idTurma'])){
+
+            if(isset($_POST['btn_salvarEstagio'])){
+                include_once("../Classes/ClassEstagio.php");
+                
+                $vf_ativo = isset($_POST['concluido']) ? $_POST['concluido'] : $_COOKIE['vf_concluido'];
+                $ja_estagio = isset($_POST['jEstagio']) ? $_POST['jEstagio'] : $_COOKIE['j_estagiou'];
+                $dt_inicio =  $_POST['dt_inicio'];
+                $dt_final =  $_POST['dt_final'];
+                $cd_empresa =  $_POST['cbx_Empresa'];
+                $idAluno = $_COOKIE['idAluno'];
+                $idTurma = $_COOKIE['idTurma'];
+
+                $es = new Estagio();
+            // echo "$relatorio";
+
+            // $res = $p->CalculoMediaAluno($n1, $n2, $n3, $naf);
+            // print_r($res);
+            
+            $resultado = $es->AtualizaDadosEstagio($idTurma, $idAluno, $cd_empresa, $dt_inicio, $dt_final, $ja_estagio, $vf_ativo);
+
+                if($resultado){
+                    echo "
+                    <script>
+                        alert('Dados do estágio EDITADAS COM SUCESSO');
+                        window.location.href = '../DadosDoEstagio.php?id=$idTurma&idAluno=$idAluno';
+                    </script>";
+                }
+                else{
+                    echo "
+                    <script>
+                        alert('ERRO AO EDITAR Dados do estágio');
+                        window.location.href = '../DadosDoEstagio.php?id=$idTurma&idAluno=$idAluno';
+                    </script>";
+                }
+
+            }
+        }
+        else{
+            echo "
+            <script>
+                alert('Turma Selecionada Fechada, Impossivel adicionar aluno');
+                window.location.href = '../CoordenadorTurmas.php';
+            </script>'";
+        }
+    }
+    
+
 ?>

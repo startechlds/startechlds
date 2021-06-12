@@ -13,6 +13,37 @@
 
 <body>
 
+    <?php
+        session_start();
+        if(isset($_GET['acao'])){
+            if($_GET['acao'] == "dEstagios"){
+                setcookie("acaoA", "dEstagios");
+                if(empty($_GET['idAluno'])){
+                    echo "
+                    <script>
+                        alert('Selecione um aluno para poder ver os dados do estagio');
+                        window.location.href = 'CoordenadorTurmasSelect.php?id=".$_GET['id']."'
+                    </script>";
+                }
+                else{
+                    include_once("Classes/ClassEstagio.php");
+
+                    setcookie("idAluno", $_GET['idAluno']);
+                    setcookie("idTurma", $_GET['id']);
+
+                    $es = new Estagio();
+
+                    $exibir = $es->RetornaDadosEstagio($_GET['id'], $_GET['idAluno']);
+                    if($exibir != null){
+                        setcookie("vf_concluido", $exibir->VF_Ativo);
+                        setcookie("j_estagiou", $exibir->VF_JaEstagiou);
+                    }
+                }
+            }
+                
+        }
+    ?>
+
     
     <div class="container">
            
@@ -54,15 +85,22 @@
             <h2 class="mt-4" style="display: flex; align-items: center; justify-content: center"> Dados Estágio </h2>
             <div clas="row">
 
-                
-
                 <div class="col-12 h-auto d-inline-block" style="margin-top: 50px; background-color: rgb(175, 175, 166); height: 70%">
+                    <?php
+                        include_once("Classes/ClassTurma.php");
+                        include_once("Classes/ClassPessoa.php");
+                        $t = new Turma();
+                        $p = new Pessoa();
+
+                        $dadosP = $p->RetornaPessoa($_GET['idAluno']);
+                        $dadosT = $t->RetornaTurma($_GET['id']);
+                    ?>
 
                      <div class="row mt-4">
                          
                         <div class="col-2 mt-4 offset-sm-2">
                                     
-                            <i class="fas fa-user" style="font-size: 50px;"></i>&nbsp&nbsp&nbspAluno Fulano
+                            <i class="fas fa-user" style="font-size: 50px;"></i>&nbsp&nbsp&nbsp<?php echo $dadosP->CH_Nome;?>
                                            
                         </div>
 
@@ -70,7 +108,7 @@
 
                             <div class="col-12 form-group mt-4" >
 
-                                <p style="border: 1px solid rgb(28,28,28); height: 4vh; padding: 5px; display: flex; align-items: center; justify-content: center; color: grey11"><strong>Semestre 2021.1</strong></p>   
+                                <p style="border: 1px solid rgb(28,28,28); height: 4vh; padding: 5px; display: flex; align-items: center; justify-content: center; color: grey11"><strong>Semestre <?php echo $dadosT->CD_Semestre;?></strong></p>   
 
                             </div>
 
@@ -78,11 +116,7 @@
 
                         <div class="col-2 offset-sm-1">
                                     
-                            <select class="form-select btn btn-secondary mt-4" id="validationDefault04" name="cbx_situacao">
-                                <option selected disabled value="">Situação&nbsp</option>
-                                <option value="0">Fechado</option>
-                                <option value="1">Aberto</option>
-                            </select>
+                            
                                    
                         </div>
 
@@ -93,23 +127,45 @@
                         <p style="border: 1px dashed black; width: 100%;" class="mt-4"></p>
 
                     </div>
+                <form method="POST" action="php/CRUD_Aluno.php">
 
+                   <?php
+                        include_once("Classes/ClassEstagio.php");
+                        $es = new Estagio();
+
+                        $exibir = $es->RetornaDadosEstagio($_GET['id'], $_GET['idAluno']);
+
+
+                   ?>
                     <div class="row mt-4"> 
 
                         <div class="col-2 offset-sm-1">
                                     
-                            <select class="form-select btn btn-secondary mt-4" id="validationDefault04" name="cbx_situacao">
-                                <option selected disabled value="">Estágio?</option>
-                                <option value="0">Sim</option>
-                                <option value="1">Não</option>
-                            </select>
+                           
                                            
                         </div>
-
+                        
                         <div class="col-1 mt-4">
                                     
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <?php
+                                    if($exibir != null){
+                                        if($exibir->VF_Ativo == 0){
+                                            echo "<input name='concluido' class='form-check-input' type='checkbox' value='0' checked id='flexCheckDefault'>";
+                                          //  $_COOKIE['vf_concluido'] = 0;
+                                        }
+                                        else{
+                                            echo "<input name='concluido' class='form-check-input' type='checkbox' value='0' id='flexCheckDefault'>";
+                                           // $_COOKIE['vf_concluido'] = $exibir->VF_Ativo;
+                                        }
+                                    }
+                                    else{
+                                        echo "<input name='concluido' class='form-check-input' type='checkbox' value='0' id='flexCheckDefault'>";
+                                       // $_COOKIE['vf_concluido'] = $exibir->VF_Ativo;
+                                    }
+                                   // $_POST['vf_concluido'] = 1;
+                                ?>
+                                
                                 <label class="form-check-label" for="flexCheckDefault">
                                    <strong> Concluído </strong>
                                 </label>
@@ -118,16 +174,35 @@
                         </div>     
                             
                         <div class="form-group row col-3 mt-3 offset-sm-1">
-                            <label for="example-datetime-local-input" class="col-2 col-form-label"><strong>Data Inicial:</strong>&nbsp&nbsp</label>
+                            <label for="example-datetime-local-input" class="col-2 col-form-label" ><strong>Data Inicial:</strong>&nbsp&nbsp</label>
                                 <div class="col-8 mt-2">
-                                    <input style="margin-left: 8px" class="form-control" type="date" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                                <input style="margin-left: 8px" class="form-control" name="dt_inicio" type="date" 
+                                    <?php
+                                                if($exibir != null){
+                                                    $data = $exibir->DT_Inicio;
+                                                    echo "value='$data'";
+                                                }
+                                                else
+                                                    echo "value='2021-06-19T13:45:00'";
+                                    ?>
+                                    id="example-datetime-local-input">
                                 </div>
                         </div>
 
                         <div class="form-group row col-3 mt-3">
                             <label for="example-datetime-local-input" class="col-2 col-form-label"><strong>Data Final:</strong></label>
                                 <div class="col-8 mt-2">
-                                    <input class="form-control" type="date" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                                    
+                                <input style="margin-left: 8px" class="form-control" type="date"  name="dt_final"
+                                    <?php
+                                        if($exibir != null){
+                                            $data = $exibir->DT_Final;
+                                            echo "value='$data'";
+                                        }
+                                        else
+                                            echo "value='2021-06-19T13:45:00'";
+                            ?>
+                                    id="example-datetime-local-input">
                                 </div>
                         </div>                      
 
@@ -136,16 +211,46 @@
                     <div class="row mt-4"> 
 
                         <div class="col-3 offset-sm-2 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
+                            <?php
+                               
+                                include_once('Classes/ClassEmpresa.php');
+                                $empresa = new Empresa(); 
 
+                                
+                            ?>
                             <label for="nome"><strong>Empresa:&nbsp</strong></label>
-                            <input type="text" id="nome" name="nome_fantasia" placeholder="Nome" class="form-control formInicial" required/>
+                             <select class='form-select btn btn-secondary' id='validationDefault04' name ='cbx_Empresa' require>
+                                    <?php
+                                        
+                                        $emp = null;
+                                        $dadosEmp = $empresa->RetornaTabelaEmpresaInArray();
+                                        if($exibir != null){
+                                            $emp = $empresa->RetornaEmpresa($exibir->CD_Empresa);
+                                            echo"<option selected value='".$emp->CD_Empresa."' require>".$emp->CH_Fantasia."</option>";
+                                            $_POST['cbx_Empresa'] = $emp->CD_Empresa;
+                                        }
+                                        else
+                                            echo"<option selected disabled value='".null."'>Empresa</option>";
+                                        for($i = 0; $i < count($dadosEmp); $i++){
+                                            echo"<option type = 'submit' value='".$dadosEmp[$i]->CD_Empresa."' require>".$dadosEmp[$i]->CH_Fantasia."</option>";
+                                        }
+                                    ?>
+                                </select>
 
                         </div>
 
                         <div class="col-1 mt-4">
                                     
                             <div class="form-check mt-2 offset-sm-1">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <?php
+                                    if($emp != null){
+                                        if($emp->DOC_Convenio != null)
+                                            echo '<input class="form-check-input" type="checkbox" checked disabled value="" id="flexCheckDefault">';
+                                        else
+                                        echo '<input class="form-check-input" type="checkbox" disabled value="" id="flexCheckDefault">';
+                                    }
+                                ?>
+                                <input class="form-check-input" type="checkbox"  disabled value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                    <strong> Convênio </strong>
                                 </label>
@@ -154,9 +259,18 @@
                         </div>     
 
                         <div class="form-group row col-4 mt-3 offset-sm-1">
-                            <label for="example-datetime-local-input" class="col-3 col-form-label mt-1"><strong>Expira em:</strong></label>
+                            <label name="dt_expira" for="example-datetime-local-input" class="col-3 col-form-label mt-1"><strong>Expira em:</strong></label>
                                 <div class="col-5 mt-2">
-                                    <input class="form-control col-6" type="date" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                                    <input class="form-control col-6" type="text" disabled 
+                                    value="<?php
+                                                if($emp != null){
+                                                    if($emp->DOC_Convenio != null)
+                                                        echo date_create_from_format("Y-m-d", $emp->DT_ExpiracaoConvenio)->format("d/m/Y");
+                                                    else
+                                                    echo '';
+                                                }
+                                            ?>" 
+                                id="example-datetime-local-input">
                                 </div>
                         </div>                      
 
@@ -165,7 +279,22 @@
                     <div class="row mt-4"> 
 
                         <div class="form-check mt-2 offset-sm-1 mt-4">
-                            <input class="form-check-input mt-4" type="checkbox" value="" id="flexCheckDefault">
+                                <?php
+                                     if($exibir != null){
+                                        if($exibir->VF_JaEstagiou == 1){
+                                            echo '<input class="form-check-input mt-4" name = "jEstagio" checked type="checkbox" value="1" id="flexCheckDefault">';
+                                           
+                                        }
+                                        else{
+                                            echo '<input class="form-check-input mt-4" name = "jEstagio" type="checkbox" value="1" id="flexCheckDefault">';
+                                            
+                                        }
+                                     }
+                                     else{
+                                        echo '<input class="form-check-input mt-4"  name = "jEstagio" type="checkbox" value="1" id="flexCheckDefault">';
+                                     }
+                                ?>
+                            
                             <label class="form-check-label mt-4" for="flexCheckDefault">
                                 <strong> Aluno(a) já estagiou nessa empresa</strong>
                             </label>
@@ -178,24 +307,27 @@
                         <button 
                             class="btn btn-primary" 
                             style="margin-bottom: 8px;"
-                            name="btn_editar">
+                            name="btn_Cancelar">
+                            <a style="text-decoration: none;" href="CoordenadorTurmasSelect.php?id=<?php echo $_GET['id'];?>" >Cancelar</a>
+                        </button>   
+
+                        <button 
+                            class="btn btn-primary" 
+                            style="margin-bottom: 8px;"
+                            name="btn_salvarEstagio">
                             <a style="text-decoration: none;">Salvar</a>
-                        </button>                           
+                        </button>                               
 
                     </div>
 
                     <div class="col-3 offset-sm-10">
 
-                        <button 
-                            class="btn btn-primary" 
-                            style="margin-bottom: 8px;"
-                            name="btn_editar">
-                            <a href="DadosDoEstagioParte02.php" style="text-decoration: none;">Próximo</a>
-                        </button>                           
+                                             
 
                     </div>
                     
                 </div>
+            </form>
 
                 
 
