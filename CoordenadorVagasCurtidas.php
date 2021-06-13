@@ -72,16 +72,18 @@
                                             $v = new Vaga();
 
                                             $arr = $v->RetornaTabelaDadosVagasFav();
-                                         
-                                            foreach($arr as $exibir){
-                                              echo"<tr>";
-                                                  echo"<th>".$exibir->Vaga."</th>";
-                                                  echo"<th>".$exibir->Aluno."</th>";
-                                                  if($exibir->Curriculo == null)
-                                                      echo"<th>Aluno Sem Curriculo</th>";
-                                                  else
-                                                      echo"<th><a href='php/CRUD_Aluno.php?acao=abrirDoc&tipo=C&nameDoc=".$exibir->Curriculo."'>".$exibir->Curriculo."</a></th>";
-                                              echo"</tr>";
+
+                                            if($arr != null){
+                                                foreach($arr as $exibir){
+                                                echo"<tr>";
+                                                    echo"<th>".$exibir->Vaga."</th>";
+                                                    echo"<th>".$exibir->Aluno."</th>";
+                                                    if($exibir->Curriculo == null)
+                                                        echo"<th>Aluno Sem Curriculo</th>";
+                                                    else
+                                                        echo"<th><a href='php/CRUD_Aluno.php?acao=abrirDoc&tipo=C&nameDoc=".$exibir->Curriculo."'>".$exibir->Curriculo."</a></th>";
+                                                echo"</tr>";
+                                                }
                                             }
                                             
                                         ?>
