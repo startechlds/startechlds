@@ -72,7 +72,7 @@
                 if(!isset($_POST['!convenio'])){
                     if(!$_POST['!convenio'] == "on"){
                         if($_FILES['doc_convenio']){
-                            $e = $emp->RetornaUltimaEmpresa();
+                            $e = $emp->RetornaEmpresa($_COOKIE['idEmp']);
                             $res = $emp->AdicionarConvenio($_FILES['doc_convenio'], $e->CD_Empresa, $e->CH_Fantasia);
                         }
                     }

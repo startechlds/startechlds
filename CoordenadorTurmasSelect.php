@@ -33,29 +33,29 @@
         
                     <div class="row">
 
-                        <div class="col-2 mt-4 h-auto d-inline-block" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
+                        <div class="col-2 mt-2 h-auto d-inline-block" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
 
                             <button class="btn btn-outline-secondary h-auto d-inline-block" style="height: 50px; border-radius: 16px; "><i class="fas fa-users" 
                                 style="font-size: 20px; color: rgb(34, 32, 32);">&nbspTURMAS</i></button>
                             
                         </div>
 
-                        <div class="col-4 mt-3 h-auto d-inline-block" style="height: 7vh; display: flex; align-items: center; justify-content: center;">
+                        <div class="col-4 mt-2 h-auto d-inline-block" style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
                             <a href="CoordenadorCadNovaTurma.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                                <i class="fas fa-plus-circle" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbspCadastrar nova<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspturma</a>            
+                                <i class="fas fa-plus-circle" style="font-size: 30px; color: rgb(34, 32, 32);"></i>&nbspNova&nbspturma</a>            
                         </div>
 
                         <div class="col-1 mt-2 h-auto d-inline-block" style="height: 7vh;">
 
-                            <div style="border: 1px solid black; height: 7vh; width: 2px"></div>
+                            <div style="border: 1px solid black; height: 5vh; width: 2px"></div>
                                         
                         </div>
 
-                        <div class="col-3 mt-3 h-auto d-inline-block" style="height: 7vh; display: flex; align-items: center; justify-content: center;">
+                        <div class="col-5 mt-2 h-auto d-inline-block" style="height: 7vh; display: flex; align-items: center; justify-content: center;">
 
-                            <a href="CoordenadorVagasCurtidas.php" style="text-decoration: none; color:black; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                                <i class="fas fa-thumbs-up" style="font-size: 40px; color: rgb(34, 32, 32);"></i>&nbsp&nbspVagas Interessadas</a>            
+                            <a href="CoordenadorVagasCurtidas.php" style="text-decoration: none; color:black; font-weight: bold;">
+                                <i class="fas fa-thumbs-up" style="font-size: 20px; color: rgb(34, 32, 32);"></i>&nbsp&nbspVagas Interessadas</a>            
                         </div>
 
                     </div>
@@ -72,7 +72,7 @@
 
             </div>
 
-            <div class="col-12" style="border: 1px solid black; height: 13vh; background-color: rgb(175, 175, 166);"> 
+            <div class="col-12 mt-4" style="border: 1px solid black; height: 13vh; background-color: rgb(175, 175, 166);"> 
 
                 <div class="row">
 
@@ -91,7 +91,7 @@
                         </select>
                     </div>
                     
-                    <div class="col-2 offset-sm-4" style="margin-top: 45px">
+                    <div class="col-2 offset-sm-4 mt-4">
 
                         <button 
                             class="btn btn-secondary" 
@@ -112,23 +112,22 @@
 
                     <div class="row">
 
-                        <div class="col-4 offset-sm-1" style="margin-top: 100px;">
+                    <div class="col-2 offset-sm-1 mt-4">
                         
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarAluno.php?acao=editar&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Editar Aluno</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDoEstagio.php?acao=dEstagios&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Inserir dados de Estágios</a></button>
-                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDasNotas.php?acao=INotas&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Inserir notas</a></button>
+                        <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorNovoAluno.html" style="text-decoration: none; color: black">Novo Aluno</a></button>                        
 
                         <form method = "GET">
                             <button name="btn_ApagarTurma" type="submit" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="php/crud_turma.php?btn_ApagarTurma=<?php echo$_GET['id'];?>" onclick="return confirm('deseja remover essa turma')" style="text-decoration: none; color: black">Apagar Turma</a></button>
                             <button name="btn_EditarTurma" type="submit" class="btn btn-secondary" style="margin-bottom: 8px;"><a href="CoordenadorEditarTurma.php?id=<?php echo$_GET['id'];?>" style="text-decoration: none; color: black">Editar Turma</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDoEstagio.php?acao=dEstagios&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Inserir dados de Estágios</a></button>
+                            <button class="btn btn-secondary" style="margin-bottom: 8px;"><a href="DadosDasNotas.php?acao=INotas&id=<?php echo $_GET['id']?>&idAluno=<?php if(!empty($_GET['idAluno'])) echo $_GET['idAluno'];?>" style="text-decoration: none; color: black">Inserir notas</a></button>
                         </form>
 
-                        </div>
+                    </div>
 
-                        <div class="col-8 h-auto d-inline-block" style="margin-top: 70px;">
+                        <div class="col-8 h-auto d-inline-block mt-4">
 
-                            <table class="table table-hover">
+                            <table class="table table-hover ">
                                 <thead class="bg-secondary" style="text-align: center;">
                                   <tr>
                                     <th scope="col">Aluno</th>

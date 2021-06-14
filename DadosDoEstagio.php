@@ -62,10 +62,10 @@
         
                     <div class="row">
 
-                        <div class="col-2 mt-4 h-auto d-inline-block" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
+                        <div class="col-2 mt-1 h-auto d-inline-block" style="border-radius: 18px; height: 5vh; display: flex; align-items: center; justify-content: center;">
 
                             <button class="btn btn-outline-secondary h-auto d-inline-block" style="height: 50px; border-radius: 16px; "><i class="fas fa-user-graduate" 
-                            style="font-size: 30px; color: rgb(34, 32, 32);"></i>&nbsp<strong>Alunos</strong></button>
+                            style="font-size: 20px; color: rgb(34, 32, 32);"></i>&nbsp<strong>Alunos</strong></button>
 
                         </div>
 
@@ -139,13 +139,9 @@
                    ?>
                     <div class="row mt-4"> 
 
-                        <div class="col-2 offset-sm-1">
-                                    
-                           
-                                           
-                        </div>
+                      
                         
-                        <div class="col-1 mt-4">
+                        <div class="col-1 offset-sm-2 mt-4">
                                     
                             <div class="form-check">
                                 <?php
@@ -189,7 +185,7 @@
                                 </div>
                         </div>
 
-                        <div class="form-group row col-3 mt-3">
+                        <div class="form-group row col-3 mt-3" style="margin-left: 10px">
                             <label for="example-datetime-local-input" class="col-2 col-form-label"><strong>Data Final:</strong></label>
                                 <div class="col-8 mt-2">
                                     
@@ -259,7 +255,7 @@
                         </div>     
 
                         <div class="form-group row col-4 mt-3 offset-sm-1">
-                            <label name="dt_expira" for="example-datetime-local-input" class="col-3 col-form-label mt-1"><strong>Expira em:</strong></label>
+                            <label name="dt_expira" for="example-datetime-local-input" class="col-2 col-form-label mt-1"><strong>Expira &nbsp;&nbsp;em:</strong></label>
                                 <div class="col-5 mt-2">
                                     <input class="form-control col-6" type="text" disabled 
                                     value="<?php
@@ -278,7 +274,7 @@
 
                     <div class="row mt-4"> 
 
-                        <div class="form-check mt-2 offset-sm-1 mt-4">
+                        <div class="form-check mt-2 offset-sm-3 mt-4">
                                 <?php
                                      if($exibir != null){
                                         if($exibir->VF_JaEstagiou == 1){
@@ -302,13 +298,13 @@
 
                     </div>
                     
-                    <div class="col-2 offset-sm-6" style="margin-top: 10%">
+                    <div class="col-2 offset-sm-5" style="margin-top: 10%">
 
                         <button 
                             class="btn btn-primary" 
                             style="margin-bottom: 8px;"
                             name="btn_Cancelar">
-                            <a style="text-decoration: none;" href="CoordenadorTurmasSelect.php?id=<?php echo $_GET['id'];?>" >Cancelar</a>
+                            <a style="text-decoration: none; color: white" href="CoordenadorTurmasSelect.php?id=<?php echo $_GET['id'];?>" >Cancelar</a>
                         </button>   
 
                         <button 
