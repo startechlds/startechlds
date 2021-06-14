@@ -379,8 +379,8 @@
         public function CalculoMediaAluno($n1, $n2, $n3, $nf){            
             if($n1 == null && $n2 == null && $n3 == null){
                 //$array = array("Media" => 0.0, "Situacao" => "Cursando");
-                $this->Media = 0.0;
-                $this->Situacao = "Cursando";
+                $media = 0.0;
+                $situacao = "Cursando";
             }
             else{
                 if($n1 != null && $n2 == null && $n3 == null){

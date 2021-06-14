@@ -160,7 +160,14 @@
 
                             <div class="col-3 offset-sm-1">
                                 <input type="text" class="btn btn-secondary mt-4" id="validationDefault04"
-                                 value="<?php if(!$vf) echo "Situação: ". $dadosN->CH_SitucaoAluno;?>"
+                                 value=
+                                    "<?php
+                                        if(!$vf) 
+                                            echo "Situação: ". $dadosN->CH_SitucaoAluno;
+                                        else
+                                            echo "Situação: Cursando";
+                                            
+                                    ?>"
                                  name="situacaoAluno">     
                                             
                             </div>
