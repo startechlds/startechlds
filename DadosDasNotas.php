@@ -130,7 +130,7 @@
 
                             <div class="col-3 offset-sm-1">
                                         
-                                <select class="form-select btn btn-secondary mt-4" id="validationDefault04" name="cbx_situacaoRelatorio">
+                                <select class="form-select btn btn-secondary mt-4" id="validationDefault04" name="cbx_situacaoRelatorio" required> 
                                   <?php 
                                     if(!$vf){
                                         switch ($dadosN->CH_SituacaoRelatorio){
@@ -180,7 +180,7 @@
 
                                 <div class="row mt-3">
                                     
-                                    <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
+                                    <div class="col-5 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                         <label for="nome"><strong>AP1:&nbsp</strong></label>
                                         <input type="text" id="nome" name="n1" class="form-control formInicial" value="<?php if(!$vf) echo $dadosN->N1;?>"/>
@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="row mt-1">
                                     
-                                    <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
+                                    <div class="col-5 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                         <label for="nome"><strong>AP2:&nbsp</strong></label>
                                         <input type="text" id="nome" name="n2" class="form-control formInicial" value="<?php if(!$vf) echo $dadosN->N2;?>"/>
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="row mt-1">
                                     
-                                    <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
+                                    <div class="col-5 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                         <label for="nome"><strong>AP3:&nbsp</strong></label>
                                         <input type="text" id="nome" name="n3" class="form-control formInicial" value="<?php if(!$vf) echo $dadosN->N3;?>"/>
@@ -210,7 +210,7 @@
                                 </div>
                                 <div class="row mt-1">
                                     
-                                    <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
+                                    <div class="col-5 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
                                         <label for="nome"><strong>NAF:&nbsp</strong></label>
                                         <?php
@@ -228,9 +228,9 @@
 
                                 <div class="row mt-1">
                                     
-                                    <div class="col-4 offset-sm-7 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
+                                    <div class="col-6 offset-sm-6 form-group mt-4" style="display: flex; align-items: center; justify-content: space-around;">
 
-                                        <label for="nome"><strong>Media Final:&nbsp</strong></label>
+                                        <label for="nome"><strong>Media Final:&nbsp&nbsp&nbsp</strong></label>
                                         <input type="text" id="nome" name="media" disabled class="form-control formInicial" value="<?php if(!$vf) echo $dadosN->MEDIA;?>"/>
 
                                     </div>

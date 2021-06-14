@@ -92,9 +92,7 @@
 
                         <div class="col-2 offset-sm-2" style="margin-top: 100px;">
 
-                            <button class="btn btn-secondary" style="margin-bottom: 8px; margin-left: 10px"><a href="CoordenadorNovoProfessor.html" style="text-decoration: none; color: black">Adicionar&nbsp<i class="fas fa-upload"></i></a></button>
-                            <button class="btn btn-secondary offset-sm-2" style="margin-bottom: 8px;"><a href="#" style="text-decoration: none; color: black">Editar</a></button>
-
+                            
                         </div>
 
                         <div class="col-6 h-auto d-inline-block" style="margin-top: 70px;">

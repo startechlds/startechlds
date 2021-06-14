@@ -131,7 +131,7 @@
             $situacao = $_POST['situacaoAluno'];
             $relatorio =  $_POST['cbx_situacaoRelatorio'];
             $n1 =  empty($_POST['n1']) ? null : $_POST['n1'];
-            $n2 =  empty($_POST['n2']) ? null : $_POST['n1'];
+            $n2 =  empty($_POST['n2']) ? null : $_POST['n2'];
             $n3 =  empty($_POST['n3']) ? null : $_POST['n3'];
             $naf = empty($_POST['naf']) ? null : $_POST['naf'];
             $idAluno = $_COOKIE['idAluno'];
@@ -156,7 +156,7 @@
                 echo "
                 <script>
                     alert('ERRO AO EDITAR ALUNO');
-                    window.location.href = '../DadosDasNotas.php?id=$idTurma&idAluno=$idAluno';
+                    
                 </script>";
             }
 
@@ -198,7 +198,7 @@
                     echo "
                     <script>
                         alert('ERRO AO EDITAR Dados do estágio');
-                        window.location.href = '../DadosDoEstagio.php?id=$idTurma&idAluno=$idAluno';
+                      
                     </script>";
                 }
 

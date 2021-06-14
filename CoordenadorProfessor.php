@@ -103,10 +103,12 @@
                                         $p = new Pessoa();
     
                                         $exibir = $p->RetornaTabelaPessoaInArray('P');
-                                        for($i = 0; $i < count($exibir); $i++){
-                                            echo"<tr>";
-                                            echo"<th scope='row'><a href='CoordenadorProfessor.php?&id=".$exibir[$i]->CD_Pessoa."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Nome."</a></th>";
-                                            echo"</tr>";
+                                        if($exibir != null){
+                                            for($i = 0; $i < count($exibir); $i++){
+                                                echo"<tr>";
+                                                echo"<th scope='row'><a href='CoordenadorProfessor.php?&id=".$exibir[$i]->CD_Pessoa."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Nome."</a></th>";
+                                                echo"</tr>";
+                                            }
                                         }
                                     ?>
                                    

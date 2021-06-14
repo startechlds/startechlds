@@ -170,7 +170,7 @@
                                             <div class="form-group row col-10 mt-2">
                                                 <label for="example-datetime-local-input" class="col-3 col-form-label">Data de expiração</label>
                                                 <div class="col-4">
-                                                <input class="form-control" type="datetime-local" value="2021-06-14T13:45:00" id="example-datetime-local-input">
+                                                <input class="form-control" type="datetime-local" name ="dt_convenio" value="2021-06-14T13:45:00" id="example-datetime-local-input">
                                                 </div>
                 
                                                 

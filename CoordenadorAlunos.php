@@ -119,7 +119,7 @@
                                         include_once('Classes/ClassPessoa.php');
                                         $p = new Pessoa();
 
-                                        $exibir = $p->RetornaTabelaPessoaInArray('A');
+                                        $exibir = $p->RetornaTabelaTodosAluno();
                                         for($i = 0; $i < count($exibir); $i++){
                                             echo"<tr>";
                                             echo"<th scope='row'><a href='CoordenadorAlunos.php?acao=editar&id=".$exibir[$i]->CD_Pessoa."' style='text-decoration: none; color: rgb(29, 28, 28)'>".$exibir[$i]->CH_Nome."</a></th>";

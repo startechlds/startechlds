@@ -580,8 +580,44 @@
                 echo "ERRO DE PDO RetornaNotasAluno ". $e->getMessage();
             }
         }
-        
 
+        public function RetornaTabelaTodosAluno(){
+            $select = "SELECT P.CD_Pessoa, P.CH_Nome, T.CD_Semestre, N.CH_SitucaoAluno as CH_Situacao
+                        from pessoa P
+                        left join turma_aluno_estagio TAE on TAE.CD_Aluno = P.CD_Pessoa
+                        left join turma T on  T.CD_Turma = TAE.CD_Turma
+                        left join notas_aluno N on N.CD_Aluno = P.CD_Pessoa
+                        Where P.VF_Tipo = 'A'";
+                
+            $conn = new ConexaoBD();
+            $conect = $conn->ConDB();
+
+            try{
+                $result = $conect->prepare($select);
+              //  $result->bindParam(':tipo', $tipo = 'A', PDO::PARAM_STR);
+                $result->execute();
+
+                $retorno = $result->rowCount();
+                if($retorno > 0){
+                    
+                    if($retorno > 0){
+                        while($pessoa = $result->fetch(PDO::FETCH_OBJ)){
+                            $array[] = $pessoa;
+                        }
+                        
+                        return $array;
+                    }
+                }
+                else{
+                    echo"TABELA VAZIA";
+                }
+            }
+            catch(PDOException $e){
+                echo "ERRO DE PDO SELECT ". $e->getMessage();
+            }
+        }
+        
+ 
         
     }
 ?>
